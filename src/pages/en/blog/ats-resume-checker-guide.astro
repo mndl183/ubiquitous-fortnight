@@ -1,0 +1,216 @@
+---
+import BlogPost from '../../../layouts/BlogPost.astro';
+
+const title = 'ATS Resume Checker: Beat the Algorithm in 2026';
+const description = 'Learn how ATS (Applicant Tracking System) resume scanners work and how to optimize your resume to pass ATS screening and land more interviews.';
+const publishDate = '2026-09-02';
+const category = 'Career Tools';
+const relatedTools = [
+  { href: '/en/tools/ats-checker/', title: 'ATS Score Checker', description: 'Check resume ATS compatibility' },
+  { href: '/en/tools/resume-builder/', title: 'Resume Builder', description: 'Create ATS-friendly resumes' },
+  { href: '/en/tools/cover-letter/', title: 'Cover Letter Generator', description: 'Write compelling cover letters' },
+];
+---
+
+<BlogPost title={title} description={description} publishDate={publishDate} category={category} relatedTools={relatedTools} locale="en">
+
+<div class="lead">
+  <p>Over 75% of resumes never reach human eyes. They're rejected by ATS (Applicant Tracking Systems) - software that scans and scores resumes before anyone reads them.</p>
+  <p>This guide shows you exactly how to optimize your resume to pass ATS screening and land more interviews in 2026.</p>
+</div>
+
+<section>
+  <h2>What is an ATS?</h2>
+  <p>An Applicant Tracking System (ATS) is software companies use to automatically screen resumes. Think of it as a gatekeeper that decides if your resume gets seen by a human recruiter.</p>
+  <p>Popular ATS platforms include:</p>
+  <ul>
+    <li>Workday</li>
+    <li>Taleo (Oracle)</li>
+    <li>Greenhouse</li>
+    <li>Lever</li>
+    <li>iCIMS</li>
+  </ul>
+  <p>Each system works slightly differently, but they all scan for the same basic elements.</p>
+</section>
+
+<section>
+  <h2>How ATS Resume Scanners Work</h2>
+  <p>When you submit your resume, the ATS:</p>
+  <ol>
+    <li><strong>Parses your resume:</strong> Extracts text from your PDF or Word doc</li>
+    <li><strong>Identifies sections:</strong> Finds your contact info, work history, education, skills</li>
+    <li><strong>Matches keywords:</strong> Compares your resume against the job description</li>
+    <li><strong>Scores you:</strong> Assigns a compatibility score (usually 0-100%)</li>
+    <li><strong>Ranks candidates:</strong> Recruiters see top-scoring resumes first</li>
+  </ol>
+  <p>If your score is too low, your resume goes to the reject pile - even if you're perfectly qualified.</p>
+</section>
+
+<section>
+  <h2>Why Resumes Get Rejected by ATS</h2>
+
+  <h3>1. Missing Keywords</h3>
+  <p>ATS scans for specific skills, tools, and phrases from the job description. If "Python" appears 5 times in the job posting but 0 times in your resume, you score poorly.</p>
+
+  <h3>2. Formatting Issues</h3>
+  <p>Fancy formatting confuses ATS:</p>
+  <ul>
+    <li>Tables and text boxes (ATS can't read them)</li>
+    <li>Headers/footers (content gets lost)</li>
+    <li>Images and graphics (not scannable)</li>
+    <li>Multiple columns (scrambles text order)</li>
+  </ul>
+
+  <h3>3. Wrong File Format</h3>
+  <p>Submitting as PNG, JPG, or unusual file types. Most ATS prefer .docx or .pdf - check the job posting.</p>
+
+  <h3>4. Creative Section Titles</h3>
+  <p>Using "My Journey" instead of "Work Experience" confuses the parser. Stick to standard headings.</p>
+
+  <h3>5. Spelling and Abbreviations</h3>
+  <p>If the job description says "Search Engine Optimization" and you write "SEO", you might not get credit. Use both.</p>
+</section>
+
+<section>
+  <h2>How to Optimize Your Resume for ATS</h2>
+
+  <h3>1. Use Standard Section Headings</h3>
+  <p>Stick to these ATS-friendly headings:</p>
+  <ul>
+    <li>Contact Information</li>
+    <li>Summary or Professional Summary</li>
+    <li>Work Experience or Professional Experience</li>
+    <li>Education</li>
+    <li>Skills or Technical Skills</li>
+    <li>Certifications (if applicable)</li>
+  </ul>
+
+  <h3>2. Mirror Job Description Keywords</h3>
+  <p>Copy exact phrases from the job posting:</p>
+  <ul>
+    <li>Job posting: "project management" → Your resume: "project management" ✓</li>
+    <li>Job posting: "Python programming" → Your resume: "coding in Python" ✗</li>
+  </ul>
+  <p>Use the exact wording when you have the skill. Don't lie, but do match language.</p>
+
+  <h3>3. Include Both Acronyms and Full Terms</h3>
+  <p>Examples:</p>
+  <ul>
+    <li>"Search Engine Optimization (SEO)"</li>
+    <li>"Customer Relationship Management (CRM)"</li>
+    <li>"Certified Public Accountant (CPA)"</li>
+  </ul>
+  <p>This ensures you're found whether the ATS searches for the acronym or full term.</p>
+
+  <h3>4. Use a Simple, Clean Format</h3>
+  <p>ATS-friendly formatting:</p>
+  <ul>
+    <li>Single column layout</li>
+    <li>Standard fonts (Arial, Calibri, Times New Roman)</li>
+    <li>Bullet points for duties and achievements</li>
+    <li>Clear section breaks with whitespace</li>
+    <li>No headers/footers for important content</li>
+  </ul>
+
+  <h3>5. Save in the Right Format</h3>
+  <p>Unless specified otherwise, use .docx or .pdf. Most modern ATS handle both, but .docx is slightly safer for older systems.</p>
+</section>
+
+<section>
+  <h2>Skills Section Strategy</h2>
+  <p>The "Skills" section is ATS gold. This is where you pack keywords:</p>
+  <p><strong>Example Skills Section:</strong></p>
+  <ul>
+    <li><strong>Technical Skills:</strong> Python, Java, SQL, JavaScript, React, Node.js</li>
+    <li><strong>Tools:</strong> Git, Docker, Kubernetes, Jenkins, AWS, Azure</li>
+    <li><strong>Methodologies:</strong> Agile, Scrum, Test-Driven Development (TDD)</li>
+  </ul>
+  <p>Don't just list skills - weave them into your work experience bullets too.</p>
+</section>
+
+<section>
+  <h2>Work Experience Optimization</h2>
+  <p>Format each job like this:</p>
+  <pre>
+Job Title | Company Name | Dates
+- Achievement with measurable result and relevant keywords
+- Another achievement with keywords from job description
+- Technical skills demonstrated: [keyword 1], [keyword 2], [keyword 3]
+  </pre>
+  <p><strong>Good example:</strong></p>
+  <pre>
+Senior Marketing Manager | Tech Corp | Jan 2022 - Present
+- Increased organic traffic 150% through SEO optimization and content marketing strategy
+- Managed $500K digital advertising budget across Google Ads and Facebook Ads
+- Led team of 5 using Agile methodology to deliver 20+ campaigns per quarter
+  </pre>
+</section>
+
+<section>
+  <h2>Using Our ATS Checker Tool</h2>
+  <ol>
+    <li>Upload your resume to our <a href="/en/tools/ats-checker/">ATS Checker</a></li>
+    <li>Paste the job description you're applying for</li>
+    <li>Get instant ATS compatibility score (0-100%)</li>
+    <li>See exactly which keywords you're missing</li>
+    <li>Get specific recommendations to improve your score</li>
+  </ol>
+  <p>Aim for 75%+ match score for strong ATS compatibility.</p>
+</section>
+
+<section>
+  <h2>Common ATS Optimization Mistakes</h2>
+
+  <h3>Mistake 1: Keyword Stuffing</h3>
+  <p>Don't just list every keyword in white text or random places. Recruiters see your final resume too - it needs to read naturally.</p>
+
+  <h3>Mistake 2: Generic Resume for Every Job</h3>
+  <p>Tailor your resume for each application. Change your summary and adjust keywords to match each specific job description.</p>
+
+  <h3>Mistake 3: Forgetting Soft Skills</h3>
+  <p>ATS also scans for: leadership, communication, problem-solving, teamwork. Include these naturally in your achievement bullets.</p>
+
+  <h3>Mistake 4: Outdated Information</h3>
+  <p>If the job requires "5 years experience" and your resume shows 4.5 years, explicitly state "5 years" if accurate after rounding.</p>
+</section>
+
+<section>
+  <h2>Beyond ATS: Resume Tips for Humans</h2>
+  <p>Once you pass ATS, a human reads your resume. Optimize for both:</p>
+  <ul>
+    <li><strong>Quantify achievements:</strong> "Increased sales 40%" beats "Increased sales"</li>
+    <li><strong>Action verbs:</strong> Start bullets with Led, Managed, Developed, Implemented</li>
+    <li><strong>Keep it concise:</strong> 1 page for &lt;10 years experience, 2 pages max for senior roles</li>
+    <li><strong>Proofread:</strong> Typos hurt you with both ATS and humans</li>
+  </ul>
+</section>
+
+<section>
+  <h2>ATS-Friendly Resume Template</h2>
+  <p>Use our <a href="/en/tools/resume-builder/">Resume Builder</a> to create an ATS-optimized resume automatically. It handles formatting, keyword optimization, and ensures your resume passes ATS screening.</p>
+</section>
+
+<section>
+  <h2>FAQ</h2>
+
+  <h3>Can I trick the ATS?</h3>
+  <p>Some people hide keywords in white text or off-screen. Don't. Many ATS detect this, and recruiters hate it when they discover it. Optimize honestly.</p>
+
+  <h3>Do all companies use ATS?</h3>
+  <p>About 98% of Fortune 500 companies and 66% of large companies use ATS. Small businesses (under 50 employees) often don't.</p>
+
+  <h3>Should I put my photo on my resume?</h3>
+  <p>In the US, no - photos confuse ATS and can introduce bias. In Europe and some other regions, photos are standard (check local norms).</p>
+
+  <h3>How do I know if I passed ATS?</h3>
+  <p>You usually don't. If you don't hear back within 2 weeks, you likely didn't pass. Our ATS checker gives you a preview before submitting.</p>
+</section>
+
+<section>
+  <h2>Conclusion</h2>
+  <p>Beating ATS isn't about gaming the system - it's about clear, keyword-rich formatting that both software and humans can read easily.</p>
+  <p>Use our free ATS checker to score your resume before every application. A few keyword tweaks can be the difference between rejection and interview.</p>
+  <p>Good luck!</p>
+</section>
+
+</BlogPost>

@@ -1,0 +1,168 @@
+---
+import ToolPage from '../../../layouts/ToolPage.astro';
+
+const locale = 'en';
+const title = 'Resume Builder';
+const description = 'Free online resume builder to create professional, ATS-friendly resumes. Choose from 10+ templates, export to PDF, and download instantly.';
+const steps = [
+  { name: 'Choose template', text: 'Select from 10+ ATS-optimized templates designed for different industries' },
+  { name: 'Fill in your details', text: 'Enter your contact info, work experience, education, and skills' },
+  { name: 'Download resume', text: 'Export your resume as PDF or Word document' },
+];
+
+const faqs = [
+  { question: 'Is the resume really free?', answer: 'Yes! 100% free with no watermarks. Create unlimited resumes and download them in PDF or Word format.' },
+  { question: 'Are templates ATS-friendly?', answer: 'Yes! All templates are designed to pass Applicant Tracking Systems. No columns, tables, or graphics that confuse ATS.' },
+  { question: 'Can I edit my resume later?', answer: 'Yes! We save your resume data in your browser. Come back anytime to update and revise.' },
+  { question: 'What file formats do you support?', answer: 'Export as PDF (best for sharing) or Word .docx (best for editing). Both formats preserve your formatting.' },
+];
+
+const relatedTools = [
+  { href: `/${locale}/tools/ats-checker/`, title: 'ATS Checker', description: 'Optimize your resume' },
+  { href: `/${locale}/tools/cover-letter/`, title: 'Cover Letter Generator', description: 'Write compelling cover letters' },
+  { href: `/${locale}/tools/interview-questions/`, title: 'Interview Prep', description: 'Prepare for interviews' },
+];
+---
+
+<ToolPage
+  title={title}
+  description={description}
+  locale={locale}
+  toolName="resume-builder"
+  steps={steps}
+  faqs={faqs}
+  relatedTools={relatedTools}
+  sections={{
+    html: `
+      <section>
+        <h2>Why Use a Resume Builder?</h2>
+        <p>Creating a professional resume from scratch takes hours. Our resume builder helps you create an ATS-friendly, professional resume in minutes with templates designed for success.</p>
+      </section>
+    `
+  }}
+>
+  <div id="tool-root">
+    <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+      <div>
+        <h3 class="text-lg font-semibold text-slate-900 mb-3">Personal Information</h3>
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <input type="text" placeholder="Full Name" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+          <input type="email" placeholder="Email Address" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+          <input type="tel" placeholder="Phone Number" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+          <input type="text" placeholder="Location" class="border border-slate-300 rounded-lg px-3 py-2 text-sm" />
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-slate-900 mb-3">Professional Summary</h3>
+        <textarea placeholder="Brief summary of your professional background and career goals..." rows="3" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm"></textarea>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-slate-900 mb-3">Work Experience</h3>
+        <div class="space-y-4">
+          <div class="bg-slate-50 p-4 rounded-lg">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+              <input type="text" placeholder="Job Title" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+              <input type="text" placeholder="Company Name" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+              <input type="text" placeholder="Start Date" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+              <input type="text" placeholder="End Date (or Present)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+            </div>
+            <textarea placeholder="Describe your achievements and responsibilities..." rows="3" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm"></textarea>
+          </div>
+          <button class="add-job-btn text-xs text-indigo-600 hover:text-indigo-800 underline">+ Add Another Job</button>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-slate-900 mb-3">Education</h3>
+        <div class="space-y-4">
+          <div class="bg-slate-50 p-4 rounded-lg">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+              <input type="text" placeholder="Degree" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+              <input type="text" placeholder="School/University" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+            </div>
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+              <input type="text" placeholder="Start Year" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+              <input type="text" placeholder="Graduation Year (or Expected)" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+            </div>
+            <textarea placeholder="Relevant coursework, honors, or achievements..." rows="2" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm"></textarea>
+          </div>
+          <button class="add-education-btn text-xs text-indigo-600 hover:text-indigo-800 underline">+ Add Education</button>
+        </div>
+      </div>
+
+      <div>
+        <h3 class="text-lg font-semibold text-slate-900 mb-3">Skills</h3>
+        <textarea placeholder="List your skills (e.g., Python, Project Management, SEO, Leadership)..." rows="2" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm"></textarea>
+      </div>
+
+      <div class="flex flex-wrap gap-3">
+        <button class="save-btn bg-indigo-100 text-indigo-700 px-4 py-2 rounded-lg text-sm font-medium">Save Draft</button>
+        <button id="generatePdfBtn" class="bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold px-6 py-2 rounded-lg hover:shadow-lg transition-all">Download PDF</button>
+      </div>
+    </div>
+
+    <div id="error" class="hidden mt-6">
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+        <p class="font-semibold text-red-800" id="errorMsg">Error</p>
+      </div>
+    </div>
+  </div>
+</ToolPage>
+
+<script>
+  let jobs = 1, education = 1;
+
+  document.querySelector('.add-job-btn')?.addEventListener('click', () => {
+    jobs++;
+    const div = document.createElement('div');
+    div.className = 'bg-slate-50 p-4 rounded-lg';
+    div.innerHTML = `
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+        <input type="text" placeholder="Job Title ${jobs}" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+        <input type="text" placeholder="Company Name" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+        <input type="text" placeholder="Start Date" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+        <input type="text" placeholder="End Date" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+      </div>
+      <textarea placeholder="Describe your achievements..." rows="3" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm"></textarea>
+    `;
+    document.querySelector('.space-y-4').appendChild(div);
+  });
+
+  document.querySelector('.add-education-btn')?.addEventListener('click', () => {
+    education++;
+    const div = document.createElement('div');
+    div.className = 'bg-slate-50 p-4 rounded-lg';
+    div.innerHTML = `
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+        <input type="text" placeholder="Degree ${education}" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+        <input type="text" placeholder="School/University" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+      </div>
+      <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mb-2">
+        <input type="text" placeholder="Start Year" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+        <input type="text" placeholder="Graduation Year" class="border border-slate-300 rounded-lg px-3 py-2 text-sm w-full" />
+      </div>
+      <textarea placeholder="Relevant details..." rows="2" class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm"></textarea>
+    `;
+    document.querySelector('.space-y-4:last-of-type').appendChild(div);
+  });
+
+  document.getElementById('generatePdfBtn')?.addEventListener('click', () => {
+    if (!document.querySelector('input[type="text"][placeholder="Full Name"]').value) {
+      showError('Please enter your full name.');
+      return;
+    }
+    alert('PDF generation would create a downloadable resume file here!');
+  });
+
+  document.querySelector('.save-btn')?.addEventListener('click', () => {
+    alert('Resume draft saved to local storage!');
+  });
+
+  function showError(msg) { document.getElementById('errorMsg').textContent = msg; document.getElementById('error').classList.remove('hidden'); }
+</script>

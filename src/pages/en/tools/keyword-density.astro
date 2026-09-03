@@ -1,0 +1,187 @@
+---
+import ToolPage from '../../../layouts/ToolPage.astro';
+
+const locale = 'en';
+const title = 'Keyword Density Checker';
+const description = 'Free keyword density checker to analyze your content. See keyword frequency, density percentage, and identify missing keywords for better SEO.';
+const steps = [
+  { name: 'Paste your content', text: 'Paste your article, blog post, or web page content into the text box. Or enter a URL.' },
+  { name: 'Enter your target keyword', text: 'Type the main keyword you want to optimize for (e.g., "PDF compressor")' },
+  { name: 'Get analysis', text: 'Instantly see keyword count, density percentage, and recommendations' },
+];
+
+const faqs = [
+  { question: 'What is good keyword density?', answer: 'Aim for 1-2% for most content. Over 3% looks like keyword stuffing. Under 0.5% might not be enough relevance.' },
+  { question: 'How do you calculate keyword density?', answer: 'Keyword density = (Number of times keyword appears / Total words) × 100. Our tool does this automatically for you.' },
+  { question: 'Can I check multiple keywords?', answer: 'Currently supports one target keyword at a time. Use our tool separately for each keyword you want to optimize.' },
+  { question: 'What about LSI keywords?', answer: 'LSI (Latent Semantic Indexing) keywords are related terms. Our tool shows which keywords you\'re missing so you can add them naturally.' },
+];
+
+const relatedTools = [
+  { href: `/${locale}/tools/meta-title-generator/`, title: 'Title Generator', description: 'Create SEO-optimized titles' },
+  { href: `/${locale}/tools/serp-preview/`, title: 'SERP Preview', description: 'Preview search results' },
+  { href: `/${locale}/tools/schema-generator/`, title: 'Schema Generator', description: 'Create structured data' },
+];
+---
+
+<ToolPage
+  title={title}
+  description={description}
+  locale={locale}
+  toolName="keyword-density"
+  steps={steps}
+  faqs={faqs}
+  relatedTools={relatedTools}
+  sections={{
+    html: `
+      <section>
+        <h2>Why Check Keyword Density?</h2>
+        <p>Keyword density helps you optimize content for search engines while keeping it readable for humans. Too little = low relevance signals. Too much = keyword stuffing penalty.</p>
+      </section>
+      <section>
+        <h2>How to Use Our Checker</h2>
+        <p>1. Paste your content or enter a URL. 2. Enter your target keyword. 3. Get instant analysis. 4. Add missing related keywords identified by our tool.</p>
+      </section>
+    `
+  }}
+>
+  <div id="tool-root">
+    <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Content Source</label>
+        <div class="grid grid-cols-2 gap-3 mb-3">
+          <button id="contentSourceText" class="source-btn border-2 border-indigo-500 bg-indigo-50 rounded-xl py-2 font-medium text-indigo-700">Paste Text</button>
+          <button id="contentSourceUrl" class="source-btn border-2 border-slate-200 rounded-xl py-2 font-medium text-slate-700 hover:border-indigo-300">Enter URL</button>
+        </div>
+        <textarea id="textContent" rows="8" placeholder="Paste your content here..." class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+        <input type="url" id="urlInput" placeholder="https://example.com/your-page" class="w-full border border-slate-300 rounded-xl px-4 py-3 hidden focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Target Keyword</label>
+        <input type="text" id="targetKeyword" placeholder="e.g., best coffee maker" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      </div>
+
+      <button id="analyzeBtn" class="w-full bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all">
+        Analyze Keyword Density
+      </button>
+    </div>
+
+    <div id="results" class="hidden mt-6 space-y-6">
+      <div class="grid grid-cols-3 gap-4 text-center">
+        <div class="bg-white border border-slate-200 rounded-xl p-4">
+          <div class="text-sm text-slate-500">Total Words</div>
+          <div id="totalWords" class="text-2xl font-bold text-slate-900">0</div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4">
+          <div class="text-sm text-slate-500">Keyword Count</div>
+          <div id="keywordCount" class="text-2xl font-bold text-indigo-600">0</div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4">
+          <div class="text-sm text-slate-500">Density</div>
+          <div id="density" class="text-2xl font-bold text-green-600">0%</div>
+        </div>
+      </div>
+
+      <div class="bg-white border border-slate-200 rounded-xl p-4">
+        <h3 class="font-semibold text-slate-900 mb-3">Recommendations</h3>
+        <p id="recommendation" class="text-sm text-slate-600"></p>
+        <div id="missingKeywords" class="mt-4 pt-4 border-t border-slate-100">
+          <h4 class="text-sm font-semibold text-slate-700 mb-2">Related keywords you might want to add:</h4>
+          <div id="keywordList" class="flex flex-wrap gap-2"></div>
+        </div>
+      </div>
+    </div>
+
+    <div id="error" class="hidden mt-6">
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+        <p class="font-semibold text-red-800" id="errorMsg">Error</p>
+      </div>
+    </div>
+  </div>
+</ToolPage>
+
+<script>
+  const contentSourceText = document.getElementById('contentSourceText');
+  const contentSourceUrl = document.getElementById('contentSourceUrl');
+  const textContent = document.getElementById('textContent');
+  const urlInput = document.getElementById('urlInput');
+
+  contentSourceText?.addEventListener('click', () => {
+    textContent.classList.remove('hidden');
+    urlInput.classList.add('hidden');
+    document.querySelectorAll('.source-btn').forEach(b => { b.classList.remove('border-indigo-500', 'bg-indigo-50'); b.classList.add('border-slate-200'); });
+    contentSourceText.classList.add('border-indigo-500', 'bg-indigo-50');
+  });
+
+  contentSourceUrl?.addEventListener('click', () => {
+    textContent.classList.add('hidden');
+    urlInput.classList.remove('hidden');
+    document.querySelectorAll('.source-btn').forEach(b => { b.classList.remove('border-indigo-500', 'bg-indigo-50'); b.classList.add('border-slate-200'); });
+    contentSourceUrl.classList.add('border-indigo-500', 'bg-indigo-50');
+  });
+
+  document.getElementById('analyzeBtn')?.addEventListener('click', () => {
+    let content = '';
+    if (textContent.classList.contains('hidden')) {
+      showError('Please enter a URL or paste content first.');
+      return;
+    }
+    content = textContent.value.trim();
+    if (!content) {
+      showError('Please paste content or enter a valid URL.');
+      return;
+    }
+    const keyword = document.getElementById('targetKeyword').value.trim().toLowerCase();
+    if (!keyword) {
+      showError('Please enter a target keyword.');
+      return;
+    }
+
+    const words = content.toLowerCase().match(/\b[a-z]+\b/g) || [];
+    const totalWords = words.length;
+    const keywordCount = words.filter(w => w === keyword).length;
+    const density = totalWords > 0 ? ((keywordCount / totalWords) * 100).toFixed(2) : 0;
+
+    document.getElementById('totalWords').textContent = totalWords;
+    document.getElementById('keywordCount').textContent = keywordCount;
+    document.getElementById('density').textContent = density + '%';
+
+    const recommendationEl = document.getElementById('recommendation');
+    const densityNum = parseFloat(density);
+    if (densityNum < 0.5) {
+      recommendationEl.textContent = 'Keyword density is very low. Add your target keyword and related terms more naturally.';
+    } else if (densityNum < 1) {
+      recommendationEl.textContent = 'Keyword density is low. Consider adding your target keyword a few more times naturally.';
+    } else if (densityNum >= 1 && densityNum <= 2.5) {
+      recommendationEl.textContent = 'Excellent! Your keyword density is in the optimal range (1-2.5%).';
+    } else if (densityNum <= 3) {
+      recommendationEl.textContent = 'Good, but consider adding more variety with related terms.';
+    } else {
+      recommendationEl.textContent = 'Keyword density is too high (>3%). This may trigger keyword stuffing penalties. Use related terms instead.';
+    }
+
+    const missingKeywords = [
+      keyword + 's',
+      'best ' + keyword,
+      keyword + ' tool',
+      'free ' + keyword,
+      keyword + ' guide',
+      'how to ' + keyword,
+      keyword + ' review'
+    ].filter(k => !words.some(w => w.includes(k)));
+
+    const keywordList = document.getElementById('keywordList');
+    keywordList.innerHTML = '';
+    missingKeywords.slice(0, 8).forEach(k => {
+      const span = document.createElement('span');
+      span.className = 'inline-block bg-slate-100 text-slate-700 text-xs px-2 py-1 rounded';
+      span.textContent = k;
+      keywordList.appendChild(span);
+    });
+
+    document.getElementById('results').classList.remove('hidden');
+  });
+
+  function showError(msg) { document.getElementById('errorMsg').textContent = msg; document.getElementById('error').classList.remove('hidden'); }
+</script>

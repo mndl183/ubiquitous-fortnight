@@ -1,0 +1,150 @@
+---
+import Base from './Base.astro';
+import AdSenseBlock from '../components/AdSenseBlock.astro';
+import RelatedTools from '../components/RelatedTools.astro';
+import FAQSection from '../components/FAQSection.astro';
+
+interface ToolStep {
+  name: string;
+  text: string;
+}
+
+interface FAQ {
+  question: string;
+  answer: string;
+}
+
+interface RelatedTool {
+  href: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  title: string;
+  description: string;
+  locale?: string;
+  toolName: string;
+  toolIcon?: string;
+  steps?: ToolStep[];
+  faqs?: FAQ[];
+  relatedTools?: RelatedTool[];
+  sections?: { html: string };
+}
+
+const {
+  title = '',
+  description = '',
+  locale = 'en',
+  toolName = '',
+  steps = [],
+  faqs = [],
+  relatedTools = [],
+  sections,
+} = Astro.props;
+
+const howToSchema = steps.length > 0 ? {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: title,
+  description: description,
+  step: steps.map((step, index) => ({
+    '@type': 'HowToStep',
+    position: index + 1,
+    name: step.name,
+    text: step.text,
+  })),
+} : null;
+
+const webAppSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'WebApplication',
+  name: title,
+  description: description,
+  applicationCategory: 'UtilityApplication',
+  operatingSystem: 'Web Browser',
+  offers: {
+    '@type': 'Offer',
+    price: '0',
+    priceCurrency: 'USD',
+  },
+  url: `https://tools.yoimagine.com/${locale}/tools/${toolName}/`,
+  inLanguage: locale,
+};
+---
+
+<Base
+  title={title}
+  description={description}
+  locale={locale}
+  schemas={[howToSchema, webAppSchema].filter(Boolean)}
+>
+  <div class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
+      <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2">
+          <li><a href={`/${locale}/`} class="hover:text-indigo-600">Home</a></li>
+          <li class="text-slate-300">/</li>
+          <li><a href={`/${locale}/tools/`} class="hover:text-indigo-600">Tools</a></li>
+          <li class="text-slate-300">/</li>
+          <li class="text-slate-700 font-medium">{title}</li>
+        </ol>
+      </nav>
+
+      <header class="text-center mb-10">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl mb-4 shadow-lg shadow-indigo-500/20">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+          {title}
+        </h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          {description}
+        </p>
+      </header>
+
+      <AdSenseBlock slotId="TOP_LEADERBOARD" format="horizontal" className="mb-8" />
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm p-6 sm:p-8 mb-8">
+        <slot />
+      </div>
+
+      {sections && (
+        <div class="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-6 mb-8" set:html={sections.html} />
+      )}
+
+      <AdSenseBlock slotId="SIDEBAR_RECTANGLE" format="rectangle" className="mb-8" />
+
+      {steps.length > 0 && (
+        <section class="bg-white rounded-2xl border border-slate-200 p-6 sm:p-8 mb-8">
+          <h2 class="text-2xl font-bold text-slate-900 mb-6">How to Use {title}</h2>
+          <ol class="space-y-4">
+            {steps.map((step, index) => (
+              <li class="flex gap-4">
+                <span class="flex-shrink-0 w-8 h-8 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center font-bold text-sm mt-0.5">
+                  {index + 1}
+                </span>
+                <div>
+                  <h3 class="font-semibold text-slate-900 mb-1">{step.name}</h3>
+                  <p class="text-slate-600 text-sm sm:text-base">{step.text}</p>
+                </div>
+              </li>
+            ))}
+          </ol>
+        </section>
+      )}
+
+      {relatedTools.length > 0 && (
+        <RelatedTools tools={relatedTools} locale={locale} />
+      )}
+
+      {faqs.length > 0 && (
+        <FAQSection faqs={faqs} />
+      )}
+
+      <AdSenseBlock slotId="BOTTOM_LEADERBOARD" format="horizontal" className="mt-8" />
+    </div>
+  </div>
+</Base>

@@ -1,0 +1,190 @@
+---
+import BlogPost from '../../../layouts/BlogPost.astro';
+
+const title = 'JSON-LD Schema Markup: How to Use & Why It Matters for SEO';
+const description = 'Learn what JSON-LD schema markup is, why Google loves it, and how to implement it on your website for better search rankings and rich results.';
+const publishDate = '2026-09-02';
+const category = 'SEO Tools';
+const relatedTools = [
+  { href: '/en/tools/schema-generator/', title: 'Schema Markup Generator', description: 'Create JSON-LD structured data' },
+  { href: '/en/tools/meta-title-generator/', title: 'Title & Meta Generator', description: 'SEO-optimized meta tags' },
+  { href: '/en/tools/serp-preview/', title: 'SERP Preview', description: 'Preview search appearance' },
+];
+---
+
+<BlogPost title={title} description={description} publishDate={publishDate} category={category} relatedTools={relatedTools} locale="en">
+
+<div class="lead">
+  <p>Schema markup is the secret weapon that gets your search results featured with star ratings, prices, dates, and rich previews. It's how you stand out on page 1.</p>
+  <p>This guide explains exactly what JSON-LD schema is, why it matters for SEO, and how to implement it (even if you're not a developer).</p>
+</div>
+
+<section>
+  <h2>What is Schema Markup?</h2>
+  <p>Schema markup is code you add to your website that helps search engines understand what your content is about. Think of it as giving Google a detailed instruction manual for your page.</p>
+  <p>Instead of just seeing text, Google sees:</p>
+  <ul>
+    <li>"This is a product with a price of $29"</li>
+    <li>"This is a recipe that takes 30 minutes"</li>
+    <li>"This is an event happening on October 15"</li>
+    <li>"This is a local business open Monday-Friday 9am-5pm"</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Why JSON-LD?</h2>
+  <p>There are three ways to add schema markup:</p>
+  <ol>
+    <li><strong>Microdata</strong> - Embedded in HTML tags (older, messier)</li>
+    <li><strong>RDFa</strong> - Also embedded in HTML (even older)</li>
+    <li><strong>JSON-LD</strong> - Lives in a script tag separate from your content</li>
+  </ol>
+  <p>Google recommends JSON-LD because it's:</p>
+  <ul>
+    <li>Easier to add and maintain (doesn't touch your HTML)</li>
+    <li>Cleaner (all schema code in one place)</li>
+    <li>Less error-prone (separates content from markup)</li>
+  </ul>
+</section>
+
+<section>
+  <h2>Real SEO Benefits of Schema Markup</h2>
+
+  <h3>1. Rich Results (Rich Snippets)</h3>
+  <p>Schema unlocks special search result formats:</p>
+  <ul>
+    <li>⭐⭐⭐⭐⭐ Star ratings for reviews</li>
+    <li>📷 Product images with prices</li>
+    <li>👨🍳 Recipe cards with cook time and calories</li>
+    <li>📅 Event dates and locations</li>
+    <li>❓ FAQ accordion boxes</li>
+  </ul>
+  <p>Pages with rich results get 30-40% more clicks than plain blue links.</p>
+
+  <h3>2. Higher Click-Through Rates</h3>
+  <p>Rich results take up more visual space and stand out. More visibility = more clicks, even if your ranking position stays the same.</p>
+
+  <h3>3. Voice Search Optimization</h3>
+  <p>Voice assistants (Alexa, Siri, Google Assistant) rely heavily on schema markup to answer questions. Proper schema increases your chances of being the voice search answer.</p>
+
+  <h3>4. Future-Proofing</h3>
+  <p>As Google gets smarter, schema becomes more important. Adding it now positions you well for AI-powered search features.</p>
+</section>
+
+<section>
+  <h2>Common Schema Types for Most Websites</h2>
+
+  <h3>Article Schema</h3>
+  <p>For blog posts and news articles. Helps Google show your content in News results and Google Discover.</p>
+
+  <h3>Product Schema</h3>
+  <p>For ecommerce. Shows price, availability, and star ratings directly in search results.</p>
+
+  <h3>Local Business Schema</h3>
+  <p>For physical businesses. Displays hours, address, phone, and customer reviews in Google Maps and local search.</p>
+
+  <h3>FAQ Schema</h3>
+  <p>Creates expandable question-answer boxes in search results. Massive for SEO - takes up lots of page 1 real estate.</p>
+
+  <h3>HowTo Schema</h3>
+  <p>For step-by-step guides. Shows steps directly in search, perfect for tutorial content.</p>
+
+  <h3>Event Schema</h3>
+  <p>For concerts, webinars, conferences. Gets your event into Google's event search and calendar features.</p>
+</section>
+
+<section>
+  <h2>How to Add JSON-LD Schema Markup</h2>
+
+  <h3>Method 1: Use Our Generator (Easiest)</h3>
+  <ol>
+    <li>Go to our <a href="/en/tools/schema-generator/">Schema Markup Generator</a></li>
+    <li>Select your schema type (Article, Product, FAQ, etc.)</li>
+    <li>Fill in the fields (title, description, price, etc.)</li>
+    <li>Copy the generated JSON-LD code</li>
+    <li>Paste it in the <code>&lt;head&gt;</code> section of your page</li>
+  </ol>
+
+  <h3>Method 2: Write It Manually</h3>
+  <p>Here's a basic Article schema example:</p>
+  <pre><code>&lt;script type="application/ld+json"&gt;
+{/*"@context": "https://schema.org",
+  "@type": "Article",
+  "headline": "Your Article Title",
+  "image": "https://yoursite.com/image.jpg",
+  "author": {
+    "@type": "Person",
+    "name": "Your Name"
+  },
+  "datePublished": "2026-09-02",
+  "publisher": {
+    "@type": "Organization",
+    "name": "Your Site Name"
+  }*/}
+&lt;/script&gt;</code></pre>
+
+  <h3>Method 3: Use a Plugin (WordPress)</h3>
+  <p>Plugins like RankMath, Yoast, and Schema Pro add schema automatically based on your content type.</p>
+</section>
+
+<section>
+  <h2>Testing Your Schema Markup</h2>
+  <p>Before going live, test your schema with Google's tools:</p>
+  <ol>
+    <li><strong>Rich Results Test:</strong> <code>https://search.google.com/test/rich-results</code></li>
+    <li>Enter your URL or paste your JSON-LD code</li>
+    <li>Check for errors (red) and warnings (yellow)</li>
+    <li>Preview how your result will look in search</li>
+  </ol>
+  <p>Fix any errors before publishing. Even small mistakes can prevent rich results from showing.</p>
+</section>
+
+<section>
+  <h2>Common Schema Mistakes</h2>
+
+  <h3>Mistake 1: Markup Doesn't Match Content</h3>
+  <p>Don't claim a 5-star rating in your schema if your page shows 3 stars. Google will penalize mismatched markup.</p>
+
+  <h3>Mistake 2: Missing Required Fields</h3>
+  <p>Each schema type has required properties. For Product, you need name, image, and price. Check Google's guidelines for your schema type.</p>
+
+  <h3>Mistake 3: Using Wrong Schema Type</h3>
+  <p>Don't mark a blog post as a Product. Use the schema type that accurately describes your content.</p>
+
+  <h3>Mistake 4: Duplicate Schema</h3>
+  <p>Only add schema once per page. Multiple identical schemas confuse search engines.</p>
+</section>
+
+<section>
+  <h2>Advanced Schema Strategies</h2>
+
+  <h3>Schema Nesting</h3>
+  <p>Combine schema types for richer markup. Example: An Article that contains a HowTo section.</p>
+
+  <h3>BreadcrumbList Schema</h3>
+  <p>Shows your site structure in search results: Home > Category > Article</p>
+
+  <h3>SiteNavigationElement</h3>
+  <p>Helps Google understand your main navigation, potentially earning sitelinks.</p>
+</section>
+
+<section>
+  <h2>FAQ</h2>
+
+  <h3>Does schema improve rankings?</h3>
+  <p>Not directly. Schema doesn't boost your ranking position. But it increases click-through rate, which indirectly helps SEO by showing Google your result is relevant.</p>
+
+  <h3>How long until I see rich results?</h3>
+  <p>After adding schema, Google needs to recrawl your page. This can take 2-7 days. Use "Request Indexing" in Search Console to speed it up.</p>
+
+  <h3>Why isn't my schema showing?</h3>
+  <p>Common reasons: errors in code, Google hasn't recrawled, your content doesn't meet quality guidelines, or too much competition (Google only shows rich results for certain queries).</p>
+</section>
+
+<section>
+  <h2>Conclusion</h2>
+  <p>Schema markup takes 10 minutes to add but can dramatically improve your search visibility. Start with FAQ or HowTo schema - they're the easiest to implement and show results quickly.</p>
+  <p>Use our free generator to create valid JSON-LD code, test it with Google's tool, and watch your click-through rates climb!</p>
+</section>
+
+</BlogPost>

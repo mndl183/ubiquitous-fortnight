@@ -1,0 +1,232 @@
+---
+import ToolPage from '../../../layouts/ToolPage.astro';
+
+const locale = 'en';
+const title = 'Schema Markup Generator';
+const description = 'Generate JSON-LD schema markup for your website. Create FAQ, Article, Product, Local Business, and more schemas instantly. Free and easy to use.';
+const steps = [
+  { name: 'Select schema type', text: 'Choose from 10+ schema types including FAQ, Article, Product, Local Business, and HowTo' },
+  { name: 'Fill in your details', text: 'Enter your content details like title, description, prices, and other relevant fields' },
+  { name: 'Get your code', text: 'Copy the generated JSON-LD code and paste it in your page header' },
+];
+
+const faqs = [
+  { question: 'What is schema markup?', answer: 'Schema markup is code you add to your website that helps search engines understand your content. It enables rich results like star ratings, prices, and FAQ boxes in search results.' },
+  { question: 'Is JSON-LD the best format?', answer: 'Yes. Google recommends JSON-LD because it\'s cleaner, easier to maintain, and less error-prone than older formats like Microdata or RDFa.' },
+  { question: 'Does schema help SEO?', answer: 'Schema doesn\'t directly boost rankings, but rich results (enabled by schema) get 30-40% more clicks. More clicks = better engagement signals = better SEO.' },
+  { question: 'Where do I paste the code?', answer: 'Paste the generated JSON-LD code in the <head> section of your webpage, between <script type="application/ld+json"> and </script> tags.' },
+];
+
+const relatedTools = [
+  { href: `/${locale}/tools/meta-title-generator/`, title: 'Title Generator', description: 'Create SEO-optimized titles' },
+  { href: `/${locale}/tools/serp-preview/`, title: 'SERP Preview', description: 'Preview search results' },
+  { href: `/${locale}/tools/keyword-density/`, title: 'Keyword Density', description: 'Check keyword usage' },
+];
+---
+
+<ToolPage
+  title={title}
+  description={description}
+  locale={locale}
+  toolName="schema-generator"
+  steps={steps}
+  faqs={faqs}
+  relatedTools={relatedTools}
+  sections={{
+    html: `
+      <section>
+        <h2>Why Schema Markup Matters</h2>
+        <p>Schema markup tells search engines exactly what your content is about. With proper schema, your search results can show star ratings, prices, dates, and expandable FAQ boxes.</p>
+      </section>
+      <section>
+        <h2>Popular Schema Types</h2>
+        <ul>
+          <li><strong>FAQ:</strong> Creates expandable question-answer boxes (massive for SEO!)</li>
+          <li><strong>Article:</strong> Enables news appearances and Google Discover</li>
+          <li><strong>Product:</strong> Shows prices, ratings, and availability</li>
+          <li><strong>Local Business:</strong> Displays hours, address, and maps</li>
+          <li><strong>HowTo:</strong> Shows steps directly in search results</li>
+        </ul>
+      </section>
+    `
+  }}
+>
+  <div id="tool-root">
+    <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Schema Type</label>
+        <select id="schemaType" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <option value="faq">FAQ</option>
+          <option value="article">Article</option>
+          <option value="product">Product</option>
+          <option value="localbusiness">Local Business</option>
+          <option value="howto">HowTo</option>
+        </select>
+      </div>
+
+      <div id="faqFields">
+        <div class="mb-3">
+          <label class="block text-xs font-medium text-slate-500 mb-1">Question 1</label>
+          <input type="text" class="q-field w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="Enter question" />
+          <input type="text" class="a-field w-full border border-slate-300 rounded-lg px-3 py-2 text-sm mt-2" placeholder="Enter answer" />
+        </div>
+        <button class="add-field-btn text-xs text-indigo-600 hover:text-indigo-800 underline">+ Add Another FAQ</button>
+      </div>
+
+      <div class="field-group hidden">
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Title</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" /></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Description</label><textarea class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" rows="2"></textarea></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Image URL</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" /></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Author Name</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" /></div>
+      </div>
+
+      <div class="field-group hidden">
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Product Name</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" /></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Price</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="e.g., 29.99" /></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Currency</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" value="USD" /></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Image URL</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" /></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Description</label><textarea class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" rows="2"></textarea></div>
+      </div>
+
+      <div class="field-group hidden">
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Business Name</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" /></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Address</label><textarea class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" rows="2"></textarea></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Phone</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" /></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Hours</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="Mon-Fri: 9am-5pm" /></div>
+      </div>
+
+      <div class="field-group hidden">
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">HowTo Name</label><input class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" /></div>
+        <div><label class="block text-xs font-medium text-slate-500 mb-1">Description</label><textarea class="w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" rows="2"></textarea></div>
+        <div class="steps-container">
+          <div class="step-field mb-2"><label class="block text-xs font-medium text-slate-500 mb-1">Step 1 Name</label><input class="step-name w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" /></div>
+          <div class="step-field mb-3"><label class="block text-xs font-medium text-slate-500 mb-1">Step 1 Description</label><textarea class="step-desc w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" rows="2"></textarea></div>
+          <button class="add-step-btn text-xs text-indigo-600 hover:text-indigo-800 underline">+ Add Another Step</button>
+        </div>
+      </div>
+
+      <button id="generateBtn" class="w-full bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all">
+        Generate Schema Code
+      </button>
+    </div>
+
+    <div id="result" class="hidden mt-6">
+      <div class="bg-white border border-slate-200 rounded-xl p-6">
+        <div class="flex items-center justify-between mb-3">
+          <h3 class="font-bold text-slate-900">Your Schema Code</h3>
+          <button id="copyBtn" class="text-sm text-indigo-600 hover:text-indigo-800 underline">Copy Code</button>
+        </div>
+        <pre><code id="schemaCode" class="text-sm text-green-600 font-mono"></code></pre>
+      </div>
+    </div>
+
+    <div id="error" class="hidden mt-6">
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+        <p class="font-semibold text-red-800" id="errorMsg">Error</p>
+      </div>
+    </div>
+  </div>
+</ToolPage>
+
+<script>
+  const schemaTypeEl = document.getElementById('schemaType');
+  const faqFields = document.getElementById('faqFields');
+  const fieldGroups = document.querySelectorAll('.field-group');
+  let schemaData = {};
+
+  schemaTypeEl?.addEventListener('change', () => {
+    const type = schemaTypeEl.value;
+    fieldGroups.forEach((group, i) => {
+      group.classList.add('hidden');
+      const fieldLabels = group.querySelectorAll('label');
+      fieldLabels.forEach(label => label.classList.add('hidden'));
+    });
+
+    if (type === 'faq') {
+      faqFields.classList.remove('hidden');
+      document.querySelectorAll('.q-field').forEach(el => { if (el.classList.contains('hidden')) el.classList.remove('hidden'); });
+      document.querySelectorAll('.a-field').forEach(el => { if (el.classList.contains('hidden')) el.classList.remove('hidden'); });
+      faqFields.querySelectorAll('label').forEach(el => el.classList.remove('hidden'));
+      document.querySelectorAll('.add-field-btn').forEach(el => el.classList.remove('hidden'));
+    } else {
+      const index = ['faq', 'article', 'product', 'localbusiness', 'howto'].indexOf(type);
+      fieldGroups[index]?.classList.remove('hidden');
+      fieldGroups[index]?.querySelectorAll('label').forEach(el => el.classList.remove('hidden'));
+      document.querySelectorAll('.add-field-btn, .add-step-btn').forEach(el => el.classList.add('hidden'));
+    }
+  });
+
+  faqFields?.querySelector('.add-field-btn')?.addEventListener('click', () => {
+    const div = document.createElement('div');
+    div.className = 'mb-3';
+    div.innerHTML = `
+      <input type="text" class="q-field w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="Enter question" />
+      <input type="text" class="a-field w-full border border-slate-300 rounded-lg px-3 py-2 text-sm mt-2" placeholder="Enter answer" />
+    `;
+    faqFields.insertBefore(div, faqFields.lastElementChild);
+  });
+
+  document.querySelector('.steps-container')?.querySelector('.add-step-btn')?.addEventListener('click', () => {
+    const stepFields = document.querySelectorAll('.step-field');
+    const stepNum = stepFields.length + 1;
+    const div = document.createElement('div');
+    div.className = 'step-field mb-2';
+    div.innerHTML = `
+      <input type="text" class="step-name w-full border border-slate-300 rounded-lg px-3 py-2 text-sm" placeholder="Step ${stepNum} Name" />
+      <textarea class="step-desc w-full border border-slate-300 rounded-lg px-3 py-2 text-sm mt-2" rows="2" placeholder="Step ${stepNum} Description"></textarea>
+    `;
+    document.querySelector('.steps-container')?.appendChild(div);
+  });
+
+  document.getElementById('generateBtn')?.addEventListener('click', () => {
+    const type = schemaTypeEl.value;
+    if (type === 'faq') {
+      const questions = Array.from(document.querySelectorAll('.q-field')).map(el => el.value);
+      const answers = Array.from(document.querySelectorAll('.a-field')).map(el => el.value);
+      if (questions.some(q => !q) || answers.some(a => !a)) {
+        showError('Please fill in all questions and answers.');
+        return;
+      }
+      const faqs = questions.map((q, i) => ({ question: q, answer: answers[i] }));
+      schemaData = { '@context': 'https://schema.org', '@type': 'FAQPage', mainEntity: faqs };
+    } else {
+      schemaData = { '@context': 'https://schema.org', '@type': type.charAt(0).toUpperCase() + type.slice(1) };
+      if (type === 'article') {
+        schemaData.headline = document.querySelector('.field-group:nth-child(2) input')?.value || 'Article Title';
+        schemaData.description = document.querySelector('.field-group:nth-child(2) textarea')?.value || 'Article description';
+        schemaData.image = document.querySelector('.field-group:nth-child(2) input:nth-child(3)')?.value;
+        schemaData.author = { '@type': 'Person', name: document.querySelector('.field-group:nth-child(2) input:nth-child(5)')?.value || 'Author' };
+        schemaData.publisher = { '@type': 'Organization', name: 'Your Site' };
+      } else if (type === 'product') {
+        schemaData.name = document.querySelector('.field-group:nth-child(3) input')?.value || 'Product Name';
+        schemaData.price = document.querySelector('.field-group:nth-child(3) input:nth-child(2)')?.value || '0';
+        schemaData.priceCurrency = document.querySelector('.field-group:nth-child(3) input:nth-child(3)')?.value || 'USD';
+        schemaData.image = document.querySelector('.field-group:nth-child(3) input:nth-child(4)')?.value;
+        schemaData.description = document.querySelector('.field-group:nth-child(3) textarea')?.value || 'Product description';
+      } else if (type === 'localbusiness') {
+        schemaData.name = document.querySelector('.field-group:nth-child(4) input')?.value || 'Business Name';
+        schemaData.address = { '@type': 'PostalAddress', address: document.querySelector('.field-group:nth-child(4) textarea')?.value || 'Address' };
+        schemaData.telephone = document.querySelector('.field-group:nth-child(4) input:nth-child(3)')?.value || 'Phone';
+        schemaData.openingHours = document.querySelector('.field-group:nth-child(4) input:nth-child(4)')?.value || 'Mon-Fri 9am-5pm';
+      } else if (type === 'howto') {
+        schemaData.name = document.querySelector('.field-group:nth-child(5) input')?.value || 'HowTo Name';
+        schemaData.description = document.querySelector('.field-group:nth-child(5) textarea')?.value || 'HowTo description';
+        const steps = Array.from(document.querySelectorAll('.step-name')).map((el, i) => ({
+          '@type': 'HowToStep', position: i + 1, name: el.value, text: document.querySelectorAll('.step-desc')[i]?.value || ''
+        }));
+        schemaData.step = steps;
+      }
+    }
+
+    document.getElementById('schemaCode').textContent = JSON.stringify(schemaData, null, 2);
+    document.getElementById('result').classList.remove('hidden');
+  });
+
+  document.getElementById('copyBtn')?.addEventListener('click', () => {
+    const code = document.getElementById('schemaCode').textContent;
+    navigator.clipboard.writeText(code);
+    alert('Code copied to clipboard!');
+  });
+
+  function showError(msg) { document.getElementById('errorMsg').textContent = msg; document.getElementById('error').classList.remove('hidden'); }
+</script>

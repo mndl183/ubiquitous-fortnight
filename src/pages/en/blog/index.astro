@@ -1,0 +1,155 @@
+---
+import Base from '../../../layouts/Base.astro';
+import AdSenseBlock from '../../../components/AdSenseBlock.astro';
+
+const locale = 'en';
+
+const posts = [
+  {
+    title: 'How to Compress PDF Without Losing Quality',
+    description: 'Learn how to compress PDF files without losing quality. Our free online compressor reduces file size by up to 90%.',
+    href: 'how-to-compress-pdf',
+    category: 'PDF Tools',
+    date: '2026-09-02'
+  },
+  {
+    title: 'PDF to JPG Conversion: Best Free Tools for 2026',
+    description: 'Compare the best free PDF to JPG converters online. Convert PDF pages to high-quality images instantly.',
+    href: 'pdf-to-jpg-conversion',
+    category: 'PDF Tools',
+    date: '2026-09-02'
+  },
+  {
+    title: 'How to Merge Multiple PDFs Online Free',
+    description: 'Learn how to merge PDF files online for free. Combine multiple PDFs into one document instantly.',
+    href: 'how-to-merge-pdfs',
+    category: 'PDF Tools',
+    date: '2026-09-02'
+  },
+  {
+    title: 'Top 5 Free PDF Tools Online',
+    description: 'We tested dozens of free PDF tools. Here are the 5 best ones that actually work - no watermarks, no hidden fees.',
+    href: 'top-free-pdf-tools',
+    category: 'PDF Tools',
+    date: '2026-09-02'
+  },
+  {
+    title: 'How to Remove Password from PDF Online',
+    description: 'Learn how to unlock password-protected PDF files online. Remove PDF password security instantly and safely.',
+    href: 'remove-pdf-password-guide',
+    category: 'PDF Tools',
+    date: '2026-09-02'
+  },
+  {
+    title: 'Meta Title & Description Generator: Complete SEO Guide',
+    description: 'Learn how to write perfect meta titles and descriptions for SEO. Use our free generator to create click-worthy snippets.',
+    href: 'meta-title-description-guide',
+    category: 'SEO Tools',
+    date: '2026-09-02'
+  },
+  {
+    title: 'JSON-LD Schema Markup: How to Use & Why It Matters for SEO',
+    description: 'Learn what JSON-LD schema markup is, why Google loves it, and how to implement it for rich search results.',
+    href: 'json-ld-schema-markup-guide',
+    category: 'SEO Tools',
+    date: '2026-09-02'
+  },
+  {
+    title: 'Keyword Density Checker: Free SEO Tool + Tutorial',
+    description: 'Learn what keyword density is, why it matters for SEO, and how to optimize your content for Google rankings.',
+    href: 'keyword-density-checker-guide',
+    category: 'SEO Tools',
+    date: '2026-09-02'
+  },
+  {
+    title: 'ATS Resume Checker: Beat the Algorithm in 2026',
+    description: 'Learn how ATS resume scanners work and how to optimize your resume to pass ATS screening and land more interviews.',
+    href: 'ats-resume-checker-guide',
+    category: 'Career Tools',
+    date: '2026-09-02'
+  },
+  {
+    title: 'Best Free Career Tools That Actually Work',
+    description: 'Discover the best free career development tools for resume building, interview prep, job search, and professional growth.',
+    href: 'best-free-career-tools',
+    category: 'Career Tools',
+    date: '2026-09-02'
+  }
+];
+---
+
+<Base
+  title="Blog | yoimagine Tools"
+  description="Free online guides and tutorials for PDF editing, SEO optimization, and career development. Expert tips and proven strategies."
+  locale={locale}
+  ogImage="/og-images/blog-og.png"
+>
+  <div class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-12">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">
+          Blog & Guides
+        </h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          Expert guides for PDF editing, SEO optimization, and career development. Free tips, tutorials, and proven strategies.
+        </p>
+      </header>
+
+      <AdSenseBlock slotId="BLOG_TOP" format="horizontal" className="mb-8" />
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+        {posts.map((post) => (
+          <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-indigo-200 transition-all group">
+            <div class="p-6">
+              <div class="flex items-center justify-between mb-3">
+                <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full">
+                  {post.category}
+                </span>
+                <time class="text-xs text-slate-400">{post.date}</time>
+              </div>
+              <h2 class="text-lg font-bold text-slate-900 mb-2 group-hover:text-indigo-600 transition-colors line-clamp-2">
+                <a href={`/${locale}/blog/${post.href}/`}>
+                  {post.title}
+                </a>
+              </h2>
+              <p class="text-sm text-slate-600 leading-relaxed line-clamp-3 mb-4">
+                {post.description}
+              </p>
+              <a
+                href={`/${locale}/blog/${post.href}/`}
+                class="text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition-colors"
+              >
+                Read more &rarr;
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+
+      <AdSenseBlock slotId="BLOG_BOTTOM" format="horizontal" className="mt-12" />
+
+      <section class="mt-16 bg-white rounded-2xl border border-slate-200 p-8 text-center">
+        <h2 class="text-2xl font-bold text-slate-900 mb-3">
+          Ready to Try Our Free Tools?
+        </h2>
+        <p class="text-slate-600 mb-6 max-w-xl mx-auto">
+          All our tools are completely free to use. No sign-up required. Start optimizing, editing, and building today.
+        </p>
+        <div class="flex flex-col sm:flex-row gap-4 justify-center">
+          <a
+            href={`/${locale}/tools/compress-pdf/`}
+            class="inline-flex items-center justify-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg transition-all"
+          >
+            Try PDF Tools
+          </a>
+          <a
+            href={`/${locale}/tools/meta-title-generator/`}
+            class="inline-flex items-center justify-center gap-2 border-2 border-slate-300 text-slate-700 font-semibold px-6 py-3 rounded-xl hover:border-indigo-400 hover:text-indigo-600 transition-all"
+          >
+            Try SEO Tools
+          </a>
+        </div>
+      </section>
+    </div>
+  </div>
+</Base>

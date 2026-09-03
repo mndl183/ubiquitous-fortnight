@@ -1,0 +1,131 @@
+---
+import ToolPage from '../../../layouts/ToolPage.astro';
+
+const locale = 'en';
+const title = 'SERP Preview Tool';
+const description = 'Preview how your page appears in Google search results. Test your meta titles and descriptions to ensure they look great in SERPs.';
+const steps = [
+  { name: 'Enter your URL', text: 'Type the URL of your page (doesn\'t need to be live - just for display purposes)' },
+  { name: 'Enter meta title', text: 'Paste your meta title tag (50-60 characters recommended)' },
+  { name: 'Enter meta description', text: 'Paste your meta description (120-160 characters recommended)' },
+  { name: 'See your SERP preview', text: 'Instantly see how Google will display your result' },
+];
+
+const faqs = [
+  { question: 'Can I preview my actual live page?', answer: 'Yes! Enter your real URL to see how Google currently displays your page in search results.' },
+  { question: 'What about rich results?', answer: 'This preview shows standard search results. For rich results (star ratings, prices), use Google\'s Rich Results Test tool.' },
+  { question: 'Does this test mobile vs desktop?', answer: 'Our preview shows desktop SERPs. Mobile results are slightly different with smaller titles and descriptions.' },
+];
+
+const relatedTools = [
+  { href: `/${locale}/tools/meta-title-generator/`, title: 'Title Generator', description: 'Create SEO-optimized titles' },
+  { href: `/${locale}/tools/schema-generator/`, title: 'Schema Generator', description: 'Create structured data' },
+  { href: `/${locale}/tools/keyword-density/`, title: 'Keyword Density', description: 'Check keyword usage' },
+];
+---
+
+<ToolPage
+  title={title}
+  description={description}
+  locale={locale}
+  toolName="serp-preview"
+  steps={steps}
+  faqs={faqs}
+  relatedTools={relatedTools}
+  sections={{
+    html: `
+      <section>
+        <h2>Why SERP Preview Matters</h2>
+        <p>What users see in Google\'s search results is your first impression. A compelling title and description can double your click-through rate. Preview before you publish!</p>
+      </section>
+    `
+  }}
+>
+  <div id="tool-root">
+    <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Page URL</label>
+        <input type="text" id="pageUrl" placeholder="https://example.com/your-page" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" value="https://example.com" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Meta Title</label>
+        <input type="text" id="metaTitle" placeholder="Your Page Title - Should Be 50-60 Characters" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+        <div class="flex justify-between text-xs text-slate-500 mt-1">
+          <span>Length: <span id="titleLength">0</span> / 60</span>
+          <span class="title-warning hidden text-red-500">Too long!</span>
+        </div>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Meta Description</label>
+        <textarea id="metaDescription" placeholder="Your meta description should be 120-160 characters and include your main keyword..." rows="2" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+        <div class="flex justify-between text-xs text-slate-500 mt-1">
+          <span>Length: <span id="descriptionLength">0</span> / 160</span>
+          <span class="desc-warning hidden text-red-500">Too long!</span>
+        </div>
+      </div>
+    </div>
+
+    <div id="preview" class="mt-6">
+      <h3 class="text-sm font-semibold text-slate-500 mb-2">Google Search Result Preview</h3>
+      <div class="bg-white border border-slate-200 rounded-xl p-5 max-w-2xl">
+        <div class="flex items-center gap-2 mb-2 text-xs text-slate-500">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H5a2 2 0 00-2 2v9a2 2 0 002 2h14a2 2 0 002-2v-1M10 6h10" /></svg>
+          <span id="displayUrl" class="truncate">https://example.com</span>
+          <span class="text-slate-400">▼</span>
+        </div>
+        <a href="#" class="group block">
+          <h4 id="displayTitle" class="text-sm text-[#1a0dab] hover:underline font-medium truncate mb-1 group-hover:text-[#202124]">Your Page Title - Should Be 50-60 Characters</h4>
+        </a>
+        <p id="displayDescription" class="text-sm text-[#545454] leading-relaxed mb-3">Your meta description should be 120-160 characters and include your main keyword...</p>
+        <p class="text-xs text-[#70757a]">This is a sample description that appears below the title in Google search results.</p>
+      </div>
+    </div>
+
+    <div class="mt-6 p-4 bg-blue-50 border border-blue-100 rounded-xl">
+      <p class="text-sm text-blue-800">
+        <strong>Pro Tip:</strong> Google rewrites meta descriptions about 70% of the time. This preview shows your input, but Google may select different text based on the user\'s search query.
+      </p>
+    </div>
+  </div>
+</ToolPage>
+
+<script>
+  const pageUrl = document.getElementById('pageUrl');
+  const metaTitle = document.getElementById('metaTitle');
+  const metaDescription = document.getElementById('metaDescription');
+  const displayUrl = document.getElementById('displayUrl');
+  const displayTitle = document.getElementById('displayTitle');
+  const displayDescription = document.getElementById('displayDescription');
+  const titleLength = document.getElementById('titleLength');
+  const descriptionLength = document.getElementById('descriptionLength');
+  const titleWarning = document.querySelector('.title-warning');
+  const descWarning = document.querySelector('.desc-warning');
+
+  function updatePreview() {
+    const url = pageUrl.value.trim() || 'https://example.com';
+    const title = metaTitle.value.trim() || 'Your Page Title - Should Be 50-60 Characters';
+    const desc = metaDescription.value.trim() || 'Your meta description should be 120-160 characters and include your main keyword...';
+
+    displayUrl.textContent = url.replace(/^https?:\/\//, '').replace(/\/$/, '');
+    displayTitle.textContent = title;
+    displayDescription.textContent = desc;
+  }
+
+  function checkLengths() {
+    const titleLen = metaTitle.value.length;
+    const descLen = metaDescription.value.length;
+    titleLength.textContent = titleLen;
+    descriptionLength.textContent = descLen;
+
+    titleWarning.classList.toggle('hidden', titleLen <= 60);
+    descWarning.classList.toggle('hidden', descLen <= 160);
+  }
+
+  pageUrl?.addEventListener('input', updatePreview);
+  metaTitle?.addEventListener('input', () => { updatePreview(); checkLengths(); });
+  metaDescription?.addEventListener('input', () => { updatePreview(); checkLengths(); });
+
+  checkLengths();
+</script>

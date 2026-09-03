@@ -1,0 +1,179 @@
+---
+import ToolPage from '../../../layouts/ToolPage.astro';
+
+const locale = 'en';
+const title = 'Interview Questions Generator';
+const description = 'Generate interview questions tailored to your job title and industry. Includes common, behavioral, and technical questions for your interview prep.';
+const steps = [
+  { name: 'Enter job title', text: 'Type your target job title (e.g., "Software Engineer", "Marketing Manager")' },
+  { name: 'Select experience level', text: 'Choose entry-level, mid-level, or senior position' },
+  { name: 'Get questions', text: 'Receive 20+ relevant questions to prepare for' },
+];
+
+const faqs = [
+  { question: 'How many questions will I get?', answer: 'You\'ll receive 20+ questions covering common, behavioral, and technical topics specific to your role.' },
+  { question: 'Are the questions specific to my industry?', answer: 'Yes! We tailor questions based on your job title and experience level to be most relevant to your interview.' },
+  { question: 'Can I save the questions?', answer: 'Yes! Copy individual questions or the entire list to your clipboard for offline practice.' },
+];
+
+const relatedTools = [
+  { href: `/${locale}/tools/resume-builder/`, title: 'Resume Builder', description: 'Create professional resume' },
+  { href: `/${locale}/tools/cover-letter/`, title: 'Cover Letter Generator', description: 'Write compelling cover letters' },
+  { href: `/${locale}/tools/ats-checker/`, title: 'ATS Checker', description: 'Optimize your documents' },
+];
+---
+
+<ToolPage
+  title={title}
+  description={description}
+  locale={locale}
+  toolName="interview-questions"
+  steps={steps}
+  faqs={faqs}
+  relatedTools={relatedTools}
+  sections={{
+    html: `
+      <section>
+        <h2>Why Prepare Questions in Advance</h2>
+        <p>Interviewers ask similar questions for the same roles. By preparing your answers in advance, you\'ll respond confidently and impress hiring managers.</p>
+      </section>
+    `
+  }}
+>
+  <div id="tool-root">
+    <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-6">
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Job Title</label>
+        <input type="text" id="jobTitle" placeholder="e.g., Software Engineer, Marketing Manager, Data Analyst" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Experience Level</label>
+        <select id="experienceLevel" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500">
+          <option value="entry">Entry Level (0-2 years)</option>
+          <option value="mid">Mid Level (3-5 years)</option>
+          <option value="senior">Senior Level (6+ years)</option>
+          <option value="manager">Management (People leadership)</option>
+        </select>
+      </div>
+
+      <button id="generateBtn" class="w-full bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all">
+        Generate Interview Questions
+      </button>
+    </div>
+
+    <div id="result" class="hidden mt-6 space-y-4">
+      <div class="flex items-center justify-between">
+        <h3 class="text-lg font-bold text-slate-900">Your Interview Questions</h3>
+        <button id="copyAllBtn" class="text-sm text-indigo-600 hover:text-indigo-800 underline">Copy All</button>
+      </div>
+
+      <div class="space-y-4">
+        <div class="bg-white border border-slate-200 rounded-xl p-4">
+          <h4 class="font-semibold text-slate-900 mb-2 text-sm text-indigo-600">Common Questions</h4>
+          <div id="commonQuestions" class="space-y-3 text-sm text-slate-700"></div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4">
+          <h4 class="font-semibold text-slate-900 mb-2 text-sm text-indigo-600">Behavioral Questions</h4>
+          <div id="behavioralQuestions" class="space-y-3 text-sm text-slate-700"></div>
+        </div>
+        <div class="bg-white border border-slate-200 rounded-xl p-4">
+          <h4 class="font-semibold text-slate-900 mb-2 text-sm text-indigo-600">Technical Questions</h4>
+          <div id="technicalQuestions" class="space-y-3 text-sm text-slate-700"></div>
+        </div>
+      </div>
+
+      <div class="p-4 bg-green-50 border border-green-200 rounded-xl">
+        <p class="text-sm text-green-800">
+          <strong>Tip:</strong> Practice answering out loud. Record yourself to identify nervous habits and improve your delivery.
+        </p>
+      </div>
+    </div>
+
+    <div id="error" class="hidden mt-6">
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+        <p class="font-semibold text-red-800" id="errorMsg">Error</p>
+      </div>
+    </div>
+  </div>
+</ToolPage>
+
+<script>
+  document.getElementById('generateBtn')?.addEventListener('click', () => {
+    const jobTitle = document.getElementById('jobTitle').value.trim();
+    const experience = document.getElementById('experienceLevel').value;
+
+    if (!jobTitle) {
+      showError('Please enter a job title.');
+      return;
+    }
+
+    const commonQuestions = [
+      "Tell me about yourself and your background.",
+      "Why are you interested in this position?",
+      "What do you know about our company?",
+      "Where do you see yourself in five years?",
+      "What are your greatest strengths?",
+      "What are your biggest weaknesses?",
+      "Why should we hire you?",
+      "What is your preferred work environment?",
+      "How do you handle pressure and deadlines?",
+      "Do you prefer working alone or in a team?",
+      "Where did you hear about this position?",
+      "What motivates you to do your best work?",
+      "What are your salary expectations?",
+      "When can you start?",
+      "Do you have any questions for us?"
+    ];
+
+    const behavioralQuestions = [
+      "Tell me about a time you faced a difficult challenge.",
+      "Describe a situation where you disagreed with your manager.",
+      "Give an example of when you worked under pressure.",
+      "Tell me about a time you made a mistake.",
+      "Describe a time you had to meet a tight deadline.",
+      "Give an example of when you showed leadership.",
+      "Tell me about a time you solved a creative problem.",
+      "Describe a time you had to work with a difficult coworker.",
+      "Give an example of when you went above and beyond.",
+      "Tell me about a time you handled conflict."
+    ];
+
+    let technicalQuestions = [
+      `What experience do you have with ${jobTitle} related tasks?`,
+      "How do you stay current with industry trends?",
+      "What tools and technologies are you most comfortable with?",
+      "Describe your workflow or process for typical projects.",
+      "What challenges do you expect in this role?"
+    ];
+
+    if (experience === 'mid') {
+      technicalQuestions.push("Tell me about a project you led from start to finish.");
+      technicalQuestions.push("How do you prioritize tasks when everything is urgent?");
+    } else if (experience === 'senior') {
+      technicalQuestions.push("How do you mentor junior team members?");
+      technicalQuestions.push("Describe a complex problem you solved.");
+    } else if (experience === 'manager') {
+      technicalQuestions.push("How do you handle team conflicts?");
+      technicalQuestions.push("Describe your management style.");
+    }
+
+    document.getElementById('commonQuestions').innerHTML = commonQuestions.map(q => `<p class="flex gap-2"><span class="font-bold shrink-0">Q:</span> <span>${q}</span></p>`).join('');
+    document.getElementById('behavioralQuestions').innerHTML = behavioralQuestions.map(q => `<p class="flex gap-2"><span class="font-bold shrink-0">Q:</span> <span>${q}</span></p>`).join('');
+    document.getElementById('technicalQuestions').innerHTML = technicalQuestions.map(q => `<p class="flex gap-2"><span class="font-bold shrink-0">Q:</span> <span>${q}</span></p>`).join('');
+
+    document.getElementById('result').classList.remove('hidden');
+  });
+
+  document.getElementById('copyAllBtn')?.addEventListener('click', () => {
+    const all = [
+      ...Array.from(document.querySelectorAll('#commonQuestions p')).map(p => p.textContent),
+      ...Array.from(document.querySelectorAll('#behavioralQuestions p')).map(p => p.textContent),
+      ...Array.from(document.querySelectorAll('#technicalQuestions p')).map(p => p.textContent)
+    ].join('\n\n');
+    navigator.clipboard.writeText(all);
+    alert('All questions copied to clipboard!');
+  });
+
+  function showError(msg) { document.getElementById('errorMsg').textContent = msg; document.getElementById('error').classList.remove('hidden'); }
+</script>

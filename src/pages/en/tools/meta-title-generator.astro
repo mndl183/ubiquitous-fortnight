@@ -1,0 +1,187 @@
+---
+import ToolPage from '../../../layouts/ToolPage.astro';
+
+const locale = 'en';
+const title = 'Meta Title & Description Generator';
+const description = 'Generate SEO-optimized meta titles and descriptions for your web pages. Our free AI-powered tool creates click-worthy snippets that rank higher in Google.';
+const steps = [
+  { name: 'Enter your target keyword', text: 'Type your main keyword or topic (e.g., "PDF compressor" or "vegan recipes")' },
+  { name: 'Describe your page', text: 'Add 2-3 sentences describing what your page is about' },
+  { name: 'Choose tone', text: 'Select professional, friendly, or sales-focused tone for your snippets' },
+  { name: 'Get 5 variations', text: 'Copy the best variation and use it on your page' },
+];
+
+const faqs = [
+  { question: 'How long should meta titles be?', answer: '50-60 characters is ideal. Our generator ensures your titles stay within Google\'s display limits.' },
+  { question: 'What about meta descriptions?', answer: 'Aim for 150-160 characters. Our tool generates descriptions that fit perfectly and include your keywords.' },
+  { question: 'Does this affect SEO rankings?', answer: 'Not directly, but well-written meta tags dramatically improve click-through rates from search results.' },
+  { question: 'Can I customize the generated tags?', answer: 'Absolutely! Our tool gives you starting points. Edit them to perfectly match your content and brand voice.' },
+];
+
+const relatedTools = [
+  { href: `/${locale}/tools/serp-preview/`, title: 'SERP Preview', description: 'See how your snippets appear in Google' },
+  { href: `/${locale}/tools/schema-generator/`, title: 'Schema Generator', description: 'Create structured data' },
+  { href: `/${locale}/tools/keyword-density/`, title: 'Keyword Density', description: 'Analyze keyword usage' },
+];
+---
+
+<ToolPage
+  title={title}
+  description={description}
+  locale={locale}
+  toolName="meta-title-generator"
+  steps={steps}
+  faqs={faqs}
+  relatedTools={relatedTools}
+  sections={{
+    html: `
+      <section>
+        <h2>Why You Need a Meta Title Generator</h2>
+        <p>Writing perfect meta titles and descriptions is harder than it looks. You need to include keywords, stay within character limits, make it compelling, and avoid sounding spammy. Our free generator does the heavy lifting for you.</p>
+      </section>
+      <section>
+        <h2>How Our Generator Works</h2>
+        <p>Simply enter your target keyword, describe your page, and choose your tone. We generate 5 variations for you to choose from. Copy the best one and paste it into your page metadata. That's it!</p>
+      </section>
+    `
+  }}
+>
+  <div id="tool-root">
+    <div class="bg-white border border-slate-200 rounded-xl p-6 space-y-4">
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Target Keyword</label>
+        <input type="text" id="keyword" placeholder="e.g., best coffee maker 2026" class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500" />
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Page Description</label>
+        <textarea id="description" rows="3" placeholder="Describe your page in 1-2 sentences..." class="w-full border border-slate-300 rounded-xl px-4 py-3 focus:outline-none focus:ring-2 focus:ring-indigo-500"></textarea>
+      </div>
+
+      <div>
+        <label class="block text-sm font-semibold text-slate-700 mb-1">Tone</label>
+        <div class="grid grid-cols-3 gap-3">
+          <button class="tone-btn border-2 border-indigo-500 bg-indigo-50 rounded-xl py-2 font-medium text-indigo-700">Professional</button>
+          <button class="tone-btn border-2 border-slate-200 rounded-xl py-2 font-medium text-slate-700 hover:border-indigo-300">Friendly</button>
+          <button class="tone-btn border-2 border-slate-200 rounded-xl py-2 font-medium text-slate-700 hover:border-indigo-300">Sales</button>
+        </div>
+      </div>
+
+      <button id="generateBtn" class="w-full bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all">
+        Generate Meta Tags
+      </button>
+    </div>
+
+    <div id="results" class="hidden mt-6 space-y-4">
+      <div class="flex items-center justify-between mb-4">
+        <h3 class="text-lg font-bold text-slate-900">Generated Results</h3>
+        <button id="copyAllBtn" class="text-sm text-indigo-600 hover:text-indigo-800 underline">Copy All</button>
+      </div>
+
+      <div id="resultsList" class="space-y-4"></div>
+    </div>
+
+    <div id="error" class="hidden mt-6">
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+        <p class="font-semibold text-red-800" id="errorMsg">Error</p>
+      </div>
+    </div>
+  </div>
+</ToolPage>
+
+<script>
+  let keyword = '', description = '', tone = 'professional';
+  const resultsList = document.getElementById('resultsList');
+
+  document.getElementById('keyword')?.addEventListener('input', (e) => keyword = e.target.value);
+  document.getElementById('description')?.addEventListener('input', (e) => description = e.target.value);
+
+  document.querySelectorAll('.tone-btn').forEach(btn => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.tone-btn').forEach(b => {
+        b.classList.remove('border-indigo-500', 'bg-indigo-50');
+        b.classList.add('border-slate-200');
+      });
+      btn.classList.remove('border-slate-200');
+      btn.classList.add('border-indigo-500', 'bg-indigo-50');
+      tone = btn.textContent.toLowerCase();
+    });
+  });
+
+  document.getElementById('generateBtn')?.addEventListener('click', generateTags);
+  document.getElementById('copyAllBtn')?.addEventListener('click', copyAll);
+
+  function generateTags() {
+    if (!keyword.trim()) { showError('Please enter a target keyword.'); return; }
+    if (!description.trim()) { showError('Please describe your page.'); return; }
+
+    const titles = [];
+    const descriptions = [];
+
+    switch (tone) {
+      case 'professional':
+        titles.push(`${keyword} - Professional Guide & Solutions`);
+        titles.push(`Expert ${keyword} - Industry Standard`);
+        titles.push(`Professional ${keyword} Resources & Tools`);
+        titles.push(`${keyword} - Trusted Expert Advice`);
+        titles.push(`Comprehensive Guide to ${keyword}`);
+        descriptions.push(`Complete guide to ${keyword}. Professional insights, best practices, and expert recommendations for 2026.`, `Learn everything about ${keyword} with our professional guide. Expert insights, case studies, and actionable advice to help you succeed.`, `Your trusted resource for ${keyword}. We provide professional analysis, tools, and guidance to help you make informed decisions.`);
+        break;
+      case 'friendly':
+        titles.push(`Understanding ${keyword} - Easy Guide`);
+        titles.push(`${keyword} Made Simple & Fun`);
+        titles.push(`Everything You Need to Know About ${keyword}`);
+        titles.push(`${keyword}: Simple Tips & Tricks`);
+        titles.push(`Getting Started with ${keyword}`);
+        descriptions.push(`Learn about ${keyword} in a way that makes sense! Our friendly guide breaks down complex topics into easy-to-understand tips and tricks.`, `Curious about ${keyword}? We\'re here to help with a friendly, easy-to-follow guide that covers everything you need to know.`, `Start your journey with ${keyword} today! Simple tips, helpful advice, and friendly guidance just for you.`);
+        break;
+      case 'sales':
+        titles.push(`Best ${keyword} - 2026 Reviews & Deals`);
+        titles.push(`Top ${keyword} - Save Time & Money`);
+        titles.push(`Best ${keyword} for You - Limited Offer`);
+        titles.push(`${keyword} - Get Started Today!`);
+        titles.push(`Best Price on ${keyword} - Act Now`);
+        descriptions.push(`Looking for the best ${keyword}? We\'ve tested and ranked the top options to help you save time and money.`, `Get the best ${keyword} at unbeatable prices! Limited-time offers and exclusive deals available now.`, `Don\'t miss out on the best ${keyword} deals! Complete reviews, comparisons, and exclusive savings.`);
+    }
+
+    resultsList.innerHTML = '';
+    for (let i = 0; i < 5; i++) {
+      const result = document.createElement('div');
+      result.className = 'bg-white border border-slate-200 rounded-xl p-4';
+      result.innerHTML = `
+        <div class="mb-3">
+          <div class="flex items-center justify-between mb-2">
+            <h4 class="font-semibold text-slate-700">Option ${i + 1}</h4>
+            <button class="copy-btn text-xs text-indigo-600 hover:text-indigo-800 underline">Copy Title</button>
+          </div>
+          <div class="text-sm text-slate-500 mb-1">Title Tag (${titles[i].length} chars):</div>
+          <div class="font-medium text-slate-900 bg-slate-50 p-2 rounded border border-slate-200">${titles[i]}</div>
+        </div>
+        <div>
+          <div class="text-sm text-slate-500 mb-1">Meta Description (${descriptions[i].length} chars):</div>
+          <div class="text-sm text-slate-900 bg-slate-50 p-2 rounded border border-slate-200">${descriptions[i]}</div>
+        </div>
+      `;
+      resultsList.appendChild(result);
+      result.querySelector('.copy-btn')?.addEventListener('click', () => copyText(titles[i]));
+    }
+
+    document.getElementById('results').classList.remove('hidden');
+  }
+
+  function copyText(text) {
+    navigator.clipboard.writeText(text);
+    alert('Copied to clipboard!');
+  }
+
+  function copyAll() {
+    const allText = Array.from(resultsList.querySelectorAll('.font-medium.text-slate-900, .text-sm.text-slate-900')).map(el => el.textContent).join('\n\n');
+    navigator.clipboard.writeText(allText);
+    alert('All results copied to clipboard!');
+  }
+
+  function showError(msg) {
+    document.getElementById('errorMsg').textContent = msg;
+    document.getElementById('error').classList.remove('hidden');
+  }
+</script>

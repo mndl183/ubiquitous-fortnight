@@ -1,0 +1,5 @@
+
+> tools-hub@0.0.1 dev
+> astro dev --host 0.0.0.0 --port 3000
+
+{"message":"Dev server running at http://localhost:3000 (pid 92275)\n  Network:\n    http://10.42.0.107:3000/\n    http://172.17.0.1:3000/\n  Stop:   astro dev stop\n  Status: astro dev status\n  Logs:   astro dev logs","label":"SKIP_FORMAT","level":"info"}

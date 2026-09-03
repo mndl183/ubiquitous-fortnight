@@ -1,0 +1,31 @@
+---
+interface Tool {
+  href: string;
+  title: string;
+  description: string;
+}
+
+interface Props {
+  tools: Tool[];
+  locale?: string;
+}
+
+const { tools, locale = 'en' } = Astro.props;
+---
+
+<section class="mt-12 border-t border-slate-200 pt-8">
+  <h2 class="text-xl font-bold text-slate-900 mb-4">Related Tools</h2>
+  <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+    {tools.map((tool) => (
+      <a
+        href={tool.href}
+        class="block p-4 border border-slate-200 rounded-xl hover:border-indigo-300 hover:shadow-md transition-all group"
+      >
+        <h3 class="font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors">
+          {tool.title}
+        </h3>
+        <p class="text-sm text-slate-500 mt-1">{tool.description}</p>
+      </a>
+    ))}
+  </div>
+</section>

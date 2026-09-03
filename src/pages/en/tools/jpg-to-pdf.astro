@@ -1,0 +1,131 @@
+---
+import ToolPage from '../../../layouts/ToolPage.astro';
+
+const locale = 'en';
+const title = 'JPG to PDF';
+const description = 'Convert JPG images to PDF online. Create PDF from JPG photos instantly. Merge multiple JPGs into one PDF. Free and secure.';
+
+const steps = [
+  { name: 'Upload JPG images', text: 'Drag and drop multiple JPG images, or click to browse. You can add up to 20 images.' },
+  { name: 'Arrange order', text: 'Drag images to reorder them. The first image will be page 1 in your PDF.' },
+  { name: 'Download PDF', text: 'Click "Create PDF" and download your new PDF document.' },
+];
+
+const faqs = [
+  { question: 'Is JPG to PDF conversion free?', answer: 'Yes, completely free with no watermarks. Your PDF is ready to use immediately.' },
+  { question: 'How many images can I convert?', answer: 'You can convert up to 20 JPG images into a single PDF in one go.' },
+  { question: 'Will image quality be preserved?', answer: 'Yes, our converter maintains the original quality of your images.' },
+  { question: 'Can I convert other image formats?', answer: 'Currently we support JPG/JPEG. For PNG, BMP, or other formats, convert to JPG first.' },
+  { question: 'Is my data secure?', answer: 'Yes. All processing happens in your browser. Your images never leave your device.' },
+];
+
+const relatedTools = [
+  { href: `/${locale}/tools/pdf-to-jpg/`, title: 'PDF to JPG', description: 'Convert PDF to JPG images' },
+  { href: `/${locale}/tools/merge-pdf/`, title: 'Merge PDF', description: 'Combine multiple PDFs' },
+  { href: `/${locale}/tools/compress-pdf/`, title: 'Compress PDF', description: 'Reduce file size' },
+];
+---
+
+<ToolPage title={title} description={description} locale={locale} toolName="jpg-to-pdf" steps={steps} faqs={faqs} relatedTools={relatedTools}>
+  <div id="tool-root">
+    <div id="dropzone" class="border-2 border-dashed border-slate-300 rounded-2xl p-8 sm:p-12 text-center hover:border-indigo-400 hover:bg-indigo-50/50 transition-all cursor-pointer relative">
+      <input type="file" id="fileInput" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept="image/jpeg" multiple />
+      <div class="pointer-events-none">
+        <svg class="w-16 h-16 mx-auto text-slate-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+        </svg>
+        <p class="text-lg font-semibold text-slate-700 mb-2">Drag &amp; drop JPG images here</p>
+        <p class="text-sm text-slate-500">or click to browse &bull; Up to 20 images</p>
+      </div>
+    </div>
+
+    <div id="imageList" class="hidden mt-6 space-y-2"></div>
+
+    <div id="progress" class="hidden mt-6">
+      <div class="bg-slate-100 rounded-full h-2 overflow-hidden"><div id="progressBar" class="bg-gradient-to-r from-indigo-500 to-violet-600 h-full transition-all" style="width: 0%"></div></div>
+      <p id="status" class="text-sm text-slate-500 mt-2 text-center">Creating PDF...</p>
+    </div>
+
+    <div id="result" class="hidden mt-6">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+        <svg class="w-12 h-12 mx-auto text-green-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" /></svg>
+        <p class="font-semibold text-green-800 mb-4">PDF Created Successfully!</p>
+        <button id="downloadBtn" class="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg transition-all">
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" /></svg>
+          Download PDF
+        </button>
+      </div>
+    </div>
+
+    <div id="error" class="hidden mt-6">
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+        <p class="font-semibold text-red-800">Error</p>
+        <p id="errorMsg" class="text-sm text-red-600 mt-1"></p>
+      </div>
+    </div>
+  </div>
+</ToolPage>
+
+<script>
+  import { PDFDocument } from 'pdf-lib';
+  let images = []; let pdfBytes = null;
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  const imageList = document.getElementById('imageList');
+  const progress = document.getElementById('progress');
+  const progressBar = document.getElementById('progressBar');
+  const result = document.getElementById('result');
+  const error = document.getElementById('error');
+
+  fileInput?.addEventListener('change', (e) => handleFiles(e.target.files));
+  dropzone?.addEventListener('dragover', (e) => { e.preventDefault(); dropzone.classList.add('border-indigo-500', 'bg-indigo-50'); });
+  dropzone?.addEventListener('dragleave', () => dropzone.classList.remove('border-indigo-500', 'bg-indigo-50'));
+  dropzone?.addEventListener('drop', (e) => { e.preventDefault(); dropzone.classList.remove('border-indigo-500', 'bg-indigo-50'); handleFiles(e.dataTransfer.files); });
+  document.getElementById('downloadBtn')?.addEventListener('click', downloadPdf);
+
+  function handleFiles(files) {
+    const newFiles = Array.from(files).filter(f => f.type.startsWith('image/'));
+    if (images.length + newFiles.length > 20) { showError('Maximum 20 images allowed.'); return; }
+    images = [...images, ...newFiles]; renderImageList();
+  }
+
+  function renderImageList() {
+    if (images.length === 0) { imageList.classList.add('hidden'); return; }
+    imageList.classList.remove('hidden'); imageList.innerHTML = '';
+    images.forEach((file, idx) => {
+      const item = document.createElement('div');
+      item.className = 'flex items-center justify-between bg-white border border-slate-200 rounded-xl px-4 py-3';
+      item.innerHTML = `<div class="flex items-center gap-3"><img src="${URL.createObjectURL(file)}" class="w-12 h-12 object-cover rounded-lg" /><div><p class="text-sm font-medium text-slate-900">${file.name}</p><p class="text-xs text-slate-500">${(file.size / 1024).toFixed(1)} KB</p></div></div><button class="text-slate-400 hover:text-red-500 p-1" data-index="${idx}"><svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" /></svg></button>`;
+      imageList.appendChild(item);
+    });
+    imageList.querySelectorAll('button[data-index]').forEach(btn => btn.addEventListener('click', () => { images.splice(parseInt(btn.dataset.index), 1); renderImageList(); }));
+    const createBtn = document.createElement('button');
+    createBtn.textContent = 'Create PDF'; createBtn.className = 'w-full mt-4 bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg transition-all';
+    createBtn.addEventListener('click', createPdf); imageList.appendChild(createBtn);
+  }
+
+  async function createPdf() {
+    if (images.length === 0) { showError('Please add at least one image.'); return; }
+    imageList.classList.add('hidden'); progress.classList.remove('hidden');
+    try {
+      const pdfDoc = await PDFDocument.create();
+      for (let i = 0; i < images.length; i++) {
+        const imgBytes = await images[i].arrayBuffer(); let image;
+        if (images[i].type === 'image/jpeg') image = await pdfDoc.embedJpg(imgBytes);
+        else continue; // Skip non-jpeg
+        const page = pdfDoc.addPage([image.width, image.height]); page.drawImage(image, { x: 0, y: 0, width: image.width, height: image.height });
+        progressBar.style.width = `${((i + 1) / images.length) * 80}%`;
+      }
+      pdfBytes = await pdfDoc.save(); progressBar.style.width = '100%';
+      await new Promise(r => setTimeout(r, 300)); progress.classList.add('hidden'); result.classList.remove('hidden');
+    } catch (err) { showError('Could not create PDF. Please try different images.'); }
+  }
+
+  function downloadPdf() {
+    if (!pdfBytes) return;
+    const blob = new Blob([pdfBytes], { type: 'application/pdf' });
+    const a = document.createElement('a'); a.href = URL.createObjectURL(blob); a.download = 'converted.pdf'; a.click();
+  }
+
+  function showError(msg) { document.getElementById('errorMsg').textContent = msg; error.classList.remove('hidden'); }
+</script>
