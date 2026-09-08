@@ -8,6 +8,7 @@ export default defineConfig({
   site: 'https://tools.yoimagine.com',
   trailingSlash: 'always',
   output: 'static',
+  adapter: undefined,
   vite: {
     plugins: [tailwindcss()]
   },
