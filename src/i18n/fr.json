@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "pdfTools": "Outils PDF",
+    "seoTools": "Outils SEO",
+    "careerTools": "Outils Carrière",
+    "blog": "Blog"
+  },
+  "common": {
+    "dragDrop": "Glissez-déposez votre PDF ici",
+    "orClick": "ou cliquez pour parcourir",
+    "maxSize": "Max. 50 Mo",
+    "filesStay": "Les fichiers restent sur votre appareil",
+    "compress": "Compresser",
+    "download": "Télécharger",
+    "upload": "Téléverser",
+    "processing": "Traitement en cours...",
+    "complete": "Terminé !",
+    "error": "Erreur",
+    "tryAgain": "Réessayer",
+    "settings": "Paramètres",
+    "language": "Langue"
+  },
+  "home": {
+    "title": "Outils Gratuits en Ligne pour Professionnels Modernes",
+    "subtitle": "Compressez des PDFs, générez du contenu SEO et créez des documents de carrière — tout dans votre navigateur. Aucune inscription requise.",
+    "startCompress": "Commencer à Compresser des PDFs",
+    "buildResume": "Créer votre CV",
+    "whyChoose": "Pourquoi choisir yoimagine Tools ?",
+    "private": "100% Privé",
+    "privateDesc": "Les fichiers sont traités entièrement dans votre navigateur. Rien n'est envoyé sur nos serveurs.",
+    "instant": "Résultats Instantanés",
+    "instantDesc": "Pas d'attente. Les outils traitent les fichiers en temps réel avec des technologies web modernes.",
+    "mobile": "Compatible Mobile",
+    "mobileDesc": "Fonctionne parfaitement sur téléphones, tablettes et ordinateurs. Utilisez-le partout, tout le temps."
+  },
+  "tools": {
+    "compress": {
+      "title": "Compresser PDF",
+      "desc": "Réduisez la taille de fichier PDF sans perte de qualité. Compressez des fichiers PDF jusqu'à 90% plus petits, directement dans votre navigateur.",
+      "steps": [
+        {"name": "Téléversez votre PDF", "text": "Glissez-déposez votre fichier PDF dans la zone de téléversement, ou cliquez pour parcourir et sélectionner votre fichier. Fichiers jusqu'à 50 Mo acceptés."},
+        {"name": "Ajustez le niveau de compression", "text": "Choisissez votre niveau de compression préféré. \"Équilibré\" est recommandé pour le meilleur rapport qualité/taille."},
+        {"name": "Téléchargez le fichier compressé", "text": "Votre PDF compressé est prêt instantanément. Cliquez sur Télécharger pour l'enregistrer sur votre appareil — complètement gratuit, sans filigrane."}
+      ],
+      "faqs": [
+        {"q": "La qualité du PDF compressé est-elle préservée ?", "a": "Oui. Notre algorithme de compression réduit intelligemment la qualité des images et supprime les données redondantes tout en préservant le texte, les graphiques vectoriels et la structure du document. Vous pouvez choisir entre trois modes de compression."},
+        {"q": "De combien puis-je réduire la taille d'un fichier PDF ?", "a": "La plupart des PDFs peuvent être compressés de 70-90% selon le contenu. Les PDFs texte uniquement se compressent le plus, tandis que les PDFs riches en images se compressent moins. Un PDF de 10 Mo se réduit généralement à 1-3 Mo."},
+        {"q": "Est-il sûr de téléverser mon PDF ?", "a": "Oui ! Les fichiers sont traités entièrement dans votre navigateur avec JavaScript. Votre PDF ne quitte jamais votre appareil, vous pouvez donc compresser en toute sécurité des documents sensibles comme des contrats, factures et CV."}
+      ]
+    },
+    "merge": {
+      "title": "Fusionner PDF",
+      "desc": "Combinez plusieurs fichiers PDF en un seul document. Fusionnez des PDFs instantanément dans votre navigateur. Aucune inscription, aucun filigrane.",
+      "steps": [
+        {"name": "Téléversez plusieurs PDFs", "text": "Glissez-déposez plusieurs fichiers PDF dans la zone de téléversement, ou cliquez pour parcourir et sélectionner des fichiers. Vous pouvez ajouter jusqu'à 20 PDFs à la fois."},
+        {"name": "Organisez l'ordre", "text": "Glissez les fichiers pour les réordonner. Le fichier du haut apparaîtra en premier dans votre document fusionné."},
+        {"name": "Téléchargez le PDF fusionné", "text": "Cliquez sur \"Fusionner les PDFs\" pour les combiner, puis téléchargez votre document unique fusionné instantanément."}
+      ],
+      "faqs": [
+        {"q": "Puis-je fusionner des PDFs protégés par mot de passe ?", "a": "Non, vous devez d'abord supprimer la protection du mot de passe en utilisant notre outil Supprimer Mot de Passe PDF, puis fusionner les fichiers déverrouillés."},
+        {"q": "Y a-t-il une limite sur le nombre de PDFs que je peux fusionner ?", "a": "Vous pouvez fusionner jusqu'à 20 fichiers PDF à la fois, avec une taille totale combinée de 100 Mo. Pour des lots plus importants, envisagez Adobe Acrobat Pro."}
+      ]
+    },
+    "split": {
+      "title": "Diviser PDF",
+      "desc": "Séparez un PDF en pages individuelles ou extrayez des plages de pages spécifiques. Divisez des fichiers PDF instantanément dans votre navigateur. Aucune inscription requise.",
+      "steps": [
+        {"name": "Téléversez votre PDF", "text": "Glissez-déposez votre fichier PDF dans la zone de téléversement. Fichiers jusqu'à 50 Mo acceptés."},
+        {"name": "Choisissez le mode de division", "text": "Sélectionnez \"Diviser toutes les pages\" pour séparer chaque page, ou \"Extraire une plage\" pour diviser des pages spécifiques."},
+        {"name": "Téléchargez les fichiers divisés", "text": "Téléchargez les pages individuelles comme PDFs séparés, ou téléchargez tout comme un fichier ZIP."}
+      ],
+      "faqs": [
+        {"q": "Qu'est-ce que la division de PDF ?", "a": "La division de PDF sépare un document PDF multi-pages en pages individuelles ou documents plus petits. Cela est utile pour extraire du contenu spécifique, réduire les tailles de fichier pour l'email, ou organiser de grands documents en sections gérables."}
+      ]
+    }
+  },
+  "footer": {
+    "description": "Outils en ligne gratuits pour l'édition PDF, l'optimisation SEO et le développement de carrière. Aucune inscription requise.",
+    "privacy": "Politique de Confidentialité",
+    "terms": "Conditions d'Utilisation",
+    "contact": "Contact"
+  }
+}

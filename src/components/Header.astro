@@ -1,4 +1,6 @@
 ---
+import { locales, localeNames } from '../utils/i18n.ts';
+
 interface Props {
   locale: string;
 }
@@ -10,12 +12,6 @@ const navLinks = [
   { href: `/${locale}/tools/meta-title-generator/`, label: 'SEO Tools' },
   { href: `/${locale}/tools/resume-builder/`, label: 'Career Tools' },
   { href: `/${locale}/blog/`, label: 'Blog' },
-];
-
-const languages = [
-  { code: 'en', label: 'EN' },
-  { code: 'es', label: 'ES' },
-  { code: 'fr', label: 'FR' },
 ];
 ---
 
@@ -40,16 +36,16 @@ const languages = [
 
       <div class="flex items-center gap-2">
         <div class="flex bg-slate-100 rounded-lg p-0.5">
-          {languages.map((lang) => (
+          {locales.map((lang) => (
             <a
-              href={`/${lang.code}/${Astro.url.pathname.split('/').slice(2).join('/')}`}
+              href={`/${lang}/${Astro.url.pathname.split('/').slice(2).join('/')}`}
               class={`px-2.5 py-1 text-xs font-semibold rounded-md transition-colors ${
-                locale === lang.code
+                locale === lang
                   ? 'bg-white text-indigo-600 shadow-sm'
                   : 'text-slate-500 hover:text-slate-700'
               }`}
             >
-              {lang.label}
+              {localeNames[lang]}
             </a>
           ))}
         </div>

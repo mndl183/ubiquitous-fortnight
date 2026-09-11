@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "pdfTools": "Herramientas PDF",
+    "seoTools": "Herramientas SEO",
+    "careerTools": "Herramientas de Carrera",
+    "blog": "Blog"
+  },
+  "common": {
+    "dragDrop": "Arrastra y suelta tu PDF aquí",
+    "orClick": "o haz clic para explorar",
+    "maxSize": "Máx. 50 MB",
+    "filesStay": "Los archivos permanecen en tu dispositivo",
+    "compress": "Comprimir",
+    "download": "Descargar",
+    "upload": "Subir",
+    "processing": "Procesando...",
+    "complete": "¡Completado!",
+    "error": "Error",
+    "tryAgain": "Intentar de nuevo",
+    "settings": "Configuración",
+    "language": "Idioma"
+  },
+  "home": {
+    "title": "Herramientas Gratuitas en Línea para Profesionales Modernos",
+    "subtitle": "Comprime PDFs, genera contenido SEO y crea documentos de carrera — todo en tu navegador. Sin registro requerido.",
+    "startCompress": "Comenzar a Comprimir PDFs",
+    "buildResume": "Crear tu Currículum",
+    "whyChoose": "¿Por qué elegir yoimagine Tools?",
+    "private": "100% Privado",
+    "privateDesc": "Los archivos se procesan completamente en tu navegador. Nada se sube a nuestros servidores.",
+    "instant": "Resultados Instantáneos",
+    "instantDesc": "Sin esperas. Las herramientas procesan archivos en tiempo real usando tecnologías web modernas.",
+    "mobile": "Listo para Móvil",
+    "mobileDesc": "Funciona perfectamente en teléfonos, tabletas y computadoras. Úsalo en cualquier lugar, en cualquier momento."
+  },
+  "tools": {
+    "compress": {
+      "title": "Comprimir PDF",
+      "desc": "Reduce el tamaño del archivo PDF sin perder calidad. Comprime archivos PDF hasta un 90% más pequeños, directamente en tu navegador.",
+      "steps": [
+        {"name": "Sube tu PDF", "text": "Arrastra y suelta tu archivo PDF en el área de carga, o haz clic para explorar y seleccionar tu archivo. Se admiten archivos hasta 50 MB."},
+        {"name": "Ajusta el nivel de compresión", "text": "Elige tu nivel de compresión preferido. \"Equilibrado\" se recomienda para la mejor relación calidad/tamaño."},
+        {"name": "Descarga el archivo comprimido", "text": "Tu PDF comprimido está listo al instante. Haz clic en Descargar para guardarlo en tu dispositivo — completamente gratis, sin marcas de agua."}
+      ],
+      "faqs": [
+        {"q": "¿Se preserva la calidad del PDF comprimido?", "a": "Sí. Nuestro algoritmo de compresión reduce inteligentemente la calidad de las imágenes y elimina datos redundantes mientras preserva el texto, gráficos vectoriales y la estructura del documento. Puedes elegir entre tres modos de compresión."},
+        {"q": "¿Cuánto puedo reducir el tamaño de un archivo PDF?", "a": "La mayoría de los PDFs se pueden comprimir entre un 70-90% dependiendo del contenido. Los PDFs solo de texto se comprimen más, mientras que los PDFs con muchas imágenes pueden comprimirse menos. Un PDF de 10 MB típicamente se reduce a 1-3 MB."},
+        {"q": "¿Es seguro subir mi PDF?", "a": "¡Sí! Los archivos se procesan completamente en tu navegador usando JavaScript. Tu PDF nunca sale de tu dispositivo, por lo que puedes comprimir documentos sensibles como contratos, facturas y currículums de forma segura."}
+      ]
+    },
+    "merge": {
+      "title": "Combinar PDF",
+      "desc": "Combina múltiples archivos PDF en un solo documento. Fusiona PDFs instantáneamente en tu navegador. Sin registro, sin marcas de agua.",
+      "steps": [
+        {"name": "Sube múltiples PDFs", "text": "Arrastra y suelta múltiples archivos PDF en el área de carga, o haz clic para explorar y seleccionar archivos. Puedes agregar hasta 20 PDFs a la vez."},
+        {"name": "Organiza el orden", "text": "Arrastra los archivos para reordenarlos. El archivo superior aparecerá primero en tu documento combinado."},
+        {"name": "Descarga el PDF combinado", "text": "Haz clic en \"Combinar PDFs\" para fusionarlos, luego descarga tu documento único combinado instantáneamente."}
+      ],
+      "faqs": [
+        {"q": "¿Puedo combinar PDFs protegidos con contraseña?", "a": "No, primero debes eliminar la protección de contraseña usando nuestra herramienta Eliminar Contraseña PDF, luego combinar los archivos desbloqueados."},
+        {"q": "¿Hay límite de cuántos PDFs puedo combinar?", "a": "Puedes combinar hasta 20 archivos PDF a la vez, con un tamaño total combinado de 100 MB. Para lotes más grandes, considera Adobe Acrobat Pro."}
+      ]
+    },
+    "split": {
+      "title": "Dividir PDF",
+      "desc": "Separa un PDF en páginas individuales o extrae rangos de páginas específicas. Divide archivos PDF instantáneamente en tu navegador. Sin registro requerido.",
+      "steps": [
+        {"name": "Sube tu PDF", "text": "Arrastra y suelta tu archivo PDF en el área de carga. Se admiten archivos hasta 50 MB."},
+        {"name": "Elige el modo de división", "text": "Selecciona \"Dividir todas las páginas\" para separar cada página, o \"Extraer rango\" para dividir páginas específicas."},
+        {"name": "Descarga los archivos divididos", "text": "Descarga páginas individuales como PDFs separados, o descarga todo como un archivo ZIP."}
+      ],
+      "faqs": [
+        {"q": "¿Qué es la división de PDF?", "a": "La división de PDF separa un documento PDF de múltiples páginas en páginas individuales o documentos más pequeños. Esto es útil para extraer contenido específico, reducir tamaños de archivo para correo electrónico, o organizar documentos grandes en secciones manejables."}
+      ]
+    }
+  },
+  "footer": {
+    "description": "Herramientas en línea gratuitas para edición de PDF, optimización SEO y desarrollo de carrera. Sin registro requerido.",
+    "privacy": "Política de Privacidad",
+    "terms": "Términos de Servicio",
+    "contact": "Contacto"
+  }
+}

@@ -1,0 +1,83 @@
+{
+  "nav": {
+    "pdfTools": "PDF-Tools",
+    "seoTools": "SEO-Tools",
+    "careerTools": "Karriere-Tools",
+    "blog": "Blog"
+  },
+  "common": {
+    "dragDrop": "Ziehen Sie Ihre PDF hierher",
+    "orClick": "oder klicken Sie zum Durchsuchen",
+    "maxSize": "Max. 50 MB",
+    "filesStay": "Dateien bleiben auf Ihrem Gerät",
+    "compress": "Komprimieren",
+    "download": "Herunterladen",
+    "upload": "Hochladen",
+    "processing": "Verarbeitung...",
+    "complete": "Fertig!",
+    "error": "Fehler",
+    "tryAgain": "Erneut versuchen",
+    "settings": "Einstellungen",
+    "language": "Sprache"
+  },
+  "home": {
+    "title": "Kostenlose Online-Tools für Moderne Profis",
+    "subtitle": "PDFs komprimieren, SEO-Inhalte generieren und Karrieredokumente erstellen — alles in Ihrem Browser. Keine Anmeldung erforderlich.",
+    "startCompress": "PDFs Komprimieren Starten",
+    "buildResume": "Lebenslauf Erstellen",
+    "whyChoose": "Warum yoimagine Tools Wählen?",
+    "private": "100% Privat",
+    "privateDesc": "Dateien werden vollständig in Ihrem Browser verarbeitet. Nichts wird auf unsere Server hochgeladen.",
+    "instant": "Sofortige Ergebnisse",
+    "instantDesc": "Kein Warten. Tools verarbeiten Dateien in Echtzeit mit moderner Web-Technologie.",
+    "mobile": "Mobil Bereit",
+    "mobileDesc": "Funktioniert perfekt auf Handys, Tablets und Computern. Überall und jederzeit nutzbar."
+  },
+  "tools": {
+    "compress": {
+      "title": "PDF Komprimieren",
+      "desc": "Reduzieren Sie die PDF-Dateigröße ohne Qualitätsverlust. Komprimieren Sie PDF-Dateien bis zu 90% kleiner, direkt in Ihrem Browser.",
+      "steps": [
+        {"name": "PDF Hochladen", "text": "Ziehen Sie Ihre PDF-Datei in den Upload-Bereich oder klicken Sie zum Durchsuchen und Auswählen. Dateien bis 50 MB werden unterstützt."},
+        {"name": "Kompressionsstufe Wählen", "text": "Wählen Sie Ihre bevorzugte Kompressionsstufe. \"Ausgewogen\" wird für das beste Qualität/Größe-Verhältnis empfohlen."},
+        {"name": "Komprimierte Datei Herunterladen", "text": "Ihr komprimiertes PDF ist sofort bereit. Klicken Sie auf Herunterladen, um es auf Ihrem Gerät zu speichern — völlig kostenlos, ohne Wasserzeichen."}
+      ],
+      "faqs": [
+        {"q": "Wird die Qualität des komprimierten PDFs beibehalten?", "a": "Ja. Unser Kompressionsalgorithmus reduziert intelligent die Bildqualität und entfernt redundante Daten, während Text, Vektorgrafiken und Dokumentstruktur erhalten bleiben. Sie können zwischen drei Kompressionsmodi wählen."},
+        {"q": "Wie viel kann ich eine PDF-Dateigröße reduzieren?", "a": "Die meisten PDFs können um 70-90% komprimiert werden, abhängig vom Inhalt. Text-only PDFs komprimieren am besten, während bildlastige PDFs weniger komprimiert werden. Ein 10 MB PDF wird typischerweise auf 1-3 MB reduziert."},
+        {"q": "Ist es sicher, mein PDF hochzuladen?", "a": "Ja! Dateien werden vollständig in Ihrem Browser mit JavaScript verarbeitet. Ihr PDF verlässt nie Ihr Gerät, sodass Sie vertrauliche Dokumente wie Verträge, Rechnungen und Lebensläufe sicher komprimieren können."}
+      ]
+    },
+    "merge": {
+      "title": "PDF Zusammenführen",
+      "desc": "Kombinieren Sie mehrere PDF-Dateien in einem Dokument. Fügen Sie PDFs sofort in Ihrem Browser zusammen. Keine Anmeldung, keine Wasserzeichen.",
+      "steps": [
+        {"name": "Mehrere PDFs Hochladen", "text": "Ziehen Sie mehrere PDF-Dateien in den Upload-Bereich oder klicken Sie zum Durchsuchen und Auswählen. Sie können bis zu 20 PDFs gleichzeitig hinzufügen."},
+        {"name": "Reihenfolge Anordnen", "text": "Ziehen Sie Dateien, um sie neu anzuordnen. Die oberste Datei erscheint zuerst in Ihrem zusammengeführten Dokument."},
+        {"name": "Zusammengeführtes PDF Herunterladen", "text": "Klicken Sie auf \"PDFs Zusammenführen\" um sie zu kombinieren, dann laden Sie Ihr einzelnes zusammengeführtes Dokument sofort herunter."}
+      ],
+      "faqs": [
+        {"q": "Kann ich passwortgeschützte PDFs zusammenführen?", "a": "Nein, Sie müssen zuerst den Passwortschutz mit unserem PDF-Passwort-Entferner entfernen, dann die entsperrten Dateien zusammenführen."},
+        {"q": "Gibt es ein Limit für die Anzahl der PDFs, die ich zusammenführen kann?", "a": "Sie können bis zu 20 PDF-Dateien gleichzeitig zusammenführen, mit einer kombinierten Gesamtgröße von 100 MB. Für größere Stapel ziehen Sie Adobe Acrobat Pro in Betracht."}
+      ]
+    },
+    "split": {
+      "title": "PDF Aufteilen",
+      "desc": "Trennen Sie ein PDF in einzelne Seiten oder extrahieren Sie bestimmte Seitenbereiche. Teilen Sie PDF-Dateien sofort in Ihrem Browser. Keine Anmeldung erforderlich.",
+      "steps": [
+        {"name": "PDF Hochladen", "text": "Ziehen Sie Ihre PDF-Datei in den Upload-Bereich. Dateien bis 50 MB werden unterstützt."},
+        {"name": "Aufteilungsmodus Wählen", "text": "Wählen Sie \"Alle Seiten Aufteilen\" um jede Seite zu trennen, oder \"Bereich Extrahieren\" um bestimmte Seiten zu teilen."},
+        {"name": "Aufgeteilte Dateien Herunterladen", "text": "Laden Sie einzelne Seiten als separate PDFs herunter, oder laden Sie alles als ZIP-Datei herunter."}
+      ],
+      "faqs": [
+        {"q": "Was ist PDF-Aufteilung?", "a": "PDF-Aufteilung trennt ein mehrseitiges PDF-Dokument in einzelne Seiten oder kleinere Dokumente. Dies ist nützlich, um spezifischen Inhalt zu extrahieren, Dateigrößen für E-Mail zu reduzieren, oder große Dokumente in handhabbare Abschnitte zu organisieren."}
+      ]
+    }
+  },
+  "footer": {
+    "description": "Kostenlose Online-Tools für PDF-Bearbeitung, SEO-Optimierung und Karriereentwicklung. Keine Anmeldung erforderlich.",
+    "privacy": "Datenschutzrichtlinie",
+    "terms": "Nutzungsbedingungen",
+    "contact": "Kontakt"
+  }
+}
