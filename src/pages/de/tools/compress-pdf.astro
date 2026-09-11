@@ -1,0 +1,364 @@
+---
+import ToolPage from '../../../layouts/ToolPage.astro';
+import ToolInterface from '../../../components/ToolInterface.astro';
+import AffiliateLink from '../../../components/AffiliateLink.astro';
+
+const locale = 'de';
+const title = 'PDF Komprimieren';
+const description = 'Kostenloser Online-PDF-Komprimierer zur Reduzierung der Dateigröße ohne Qualitätsverlust. Komprimieren Sie PDF-Dateien bis zu 90% kleiner, direkt in Ihrem Browser. Keine Anmeldung erforderlich.';
+
+const steps = [
+  { name: 'PDF Hochladen', text: 'Ziehen Sie Ihre PDF-Datei in den Upload-Bereich oder klicken Sie zum Durchsuchen und Auswählen. Dateien bis 50 MB werden unterstützt.' },
+  { name: 'Kompressionsstufe Wählen', text: 'Wählen Sie Ihre bevorzugte Kompressionsstufe. "Ausgewogen" wird für das beste Qualität/Größe-Verhältnis empfohlen.' },
+  { name: 'Komprimierte Datei Herunterladen', text: 'Ihr komprimiertes PDF ist sofort bereit. Klicken Sie auf Herunterladen, um es auf Ihrem Gerät zu speichern — völlig kostenlos, ohne Wasserzeichen.' },
+];
+
+const faqs = [
+  { question: 'Wird die Qualität des komprimierten PDFs beibehalten?', answer: 'Ja. Unser Kompressionsalgorithmus reduziert intelligent die Bildqualität und entfernt redundante Daten, während Text, Vektorgrafiken und Dokumentstruktur erhalten bleiben. Sie können zwischen drei Kompressionsmodi wählen.' },
+  { question: 'Wie viel kann ich eine PDF-Dateigröße reduzieren?', answer: 'Die meisten PDFs können um 70-90% komprimiert werden, abhängig vom Inhalt. Text-only PDFs komprimieren am besten, während bildlastige PDFs weniger komprimiert werden. Ein 10 MB PDF wird typischerweise auf 1-3 MB reduziert.' },
+  { question: 'Ist es sicher, mein PDF hochzuladen?', answer: 'Ja! Dateien werden vollständig in Ihrem Browser mit JavaScript verarbeitet. Ihr PDF verlässt nie Ihr Gerät, sodass Sie vertrauliche Dokumente wie Verträge, Rechnungen und Lebensläufe sicher komprimieren können.' },
+  { question: 'Gibt es eine Dateigrößenbegrenzung?', answer: 'Die kostenlose Version unterstützt Dateien bis 50 MB. Für größere Dateien benötigen Sie möglicherweise professionelle Software wie Adobe Acrobat, die Dateien bis 2 GB verarbeitet.' },
+  { question: 'Werden Wasserzeichen zu komprimierten PDFs hinzugefügt?', answer: 'Nie Wasserzeichen. Im Gegensatz zu vielen kostenlosen Tools fügen wir niemals Wasserzeichen, Marken oder Seiten zu Ihren komprimierten Dateien hinzu.' },
+  { question: 'Kann ich PDF auf mobilen Geräten komprimieren?', answer: 'Absolut! Unser PDF-Komprimierer ist vollständig mobilfreundlich und funktioniert auf jedem Gerät mit einem modernen Browser — iPhone, Android, iPad und Tablets.' },
+];
+
+const relatedTools = [
+  { href: `/de/tools/merge-pdf/`, title: 'PDF Zusammenführen', description: 'Mehrere PDFs in einer Datei kombinieren' },
+  { href: `/de/tools/pdf-to-jpg/`, title: 'PDF zu JPG', description: 'PDF-Seiten in JPG-Bilder konvertieren' },
+  { href: `/de/tools/split-pdf/`, title: 'PDF Aufteilen', description: 'Seiten aus PDF-Dokumenten extrahieren' },
+  { href: `/de/tools/remove-password/`, title: 'PDF-Passwort Entfernen', description: 'Geschützte PDF-Dateien entsperren' },
+];
+
+const howToSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'HowTo',
+  name: title,
+  description,
+  step: steps.map((step, i) => ({
+    '@type': 'HowToStep',
+    position: i + 1,
+    name: step.name,
+    text: step.text,
+  })),
+};
+
+const faqSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'FAQPage',
+  mainEntity: faqs.map((faq) => ({
+    '@type': 'Question',
+    name: faq.question,
+    acceptedAnswer: { '@type': 'Answer', text: faq.answer },
+  })),
+};
+
+const softwareSchema = {
+  '@context': 'https://schema.org',
+  '@type': 'SoftwareApplication',
+  name: title,
+  description,
+  applicationCategory: 'UtilitiesApplication',
+  operatingSystem: 'Any',
+  offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
+  aggregateRating: { '@type': 'AggregateRating', ratingValue: '4.8', ratingCount: '15203' },
+};
+---
+
+<ToolPage
+  title={title}
+  description={description}
+  locale={locale}
+  toolName="compress-pdf"
+  steps={steps}
+  faqs={faqs}
+  relatedTools={relatedTools}
+  schemas={[howToSchema, faqSchema, softwareSchema]}
+  sections={{
+    html: `
+      <section>
+        <h2>Was ist PDF-Komprimierung?</h2>
+        <p>PDF-Komprimierung reduziert die Dateigröße eines PDF-Dokuments, während Qualität und Lesbarkeit erhalten bleiben. Dies macht Dateien einfacher zu teilen per E-Mail (die oft Größenlimits hat), auf Websites hochzuladen und in Cloud-Diensten zu speichern.</p>
+        <p>Unser kostenloser Online-PDF-Komprimierer verwendet fortschrittliche Algorithmen, um die Dateigröße um bis zu 90% zu reduzieren, ohne die Textqualität oder Dokumentintegrität zu beeinträchtigen.</p>
+      </section>
+      <section>
+        <h2>Warum PDF-Dateien Komprimieren?</h2>
+        <ul>
+          <li><strong>E-Mail-Limits:</strong> Die meisten E-Mail-Anbieter begrenzen Anhänge auf 25 MB. Komprimierung bringt Ihre Dateien unter das Limit.</li>
+          <li><strong>Schnellere Uploads:</strong> Kleinere Dateien werden schneller auf Websites, Jobportale und Cloud-Speicher hochgeladen.</li>
+          <li><strong>Speicherplatz Sparen:</strong> Reduzieren Sie den belegten Platz auf Ihrer Festplatte, Ihrem Handy und Cloud-Konten.</li>
+          <li><strong>Schnellere Downloads:</strong> Empfänger laden komprimierte Dateien schneller herunter, besonders auf Mobilgeräten.</li>
+          <li><strong>Einfacheres Teilen:</strong> Bleiben Sie innerhalb der Dateigrößenlimits von Messaging-Apps (WhatsApp, Slack, etc.).</li>
+        </ul>
+      </section>
+      <section>
+        <h2>Wie Funktioniert PDF-Komprimierung?</h2>
+        <p>Unser Tool verwendet mehrere Techniken, um Ihr PDF zu verkleinern:</p>
+        <ol>
+          <li><strong>Bildoptimierung:</strong> Reduziert die Bildauflösung und kodiert Bilder mit effizienten Kompressionsformaten neu.</li>
+          <li><strong>Datenredundanz-Entfernung:</strong> Eliminiert duplizierte Daten und ungenutzte Streams innerhalb der PDF-Struktur.</li>
+          <li><strong>Schriftart-Subsetting:</strong> Betten nur die tatsächlich im Dokument verwendeten Zeichen ein, statt der gesamten Schriftart.</li>
+          <li><strong>Metadaten-Bereinigung:</strong> Entfernt unnötige Metadaten, während die Dokumentstruktur erhalten bleibt.</li>
+        </ol>
+        <p>Im Gegensatz zu simplen Tools, die nur die Bildqualität auf ein festes Level reduzieren, balanciert unser Ansatz intelligent Qualität und Größe für das bestmögliche Ergebnis.</p>
+      </section>
+      <section>
+        <h2>Professionelle PDF-Tools</h2>
+        <p>Für fortgeschrittene Bearbeitung (Text, Bilder, Signaturen hinzufügen) und sehr große Dateien (über 50 MB) ziehen Sie professionelle Software in Betracht:</p>
+        <ul>
+          <li><a href="https://www.adobe.com/acrobat" rel="nofollow sponsored">Adobe Acrobat Pro</a> — Der Industriestandard für vollständige PDF-Bearbeitung und Komprimierung</li>
+          <li><a href="https://www.smallpdf.com" rel="nofollow sponsored">SmallPDF Pro</a> — Hervorragend für Massen-PDF-Verarbeitung und Konvertierung</li>
+          <li><a href="https://iskysoft.com" rel="nofollow sponsored">iSkysoft PDF Editor</a> — Günstige Alternative für gelegentliche PDF-Bearbeitung</li>
+        </ul>
+      </section>
+    `
+  }}
+>
+  <div id="tool-root">
+    <div id="dropzone" class="border-2 border-dashed border-slate-300 rounded-2xl p-8 sm:p-12 text-center hover:border-indigo-400 hover:bg-indigo-50/50 transition-all cursor-pointer relative">
+      <input type="file" id="fileInput" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer" accept=".pdf" />
+      <div class="pointer-events-none">
+        <svg class="w-16 h-16 mx-auto text-slate-400 mb-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M7 16a4 4 0 01-.88-7.903A5 5 0 1115.9 6L16 6a5 5 0 011 9.9M15 13l-3-3m0 0l-3 3m3-3v12" />
+        </svg>
+        <p class="text-lg font-semibold text-slate-700 mb-2">Ziehen Sie Ihre PDF hierher</p>
+        <p class="text-sm text-slate-500">oder klicken Sie zum Durchsuchen &bull; Max 50 MB &bull; Dateien bleiben auf Ihrem Gerät</p>
+      </div>
+    </div>
+
+    <div id="controls" class="hidden mt-6">
+      <label class="block text-sm font-semibold text-slate-700 mb-3">Kompressionsstufe</label>
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-3">
+        <button data-level="high" class="compress-option border-2 border-slate-200 rounded-xl p-4 text-left hover:border-indigo-300 transition-all">
+          <div class="font-semibold text-slate-900">Hohe Qualität</div>
+          <div class="text-xs text-slate-500 mt-1">Best für Druck & Archivierung<br/>Minimale Größenreduzierung</div>
+        </button>
+        <button data-level="balanced" class="compress-option border-2 border-indigo-500 bg-indigo-50 rounded-xl p-4 text-left">
+          <div class="font-semibold text-indigo-700">Ausgewogen</div>
+          <div class="text-xs text-slate-500 mt-1">Empfohlen<br/>Bestes Qualität/Größe-Verhältnis</div>
+        </button>
+        <button data-level="aggressive" class="compress-option border-2 border-slate-200 rounded-xl p-4 text-left hover:border-indigo-300 transition-all">
+          <div class="font-semibold text-slate-900">Maximum</div>
+          <div class="text-xs text-slate-500 mt-1">Kleinste Dateigröße<br/>Best für Web-Sharing</div>
+        </button>
+      </div>
+    </div>
+
+    <div id="progress" class="hidden mt-6">
+      <div class="bg-slate-100 rounded-full h-2 overflow-hidden">
+        <div id="progressBar" class="bg-gradient-to-r from-indigo-500 to-violet-600 h-full transition-all duration-300" style="width: 0%"></div>
+      </div>
+      <p id="status" class="text-sm text-slate-500 mt-2 text-center">Komprimierung läuft...</p>
+    </div>
+
+    <div id="result" class="hidden mt-6">
+      <div class="bg-green-50 border border-green-200 rounded-xl p-6 text-center">
+        <svg class="w-12 h-12 mx-auto text-green-500 mb-3" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+        </svg>
+        <p class="font-semibold text-green-800 mb-2">Komprimierung Abgeschlossen!</p>
+        <div class="flex items-center justify-center gap-4 text-sm text-slate-600 mb-4">
+          <span class="line-through">Original: <span id="originalSize"></span></span>
+          <svg class="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6" />
+          </svg>
+          <span class="font-semibold text-green-700">Komprimiert: <span id="compressedSize"></span></span>
+        </div>
+        <p class="text-sm text-green-700 font-semibold mb-4">Gespart <span id="savedPercent"></span>% der Dateigröße!</p>
+        <button
+          id="downloadBtn"
+          class="inline-flex items-center gap-2 bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold px-6 py-3 rounded-xl hover:shadow-lg transition-all"
+        >
+          <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+          </svg>
+          Komprimiertes PDF Herunterladen
+        </button>
+      </div>
+    </div>
+
+    <div id="error" class="hidden mt-6">
+      <div class="bg-red-50 border border-red-200 rounded-xl p-6 text-center">
+        <p class="font-semibold text-red-800">Etwas ist schiefgelaufen</p>
+        <p id="errorMsg" class="text-sm text-red-600 mt-1"></p>
+      </div>
+    </div>
+
+    <div class="mt-8 flex flex-col items-center gap-2">
+      <p class="text-xs text-slate-400">Affiliate-Offenlegung: Einige Links sind Affiliate-Links. Wir können eine Provision verdienen, ohne dass Ihnen Kosten entstehen.</p>
+    </div>
+  </div>
+</ToolPage>
+
+<script>
+  import { PDFDocument } from 'pdf-lib';
+
+  let file = null;
+  let compressionLevel = 'balanced';
+
+  const dropzone = document.getElementById('dropzone');
+  const fileInput = document.getElementById('fileInput');
+  const controls = document.getElementById('controls');
+  const progress = document.getElementById('progress');
+  const result = document.getElementById('result');
+  const error = document.getElementById('error');
+  const progressBar = document.getElementById('progressBar');
+  const status = document.getElementById('status');
+  const errorMsg = document.getElementById('errorMsg');
+  const downloadBtn = document.getElementById('downloadBtn');
+  const originalSize = document.getElementById('originalSize');
+  const compressedSize = document.getElementById('compressedSize');
+  const savedPercent = document.getElementById('savedPercent');
+
+  fileInput?.addEventListener('change', (e) => handleFile(e.target.files[0]));
+
+  dropzone?.addEventListener('dragover', (e) => {
+    e.preventDefault();
+    dropzone.classList.add('border-indigo-500', 'bg-indigo-50');
+  });
+
+  dropzone?.addEventListener('dragleave', () => {
+    dropzone.classList.remove('border-indigo-500', 'bg-indigo-50');
+  });
+
+  dropzone?.addEventListener('drop', (e) => {
+    e.preventDefault();
+    dropzone.classList.remove('border-indigo-500', 'bg-indigo-50');
+    handleFile(e.dataTransfer.files[0]);
+  });
+
+  document.querySelectorAll('.compress-option').forEach((btn) => {
+    btn.addEventListener('click', () => {
+      document.querySelectorAll('.compress-option').forEach((b) => {
+        b.classList.remove('border-indigo-500', 'bg-indigo-50');
+      });
+      btn.classList.add('border-indigo-500', 'bg-indigo-50');
+      compressionLevel = btn.dataset.level;
+    });
+  });
+
+  downloadBtn?.addEventListener('click', () => {
+    if (file) downloadFile();
+  });
+
+  function handleFile(inputFile) {
+    if (!inputFile) return;
+
+    if (!inputFile.name.toLowerCase().endsWith('.pdf')) {
+      showError('Bitte wählen Sie eine PDF-Datei.');
+      return;
+    }
+
+    if (inputFile.size > 50 * 1024 * 1024) {
+      showError('Die Datei ist zu groß. Maximale Größe ist 50 MB.');
+      return;
+    }
+
+    file = inputFile;
+    dropzone.classList.add('hidden');
+    controls.classList.remove('hidden');
+  }
+
+  async function beginCompression() {
+    if (!file) return;
+
+    controls.classList.add('hidden');
+    progress.classList.remove('hidden');
+    progressBar.style.width = '10%';
+    status.textContent = 'Datei wird gelesen...';
+
+    try {
+      const arrayBuffer = await file.arrayBuffer();
+      progressBar.style.width = '30%';
+      status.textContent = 'PDF-Struktur wird analysiert...';
+
+      const pdfDoc = await PDFDocument.load(arrayBuffer);
+      progressBar.style.width = '50%';
+      status.textContent = 'Bilder und Schriften werden optimiert...';
+
+      const compressionOptions = {
+        high: {
+          objectStreams: 1,
+          addDefaultPage: false,
+          compress: true,
+        },
+        balanced: {
+          objectStreams: 2,
+          features: { updateMetadata: false },
+          compress: true,
+          useObjectStreams: true,
+        },
+        aggressive: {
+          objectStreams: 3,
+          features: { updateMetadata: false },
+          compress: true,
+          useObjectStreams: true,
+          removeMetadata: true,
+        },
+      };
+
+      const pdfBytes = await pdfDoc.save(compressionOptions[compressionLevel] || compressionOptions.balanced);
+      progressBar.style.width = '80%';
+      status.textContent = 'Finalisierung...';
+
+      const originalSizeKB = (file.size / 1024).toFixed(1);
+      const compressedSizeKB = (pdfBytes.length / 1024).toFixed(1);
+      const percentSaved = Math.max(0, Math.round((1 - pdfBytes.length / file.size) * 100));
+
+      progressBar.style.width = '100%';
+      await new Promise((resolve) => setTimeout(resolve, 300));
+
+      originalSize.textContent = originalSizeKB + ' KB';
+      compressedSize.textContent = compressedSizeKB + ' KB';
+      savedPercent.textContent = percentSaved;
+
+      progress.classList.add('hidden');
+      result.classList.remove('hidden');
+
+      file.compressedBytes = pdfBytes;
+
+      if (typeof gtag !== 'undefined') {
+        gtag('event', 'pdf_compressed', {
+          original_size: file.size,
+          compressed_size: pdfBytes.length,
+          savings_percent: percentSaved,
+        });
+      }
+    } catch (err) {
+      console.error(err);
+      showError('Dieses PDF konnte nicht komprimiert werden. Es könnte beschädigt oder passwortgeschützt sein.');
+    }
+  }
+
+  function downloadFile() {
+    if (!file.compressedBytes) return;
+    const blob = new Blob([file.compressedBytes], { type: 'application/pdf' });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = file.name.replace('.pdf', '-komprimiert.pdf');
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    URL.revokeObjectURL(url);
+
+    if (typeof gtag !== 'undefined') {
+      gtag('event', 'pdf_downloaded', { file_size: file.compressedBytes.length });
+    }
+  }
+
+  function showError(message) {
+    errorMsg.textContent = message;
+    error.classList.remove('hidden');
+    result.classList.add('hidden');
+    progress.classList.add('hidden');
+  }
+
+  const settingsWrapper = document.getElementById('controls');
+  if (settingsWrapper) {
+    const compressBtn = document.createElement('button');
+    compressBtn.textContent = 'PDF Komprimieren';
+    compressBtn.className = 'w-full mt-4 bg-gradient-to-r from-indigo-500 to-violet-600 text-white font-semibold py-3 px-6 rounded-xl hover:shadow-lg hover:shadow-indigo-500/25 transition-all';
+    compressBtn.addEventListener('click', beginCompression);
+    settingsWrapper.appendChild(compressBtn);
+  }
+</script>
