@@ -26,12 +26,23 @@
     "startCompress": "Commencer à Compresser des PDFs",
     "buildResume": "Créer votre CV",
     "whyChoose": "Pourquoi choisir yoimagine Tools ?",
+    "whyChooseDesc": "Conçu avec la confidentialité et la vitesse à l'esprit. Vos fichiers restent dans votre navigateur.",
     "private": "100% Privé",
     "privateDesc": "Les fichiers sont traités entièrement dans votre navigateur. Rien n'est envoyé sur nos serveurs.",
     "instant": "Résultats Instantanés",
     "instantDesc": "Pas d'attente. Les outils traitent les fichiers en temps réel avec des technologies web modernes.",
     "mobile": "Compatible Mobile",
-    "mobileDesc": "Fonctionne parfaitement sur téléphones, tablettes et ordinateurs. Utilisez-le partout, tout le temps."
+    "mobileDesc": "Fonctionne parfaitement sur téléphones, tablettes et ordinateurs. Utilisez-le partout, tout le temps.",
+    "badge": "100% Gratuit · Pas d'Inscription · Sécurisé · Compatible Mobile",
+    "pdfTools": "Outils PDF",
+    "pdfToolsDesc": "Éditez, convertissez, combinez et compressez vos fichiers PDF instantanément.",
+    "seoTools": "Outils SEO",
+    "seoToolsDesc": "Optimisez votre contenu pour les moteurs de recherche avec des outils gratuits en ligne.",
+    "careerTools": "Outils Carrière",
+    "careerToolsDesc": "Créez votre CV, rédigez des lettres de motivation et réussissez vos entretiens.",
+    "viewAll": "Voir tout",
+    "blogTitle": "Blog et Guides",
+    "blogDesc": "Guides d'experts pour l'édition PDF, l'optimisation SEO et le développement de carrière."
   },
   "tools": {
     "compress": {
@@ -74,10 +85,34 @@
       ]
     }
   },
+  "toolsList": {
+    "compress-pdf": { "name": "Compresser PDF", "desc": "Réduire la taille du fichier PDF sans perte de qualité" },
+    "merge-pdf": { "name": "Fusionner PDF", "desc": "Combiner plusieurs fichiers PDF en un seul" },
+    "split-pdf": { "name": "Diviser PDF", "desc": "Séparer les pages d'un document PDF" },
+    "pdf-to-jpg": { "name": "PDF vers JPG", "desc": "Convertir les pages PDF en images JPG" },
+    "jpg-to-pdf": { "name": "JPG vers PDF", "desc": "Convertir des images JPG en format PDF" },
+    "rotate-pdf": { "name": "Pivoter PDF", "desc": "Pivoter les pages PDF dans n'importe quelle orientation" },
+    "remove-password": { "name": "Supprimer Mot de Passe PDF", "desc": "Déverrouiller les fichiers PDF protégés par mot de passe" },
+    "extract-pages": { "name": "Extraire des Pages", "desc": "Extraire des pages spécifiques d'un PDF" },
+    "meta-title-generator": { "name": "Générateur de Titres et Méta", "desc": "Générer des titres et descriptions optimisés pour le SEO" },
+    "schema-generator": { "name": "Générateur de Schema Markup", "desc": "Créer des données structurées JSON-LD" },
+    "keyword-density": { "name": "Vérificateur de Densité de Mots-clés", "desc": "Analyser l'utilisation des mots-clés dans votre contenu" },
+    "serp-preview": { "name": "Aperçu SERP", "desc": "Voyez à quoi ressemble votre page dans les résultats Google" },
+    "og-preview": { "name": "Aperçu d'Image OG", "desc": "Aperçu de vos cartes de partage sur les réseaux sociaux" },
+    "resume-builder": { "name": "Créateur de CV", "desc": "Créer un CV professionnel à partir de modèles" },
+    "cover-letter": { "name": "Générateur de Lettres de Motivation", "desc": "Générer des lettres de motivation personnalisées" },
+    "ats-checker": { "name": "Vérificateur de Score ATS", "desc": "Vérifiez comment votre CV se comporte face aux systèmes ATS" },
+    "interview-questions": { "name": "Préparation aux Entretiens", "desc": "Générer des questions d'entretien pour votre poste" }
+  },
   "footer": {
     "description": "Outils en ligne gratuits pour l'édition PDF, l'optimisation SEO et le développement de carrière. Aucune inscription requise.",
     "privacy": "Politique de Confidentialité",
     "terms": "Conditions d'Utilisation",
-    "contact": "Contact"
+    "contact": "Contact",
+    "pdfTools": "Outils PDF",
+    "seoTools": "Outils SEO",
+    "careerTools": "Outils Carrière",
+    "blog": "Blog",
+    "allRights": "Tous droits réservés."
   }
 }

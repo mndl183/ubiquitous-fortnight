@@ -1,0 +1,57 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const locale = 'fr';
+const pageTitle = 'Contact';
+const pageDescription = 'Contactez yoimagine Tools. Nous sommes ravis de vous aider pour toute question, commentaire ou demande de partenariat.';
+---
+
+<Base title={pageTitle} description={pageDescription} locale={locale}>
+  <div class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Contact</h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          Une question, un commentaire ou une demande professionnelle ? Nous serions ravis de vous entendre. Nous répondons généralement sous 48 heures.
+        </p>
+      </header>
+
+      <div class="bg-white rounded-2xl border border-slate-200 p-8">
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8 text-center">
+          <div>
+            <div class="w-12 h-12 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
+              </svg>
+            </div>
+            <p class="font-semibold text-slate-900 text-sm">E-mail</p>
+            <p class="text-sm text-slate-500">support@yoimagine.com</p>
+          </div>
+          <div>
+            <div class="w-12 h-12 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+              </svg>
+            </div>
+            <p class="font-semibold text-slate-900 text-sm">Sujet</p>
+            <p class="text-sm text-slate-500">Outils PDF, SEO et Carrière</p>
+          </div>
+          <div>
+            <div class="w-12 h-12 bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-3">
+              <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+            </div>
+            <p class="font-semibold text-slate-900 text-sm">Délai de Réponse</p>
+            <p class="text-sm text-slate-500">Sous 48 heures</p>
+          </div>
+        </div>
+
+        <p class="text-sm text-slate-500 text-center leading-relaxed">
+          Pour les signalements de bugs, incluez le nom de l'outil et autant de détails que possible sur le problème afin que nous puissions le résoudre rapidement. Merci de nous aider à améliorer yoimagine Tools.
+        </p>
+      </div>
+    </div>
+  </div>
+</Base>

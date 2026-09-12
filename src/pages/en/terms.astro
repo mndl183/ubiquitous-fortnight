@@ -1,0 +1,71 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const locale = 'en';
+const pageTitle = 'Terms of Service';
+const pageDescription = 'Terms of service for yoimagine Tools. Please read these terms carefully before using our free online tools.';
+---
+
+<Base title={pageTitle} description={pageDescription} locale={locale}>
+  <div class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <header class="mb-10">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Terms of Service</h1>
+        <p class="text-slate-600 leading-relaxed">Last updated: September 2026</p>
+      </header>
+
+      <article class="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-6">
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Acceptance of Terms</h2>
+          <p>
+            By accessing or using yoimagine Tools, you agree to be bound by these Terms of Service. If you do not agree with any part of these terms, please do not use our services.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Free Use of Tools</h2>
+          <p>
+            All tools on this website are provided free of charge. You may use them for personal and commercial purposes without limitation. No account or registration is required to use any tool.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Acceptable Use</h2>
+          <ul class="list-disc pl-6 space-y-2">
+            <li>You agree not to process files that are illegal, infringing, or that you do not have the right to process.</li>
+            <li>You agree not to attempt to disrupt, overload, or compromise our services in any way.</li>
+            <li>You agree not to use our tools to distribute malware or other harmful content.</li>
+          </ul>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Disclaimer of Warranty</h2>
+          <p>
+            Our tools are provided "as is" without warranties of any kind, either express or implied. We do not guarantee that the tools will be error-free or that results will be accurate for your specific use case. Always verify critical documents after processing.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Limitation of Liability</h2>
+          <p>
+            To the fullest extent permitted by law, yoimagine shall not be liable for any damages arising from the use or inability to use our tools, including but not limited to loss of data, loss of profits, or business interruption.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Changes to These Terms</h2>
+          <p>
+            We may update these terms from time to time. Any changes will be posted on this page with an updated "Last updated" date.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Contact Us</h2>
+          <p>
+            If you have any questions about these terms, please reach out through our <a href="/en/contact/" class="text-indigo-600 hover:text-indigo-800">contact page</a>.
+          </p>
+        </section>
+      </article>
+    </div>
+  </div>
+</Base>

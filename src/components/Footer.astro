@@ -1,11 +1,38 @@
 ---
+import { getContentHref, t, type Locale } from '../utils/i18n.ts';
+
 interface Props {
   locale: string;
 }
 
 const { locale } = Astro.props;
+const lang = locale as Locale;
 
 const currentYear = new Date().getFullYear();
+
+const pdfTools = [
+  { path: '/tools/compress-pdf/', key: 'toolsList.compress-pdf.name' },
+  { path: '/tools/merge-pdf/', key: 'toolsList.merge-pdf.name' },
+  { path: '/tools/split-pdf/', key: 'toolsList.split-pdf.name' },
+  { path: '/tools/pdf-to-jpg/', key: 'toolsList.pdf-to-jpg.name' },
+  { path: '/tools/jpg-to-pdf/', key: 'toolsList.jpg-to-pdf.name' },
+];
+
+const seoTools = [
+  { path: '/tools/meta-title-generator/', key: 'toolsList.meta-title-generator.name' },
+  { path: '/tools/schema-generator/', key: 'toolsList.schema-generator.name' },
+  { path: '/tools/keyword-density/', key: 'toolsList.keyword-density.name' },
+  { path: '/tools/serp-preview/', key: 'toolsList.serp-preview.name' },
+  { path: '/tools/og-preview/', key: 'toolsList.og-preview.name' },
+];
+
+const careerTools = [
+  { path: '/tools/resume-builder/', key: 'toolsList.resume-builder.name' },
+  { path: '/tools/cover-letter/', key: 'toolsList.cover-letter.name' },
+  { path: '/tools/ats-checker/', key: 'toolsList.ats-checker.name' },
+  { path: '/tools/interview-questions/', key: 'toolsList.interview-questions.name' },
+  { path: '/blog/', key: 'nav.blog' },
+];
 ---
 
 <footer class="bg-slate-900 text-slate-400 mt-16">
@@ -19,52 +46,46 @@ const currentYear = new Date().getFullYear();
           <span class="text-xl font-bold text-white">yoimagine</span>
         </div>
         <p class="text-sm text-slate-400 leading-relaxed">
-          Free online tools for PDF editing, SEO optimization, and career development. No sign-up required.
+          {t(lang, 'footer.description')}
         </p>
       </div>
 
       <div>
-        <h3 class="text-sm font-semibold text-white mb-4">PDF Tools</h3>
+        <h3 class="text-sm font-semibold text-white mb-4">{t(lang, 'footer.pdfTools')}</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href={`/${locale}/tools/compress-pdf/`} class="hover:text-indigo-400 transition-colors">Compress PDF</a></li>
-          <li><a href={`/${locale}/tools/merge-pdf/`} class="hover:text-indigo-400 transition-colors">Merge PDF</a></li>
-          <li><a href={`/${locale}/tools/split-pdf/`} class="hover:text-indigo-400 transition-colors">Split PDF</a></li>
-          <li><a href={`/${locale}/tools/pdf-to-jpg/`} class="hover:text-indigo-400 transition-colors">PDF to JPG</a></li>
-          <li><a href={`/${locale}/tools/jpg-to-pdf/`} class="hover:text-indigo-400 transition-colors">JPG to PDF</a></li>
+          {pdfTools.map((tool) => (
+            <li><a href={getContentHref(lang, tool.path)} class="hover:text-indigo-400 transition-colors">{t(lang, tool.key)}</a></li>
+          ))}
         </ul>
       </div>
 
       <div>
-        <h3 class="text-sm font-semibold text-white mb-4">SEO Tools</h3>
+        <h3 class="text-sm font-semibold text-white mb-4">{t(lang, 'footer.seoTools')}</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href={`/${locale}/tools/meta-title-generator/`} class="hover:text-indigo-400 transition-colors">Title Generator</a></li>
-          <li><a href={`/${locale}/tools/schema-generator/`} class="hover:text-indigo-400 transition-colors">Schema Generator</a></li>
-          <li><a href={`/${locale}/tools/keyword-density/`} class="hover:text-indigo-400 transition-colors">Keyword Density</a></li>
-          <li><a href={`/${locale}/tools/serp-preview/`} class="hover:text-indigo-400 transition-colors">SERP Preview</a></li>
-          <li><a href={`/${locale}/tools/og-preview/`} class="hover:text-indigo-400 transition-colors">OG Preview</a></li>
+          {seoTools.map((tool) => (
+            <li><a href={getContentHref(lang, tool.path)} class="hover:text-indigo-400 transition-colors">{t(lang, tool.key)}</a></li>
+          ))}
         </ul>
       </div>
 
       <div>
-        <h3 class="text-sm font-semibold text-white mb-4">Career Tools</h3>
+        <h3 class="text-sm font-semibold text-white mb-4">{t(lang, 'footer.careerTools')}</h3>
         <ul class="space-y-2 text-sm">
-          <li><a href={`/${locale}/tools/resume-builder/`} class="hover:text-indigo-400 transition-colors">Resume Builder</a></li>
-          <li><a href={`/${locale}/tools/cover-letter/`} class="hover:text-indigo-400 transition-colors">Cover Letter</a></li>
-          <li><a href={`/${locale}/tools/ats-checker/`} class="hover:text-indigo-400 transition-colors">ATS Checker</a></li>
-          <li><a href={`/${locale}/tools/interview-questions/`} class="hover:text-indigo-400 transition-colors">Interview Prep</a></li>
-          <li><a href={`/${locale}/blog/`} class="hover:text-indigo-400 transition-colors">Blog</a></li>
+          {careerTools.map((tool) => (
+            <li><a href={getContentHref(lang, tool.path)} class="hover:text-indigo-400 transition-colors">{t(lang, tool.key)}</a></li>
+          ))}
         </ul>
       </div>
     </div>
 
     <div class="border-t border-slate-800 mt-10 pt-8 flex flex-col sm:flex-row justify-between items-center gap-4">
       <p class="text-xs text-slate-500">
-        &copy; {currentYear} yoimagine. All rights reserved. Built with Cloudflare.
+        &copy; {currentYear} yoimagine. {t(lang, 'footer.allRights')}
       </p>
       <div class="flex gap-4 text-xs">
-        <a href={`/${locale}/privacy/`} class="hover:text-indigo-400 transition-colors">Privacy Policy</a>
-        <a href={`/${locale}/terms/`} class="hover:text-indigo-400 transition-colors">Terms of Service</a>
-        <a href={`/${locale}/contact/`} class="hover:text-indigo-400 transition-colors">Contact</a>
+        <a href={getContentHref(lang, '/privacy/')} class="hover:text-indigo-400 transition-colors">{t(lang, 'footer.privacy')}</a>
+        <a href={getContentHref(lang, '/terms/')} class="hover:text-indigo-400 transition-colors">{t(lang, 'footer.terms')}</a>
+        <a href={getContentHref(lang, '/contact/')} class="hover:text-indigo-400 transition-colors">{t(lang, 'footer.contact')}</a>
       </div>
     </div>
   </div>

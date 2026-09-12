@@ -2,6 +2,7 @@
 import ToolPage from '../../../layouts/ToolPage.astro';
 import ToolInterface from '../../../components/ToolInterface.astro';
 import AffiliateLink from '../../../components/AffiliateLink.astro';
+import { getContentHref } from '../../../utils/i18n';
 
 const locale = 'de';
 const title = 'PDF Komprimieren';
@@ -23,10 +24,10 @@ const faqs = [
 ];
 
 const relatedTools = [
-  { href: `/de/tools/merge-pdf/`, title: 'PDF Zusammenführen', description: 'Mehrere PDFs in einer Datei kombinieren' },
-  { href: `/de/tools/pdf-to-jpg/`, title: 'PDF zu JPG', description: 'PDF-Seiten in JPG-Bilder konvertieren' },
-  { href: `/de/tools/split-pdf/`, title: 'PDF Aufteilen', description: 'Seiten aus PDF-Dokumenten extrahieren' },
-  { href: `/de/tools/remove-password/`, title: 'PDF-Passwort Entfernen', description: 'Geschützte PDF-Dateien entsperren' },
+  { href: getContentHref(locale, '/tools/merge-pdf/'), title: 'PDF Zusammenführen', description: 'Mehrere PDFs in einer Datei kombinieren' },
+  { href: getContentHref(locale, '/tools/pdf-to-jpg/'), title: 'PDF zu JPG', description: 'PDF-Seiten in JPG-Bilder konvertieren' },
+  { href: getContentHref(locale, '/tools/split-pdf/'), title: 'PDF Aufteilen', description: 'Seiten aus PDF-Dokumenten extrahieren' },
+  { href: getContentHref(locale, '/tools/remove-password/'), title: 'PDF-Passwort Entfernen', description: 'Geschützte PDF-Dateien entsperren' },
 ];
 
 const howToSchema = {

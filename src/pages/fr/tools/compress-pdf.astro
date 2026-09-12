@@ -2,6 +2,7 @@
 import ToolPage from '../../../layouts/ToolPage.astro';
 import ToolInterface from '../../../components/ToolInterface.astro';
 import AffiliateLink from '../../../components/AffiliateLink.astro';
+import { getContentHref } from '../../../utils/i18n';
 
 const locale = 'fr';
 const title = 'Compresser PDF';
@@ -23,10 +24,10 @@ const faqs = [
 ];
 
 const relatedTools = [
-  { href: `/fr/tools/merge-pdf/`, title: 'Fusionner PDF', description: 'Combiner plusieurs PDFs en un' },
-  { href: `/fr/tools/pdf-to-jpg/`, title: 'PDF vers JPG', description: 'Convertir pages PDF en images JPG' },
-  { href: `/fr/tools/split-pdf/`, title: 'Diviser PDF', description: 'Extraire pages de documents PDF' },
-  { href: `/fr/tools/remove-password/`, title: 'Supprimer Mot de Passe PDF', description: 'Débloquer fichiers PDF protégés' },
+  { href: getContentHref(locale, '/tools/merge-pdf/'), title: 'Fusionner PDF', description: 'Combiner plusieurs PDFs en un' },
+  { href: getContentHref(locale, '/tools/pdf-to-jpg/'), title: 'PDF vers JPG', description: 'Convertir pages PDF en images JPG' },
+  { href: getContentHref(locale, '/tools/split-pdf/'), title: 'Diviser PDF', description: 'Extraire pages de documents PDF' },
+  { href: getContentHref(locale, '/tools/remove-password/'), title: 'Supprimer Mot de Passe PDF', description: 'Débloquer fichiers PDF protégés' },
 ];
 
 const howToSchema = {

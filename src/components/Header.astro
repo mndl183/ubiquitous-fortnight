@@ -1,24 +1,29 @@
 ---
-import { locales, localeNames } from '../utils/i18n.ts';
+import { locales, localeNames, getContentHref, getSwitcherHref, t, type Locale } from '../utils/i18n.ts';
 
 interface Props {
   locale: string;
 }
 
 const { locale } = Astro.props;
+const lang = locale as Locale;
 
 const navLinks = [
-  { href: `/${locale}/tools/compress-pdf/`, label: 'PDF Tools' },
-  { href: `/${locale}/tools/meta-title-generator/`, label: 'SEO Tools' },
-  { href: `/${locale}/tools/resume-builder/`, label: 'Career Tools' },
-  { href: `/${locale}/blog/`, label: 'Blog' },
-];
+  { path: '/tools/compress-pdf/', key: 'nav.pdfTools' },
+  { path: '/tools/meta-title-generator/', key: 'nav.seoTools' },
+  { path: '/tools/resume-builder/', key: 'nav.careerTools' },
+  { path: '/blog/', key: 'nav.blog' },
+].map((link) => ({
+  path: link.path,
+  label: t(lang, link.key),
+  href: getContentHref(lang, link.path),
+}));
 ---
 
 <header class="bg-white border-b border-slate-200 sticky top-0 z-50 shadow-sm">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
     <div class="flex justify-between h-16 items-center">
-      <a href={`/${locale}/`} class="flex items-center gap-2">
+      <a href={getContentHref(lang, '/')} class="flex items-center gap-2">
         <div class="w-8 h-8 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-lg flex items-center justify-center">
           <span class="text-white font-bold text-sm">Y</span>
         </div>
@@ -36,16 +41,16 @@ const navLinks = [
 
       <div class="flex items-center gap-2">
         <div class="flex bg-slate-100 rounded-lg p-0.5">
-          {locales.map((lang) => (
+          {locales.map((langCode) => (
             <a
-              href={`/${lang}/${Astro.url.pathname.split('/').slice(2).join('/')}`}
+              href={getSwitcherHref(langCode, Astro.url.pathname)}
               class={`px-2.5 py-1 text-xs font-semibold rounded-md transition-colors ${
-                locale === lang
+                locale === langCode
                   ? 'bg-white text-indigo-600 shadow-sm'
                   : 'text-slate-500 hover:text-slate-700'
               }`}
             >
-              {localeNames[lang]}
+              {localeNames[langCode]}
             </a>
           ))}
         </div>

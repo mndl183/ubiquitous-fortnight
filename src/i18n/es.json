@@ -26,12 +26,23 @@
     "startCompress": "Comenzar a Comprimir PDFs",
     "buildResume": "Crear tu Currículum",
     "whyChoose": "¿Por qué elegir yoimagine Tools?",
+    "whyChooseDesc": "Diseñado con privacidad y velocidad en mente. Tus archivos se quedan en tu navegador.",
     "private": "100% Privado",
     "privateDesc": "Los archivos se procesan completamente en tu navegador. Nada se sube a nuestros servidores.",
     "instant": "Resultados Instantáneos",
     "instantDesc": "Sin esperas. Las herramientas procesan archivos en tiempo real usando tecnologías web modernas.",
     "mobile": "Listo para Móvil",
-    "mobileDesc": "Funciona perfectamente en teléfonos, tabletas y computadoras. Úsalo en cualquier lugar, en cualquier momento."
+    "mobileDesc": "Funciona perfectamente en teléfonos, tabletas y computadoras. Úsalo en cualquier lugar, en cualquier momento.",
+    "badge": "100% Gratuito · Sin Registro · Seguro · Compatible con Móviles",
+    "pdfTools": "Herramientas PDF",
+    "pdfToolsDesc": "Edita, convierte, combina y comprime tus archivos PDF al instante.",
+    "seoTools": "Herramientas SEO",
+    "seoToolsDesc": "Optimiza tu contenido para motores de búsqueda con herramientas gratuitas en línea.",
+    "careerTools": "Herramientas de Carrera",
+    "careerToolsDesc": "Crea tu currículum, escribe cartas de presentación y destaca en entrevistas.",
+    "viewAll": "Ver todo",
+    "blogTitle": "Blog y Guías",
+    "blogDesc": "Guías de expertos para edición de PDF, optimización SEO y desarrollo de carrera."
   },
   "tools": {
     "compress": {
@@ -74,10 +85,34 @@
       ]
     }
   },
+  "toolsList": {
+    "compress-pdf": { "name": "Comprimir PDF", "desc": "Reducir el tamaño del archivo PDF sin perder calidad" },
+    "merge-pdf": { "name": "Combinar PDF", "desc": "Combinar múltiples archivos PDF en uno" },
+    "split-pdf": { "name": "Dividir PDF", "desc": "Separar páginas de un documento PDF" },
+    "pdf-to-jpg": { "name": "PDF a JPG", "desc": "Convertir páginas PDF a imágenes JPG" },
+    "jpg-to-pdf": { "name": "JPG a PDF", "desc": "Convertir imágenes JPG a formato PDF" },
+    "rotate-pdf": { "name": "Rotar PDF", "desc": "Rotar páginas de PDF a cualquier orientación" },
+    "remove-password": { "name": "Eliminar Contraseña PDF", "desc": "Desbloquear archivos PDF protegidos por contraseña" },
+    "extract-pages": { "name": "Extraer Páginas", "desc": "Extraer páginas específicas de un PDF" },
+    "meta-title-generator": { "name": "Generador de Títulos y Meta", "desc": "Generar títulos y descripciones optimizados para SEO" },
+    "schema-generator": { "name": "Generador de Schema Markup", "desc": "Crear datos estructurados JSON-LD" },
+    "keyword-density": { "name": "Verificador de Densidad de Palabras Clave", "desc": "Analizar el uso de palabras clave en tu contenido" },
+    "serp-preview": { "name": "Vista Previa de SERP", "desc": "Mira cómo se ve tu página en la búsqueda de Google" },
+    "og-preview": { "name": "Vista Previa de Imagen OG", "desc": "Vista previa de tus tarjetas para compartir en redes sociales" },
+    "resume-builder": { "name": "Constructor de Currículum", "desc": "Crear un currículum profesional desde plantillas" },
+    "cover-letter": { "name": "Generador de Cartas de Presentación", "desc": "Generar cartas de presentación personalizadas" },
+    "ats-checker": { "name": "Verificador de Puntuación ATS", "desc": "Verifica cómo funciona tu currículum contra los sistemas ATS" },
+    "interview-questions": { "name": "Preparación para Entrevistas", "desc": "Generar preguntas de entrevista para tu puesto" }
+  },
   "footer": {
     "description": "Herramientas en línea gratuitas para edición de PDF, optimización SEO y desarrollo de carrera. Sin registro requerido.",
     "privacy": "Política de Privacidad",
     "terms": "Términos de Servicio",
-    "contact": "Contacto"
+    "contact": "Contacto",
+    "pdfTools": "Herramientas PDF",
+    "seoTools": "Herramientas SEO",
+    "careerTools": "Herramientas de Carrera",
+    "blog": "Blog",
+    "allRights": "Todos los derechos reservados."
   }
 }

@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const locale = 'en';
+const pageTitle = 'Privacy Policy';
+const pageDescription = 'Privacy policy for yoimagine Tools. Learn how we protect your privacy and handle your data when you use our free online tools.';
+---
+
+<Base title={pageTitle} description={pageDescription} locale={locale}>
+  <div class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <header class="mb-10">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Privacy Policy</h1>
+        <p class="text-slate-600 leading-relaxed">Last updated: September 2026</p>
+      </header>
+
+      <article class="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-6">
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Your Files Stay on Your Device</h2>
+          <p>
+            All of our tools process your files entirely in your browser using JavaScript. Your files are never uploaded to our servers — they never leave your device. This means we cannot see, store, or share your documents, and we never will.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Information We Collect</h2>
+          <p>
+            Because file processing happens entirely client-side, we do not collect or store any of the documents or personal data you process through our tools. We may collect aggregated, anonymized usage statistics (such as which tools are used most often) to improve our services.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Cookies and Analytics</h2>
+          <p>
+            We use Google Analytics and Google AdSense to understand how visitors use our site and to display ads. These services may use cookies to collect information about your browsing activity. You can disable cookies in your browser settings at any time.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Third-Party Services</h2>
+          <p>
+            Some pages on our site include affiliate links and third-party advertising. If you click an affiliate link, the provider may collect standard information (such as your IP address) according to their own privacy policies. We are not responsible for the privacy practices of third-party websites.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Contact Us</h2>
+          <p>
+            If you have any questions about this privacy policy, please reach out through our <a href="/en/contact/" class="text-indigo-600 hover:text-indigo-800">contact page</a>.
+          </p>
+        </section>
+      </article>
+    </div>
+  </div>
+</Base>

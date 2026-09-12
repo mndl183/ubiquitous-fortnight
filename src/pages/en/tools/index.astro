@@ -1,0 +1,86 @@
+---
+import Base from '../../../layouts/Base.astro';
+import AdSenseBlock from '../../../components/AdSenseBlock.astro';
+
+const locale = 'en';
+
+const toolCategories = [
+  {
+    title: 'PDF Tools',
+    description: 'Edit, convert, merge, and compress your PDF files instantly.',
+    tools: [
+      { href: `/${locale}/tools/compress-pdf/`, name: 'Compress PDF', description: 'Reduce PDF file size without losing quality' },
+      { href: `/${locale}/tools/merge-pdf/`, name: 'Merge PDF', description: 'Combine multiple PDF files into one' },
+      { href: `/${locale}/tools/split-pdf/`, name: 'Split PDF', description: 'Separate pages from a PDF document' },
+      { href: `/${locale}/tools/pdf-to-jpg/`, name: 'PDF to JPG', description: 'Convert PDF pages to JPG images' },
+      { href: `/${locale}/tools/jpg-to-pdf/`, name: 'JPG to PDF', description: 'Convert JPG images to PDF format' },
+      { href: `/${locale}/tools/rotate-pdf/`, name: 'Rotate PDF', description: 'Rotate PDF pages to any orientation' },
+      { href: `/${locale}/tools/remove-password/`, name: 'Remove PDF Password', description: 'Unlock password-protected PDF files' },
+      { href: `/${locale}/tools/extract-pages/`, name: 'Extract Pages', description: 'Extract specific pages from a PDF' },
+    ],
+  },
+  {
+    title: 'SEO Tools',
+    description: 'Optimize your content for search engines with free online tools.',
+    tools: [
+      { href: `/${locale}/tools/meta-title-generator/`, name: 'Title & Meta Generator', description: 'Generate SEO-optimized titles and descriptions' },
+      { href: `/${locale}/tools/schema-generator/`, name: 'Schema Markup Generator', description: 'Create JSON-LD structured data' },
+      { href: `/${locale}/tools/keyword-density/`, name: 'Keyword Density Checker', description: 'Analyze keyword usage in your content' },
+      { href: `/${locale}/tools/serp-preview/`, name: 'SERP Preview', description: 'See how your page looks in Google search' },
+      { href: `/${locale}/tools/og-preview/`, name: 'OG Image Preview', description: 'Preview your social media share cards' },
+    ],
+  },
+  {
+    title: 'Career Tools',
+    description: 'Build your resume, write cover letters, and ace interviews.',
+    tools: [
+      { href: `/${locale}/tools/resume-builder/`, name: 'Resume Builder', description: 'Create a professional resume from templates' },
+      { href: `/${locale}/tools/cover-letter/`, name: 'Cover Letter Generator', description: 'Generate tailored cover letters' },
+      { href: `/${locale}/tools/ats-checker/`, name: 'ATS Score Checker', description: 'Check how your resume performs against ATS' },
+      { href: `/${locale}/tools/interview-questions/`, name: 'Interview Prep', description: 'Generate interview questions for your role' },
+    ],
+  },
+];
+---
+
+<Base
+  title="All Free Online Tools"
+  description="Browse all free online tools at yoimagine: PDF compression and conversion, SEO generators and checkers, and career tools like resume builder and ATS checker. No sign-up required."
+  locale={locale}
+>
+  <div class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-6xl mx-auto px-4 sm:px-6 py-12">
+      <header class="text-center mb-12">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">All Free Online Tools</h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          100% free. No sign-up required. Fast, secure, and mobile-friendly tools for PDF editing, SEO optimization, and career development.
+        </p>
+      </header>
+
+      <AdSenseBlock slotId="SIDEBAR_RECTANGLE" format="rectangle" className="mb-8" />
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        {toolCategories.map((category) => (
+          <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-indigo-200 transition-all">
+            <div class="bg-gradient-to-r from-indigo-50 to-violet-50 px-6 py-5 border-b border-slate-100">
+              <h2 class="text-xl font-bold text-slate-900 mb-1">{category.title}</h2>
+              <p class="text-sm text-slate-500">{category.description}</p>
+            </div>
+            <ul class="divide-y divide-slate-100">
+              {category.tools.map((tool) => (
+                <li>
+                  <a href={tool.href} class="block px-6 py-4 hover:bg-indigo-50/50 transition-colors group">
+                    <p class="font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors text-sm">{tool.name}</p>
+                    <p class="text-xs text-slate-500 mt-0.5">{tool.description}</p>
+                  </a>
+                </li>
+              ))}
+            </ul>
+          </div>
+        ))}
+      </div>
+
+      <AdSenseBlock slotId="BOTTOM_LEADERBOARD" format="horizontal" className="mt-12" />
+    </div>
+  </div>
+</Base>

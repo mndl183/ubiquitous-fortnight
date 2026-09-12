@@ -1,0 +1,151 @@
+---
+import Base from '../layouts/Base.astro';
+import AdSenseBlock from '../components/AdSenseBlock.astro';
+import { t, getContentHref, type Locale } from '../utils/i18n';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+
+const toolCategories = [
+  {
+    titleKey: 'home.pdfTools',
+    descKey: 'home.pdfToolsDesc',
+    tools: [
+      { path: '/tools/compress-pdf/', key: 'toolsList.compress-pdf' },
+      { path: '/tools/merge-pdf/', key: 'toolsList.merge-pdf' },
+      { path: '/tools/split-pdf/', key: 'toolsList.split-pdf' },
+      { path: '/tools/pdf-to-jpg/', key: 'toolsList.pdf-to-jpg' },
+      { path: '/tools/jpg-to-pdf/', key: 'toolsList.jpg-to-pdf' },
+      { path: '/tools/rotate-pdf/', key: 'toolsList.rotate-pdf' },
+      { path: '/tools/remove-password/', key: 'toolsList.remove-password' },
+      { path: '/tools/extract-pages/', key: 'toolsList.extract-pages' },
+    ],
+  },
+  {
+    titleKey: 'home.seoTools',
+    descKey: 'home.seoToolsDesc',
+    tools: [
+      { path: '/tools/meta-title-generator/', key: 'toolsList.meta-title-generator' },
+      { path: '/tools/schema-generator/', key: 'toolsList.schema-generator' },
+      { path: '/tools/keyword-density/', key: 'toolsList.keyword-density' },
+      { path: '/tools/serp-preview/', key: 'toolsList.serp-preview' },
+      { path: '/tools/og-preview/', key: 'toolsList.og-preview' },
+    ],
+  },
+  {
+    titleKey: 'home.careerTools',
+    descKey: 'home.careerToolsDesc',
+    tools: [
+      { path: '/tools/resume-builder/', key: 'toolsList.resume-builder' },
+      { path: '/tools/cover-letter/', key: 'toolsList.cover-letter' },
+      { path: '/tools/ats-checker/', key: 'toolsList.ats-checker' },
+      { path: '/tools/interview-questions/', key: 'toolsList.interview-questions' },
+    ],
+  },
+];
+---
+
+<Base
+  title={t(locale, 'home.title')}
+  description={t(locale, 'home.subtitle')}
+  locale={locale}
+>
+  <section class="bg-gradient-to-br from-indigo-600 via-indigo-700 to-violet-700 text-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16 sm:py-24 text-center">
+      <span class="inline-block bg-white/10 text-white/90 text-xs font-semibold px-4 py-1.5 rounded-full mb-6 backdrop-blur-sm border border-white/20">
+        {t(locale, 'home.badge')}
+      </span>
+      <h1 class="text-4xl sm:text-5xl lg:text-6xl font-extrabold mb-6 tracking-tight leading-tight">{t(locale, 'home.title')}</h1>
+      <p class="text-lg sm:text-xl text-indigo-100 max-w-2xl mx-auto leading-relaxed mb-10">
+        {t(locale, 'home.subtitle')}
+      </p>
+      <div class="flex flex-col sm:flex-row justify-center gap-3">
+        <a href={getContentHref(locale, '/tools/compress-pdf/')} class="bg-white text-indigo-700 font-semibold px-8 py-4 rounded-xl hover:bg-indigo-50 transition-all shadow-lg">
+          {t(locale, 'home.startCompress')}
+        </a>
+        <a href={getContentHref(locale, '/tools/resume-builder/')} class="border-2 border-white/30 text-white font-semibold px-8 py-4 rounded-xl hover:bg-white/10 transition-all">
+          {t(locale, 'home.buildResume')}
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-6xl mx-auto px-4 sm:px-6 py-16">
+    <AdSenseBlock slotId="HOMEPAGE_TOP" format="horizontal" className="mb-12" />
+
+    <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
+      {toolCategories.map((category) => (
+        <div class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-lg hover:border-indigo-200 transition-all">
+          <div class="bg-gradient-to-r from-indigo-50 to-violet-50 px-6 py-5 border-b border-slate-100">
+            <h2 class="text-xl font-bold text-slate-900 mb-1">{t(locale, category.titleKey)}</h2>
+            <p class="text-sm text-slate-500">{t(locale, category.descKey)}</p>
+          </div>
+          <ul class="divide-y divide-slate-100">
+            {category.tools.map((tool) => (
+              <li>
+                <a
+                  href={getContentHref(locale, tool.path)}
+                  class="block px-6 py-4 hover:bg-indigo-50/50 transition-colors group"
+                >
+                  <p class="font-semibold text-slate-900 group-hover:text-indigo-600 transition-colors text-sm">
+                    {t(locale, `${tool.key}.name`)}
+                  </p>
+                  <p class="text-xs text-slate-500 mt-0.5">{t(locale, `${tool.key}.desc`)}</p>
+                </a>
+              </li>
+            ))}
+          </ul>
+          <div class="px-6 py-3 bg-slate-50 text-center">
+            <a href={getContentHref(locale, '/tools/')} class="text-sm font-semibold text-indigo-600 hover:text-indigo-800 transition-colors">
+              {t(locale, 'home.viewAll')} {t(locale, category.titleKey)} &rarr;
+            </a>
+          </div>
+        </div>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-slate-50 border-y border-slate-200">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+      <h2 class="text-3xl font-bold text-slate-900 text-center mb-4">{t(locale, 'home.whyChoose')}</h2>
+      <p class="text-slate-500 text-center max-w-2xl mx-auto mb-12">{t(locale, 'home.whyChooseDesc')}</p>
+
+      <div class="grid grid-cols-1 sm:grid-cols-3 gap-8">
+        <div class="text-center">
+          <div class="w-14 h-14 bg-indigo-100 text-indigo-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z" />
+            </svg>
+          </div>
+          <h3 class="font-bold text-slate-900 mb-2">{t(locale, 'home.private')}</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">{t(locale, 'home.privateDesc')}</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-green-100 text-green-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z" />
+            </svg>
+          </div>
+          <h3 class="font-bold text-slate-900 mb-2">{t(locale, 'home.instant')}</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">{t(locale, 'home.instantDesc')}</p>
+        </div>
+        <div class="text-center">
+          <div class="w-14 h-14 bg-violet-100 text-violet-600 rounded-2xl flex items-center justify-center mx-auto mb-4">
+            <svg class="w-7 h-7" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 18h.01M8 21h8a2 2 0 002-2V5a2 2 0 00-2-2H8a2 2 0 00-2 2v14a2 2 0 002 2z" />
+            </svg>
+          </div>
+          <h3 class="font-bold text-slate-900 mb-2">{t(locale, 'home.mobile')}</h3>
+          <p class="text-sm text-slate-500 leading-relaxed">{t(locale, 'home.mobileDesc')}</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="max-w-5xl mx-auto px-4 sm:px-6 py-16">
+    <AdSenseBlock slotId="HOMEPAGE_BOTTOM" format="horizontal" />
+  </section>
+</Base>

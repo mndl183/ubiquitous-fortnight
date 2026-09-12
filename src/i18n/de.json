@@ -26,12 +26,23 @@
     "startCompress": "PDFs Komprimieren Starten",
     "buildResume": "Lebenslauf Erstellen",
     "whyChoose": "Warum yoimagine Tools Wählen?",
+    "whyChooseDesc": "Entwickelt mit Datenschutz und Geschwindigkeit im Kopf. Ihre Dateien bleiben in Ihrem Browser.",
     "private": "100% Privat",
     "privateDesc": "Dateien werden vollständig in Ihrem Browser verarbeitet. Nichts wird auf unsere Server hochgeladen.",
     "instant": "Sofortige Ergebnisse",
     "instantDesc": "Kein Warten. Tools verarbeiten Dateien in Echtzeit mit moderner Web-Technologie.",
     "mobile": "Mobil Bereit",
-    "mobileDesc": "Funktioniert perfekt auf Handys, Tablets und Computern. Überall und jederzeit nutzbar."
+    "mobileDesc": "Funktioniert perfekt auf Handys, Tablets und Computern. Überall und jederzeit nutzbar.",
+    "badge": "100% Kostenlos · Keine Anmeldung · Sicher · Mobilfreundlich",
+    "pdfTools": "PDF-Tools",
+    "pdfToolsDesc": "Bearbeiten, konvertieren, zusammenführen und komprimieren Sie Ihre PDF-Dateien sofort.",
+    "seoTools": "SEO-Tools",
+    "seoToolsDesc": "Optimieren Sie Ihre Inhalte für Suchmaschinen mit kostenlosen Online-Tools.",
+    "careerTools": "Karriere-Tools",
+    "careerToolsDesc": "Erstellen Sie Ihren Lebenslauf, schreiben Sie Anschreiben und meistern Sie Vorstellungsgespräche.",
+    "viewAll": "Alle anzeigen",
+    "blogTitle": "Blog & Anleitungen",
+    "blogDesc": "Expertenanleitungen für PDF-Bearbeitung, SEO-Optimierung und Karriereentwicklung."
   },
   "tools": {
     "compress": {
@@ -74,10 +85,34 @@
       ]
     }
   },
+  "toolsList": {
+    "compress-pdf": { "name": "PDF Komprimieren", "desc": "PDF-Dateigröße ohne Qualitätsverlust reduzieren" },
+    "merge-pdf": { "name": "PDF Zusammenführen", "desc": "Mehrere PDF-Dateien in einer Datei kombinieren" },
+    "split-pdf": { "name": "PDF Aufteilen", "desc": "Seiten aus einem PDF-Dokument trennen" },
+    "pdf-to-jpg": { "name": "PDF zu JPG", "desc": "PDF-Seiten in JPG-Bilder konvertieren" },
+    "jpg-to-pdf": { "name": "JPG zu PDF", "desc": "JPG-Bilder in PDF-Format konvertieren" },
+    "rotate-pdf": { "name": "PDF Drehen", "desc": "PDF-Seiten in beliebige Ausrichtung drehen" },
+    "remove-password": { "name": "PDF-Passwort Entfernen", "desc": "Passwortgeschützte PDF-Dateien entsperren" },
+    "extract-pages": { "name": "Seiten Extrahieren", "desc": "Bestimmte Seiten aus einer PDF extrahieren" },
+    "meta-title-generator": { "name": "Titel- & Meta-Generator", "desc": "SEO-optimierte Titel und Beschreibungen generieren" },
+    "schema-generator": { "name": "Schema-Markup-Generator", "desc": "JSON-LD-strukturierte Daten erstellen" },
+    "keyword-density": { "name": "Keyword-Dichte-Prüfer", "desc": "Keyword-Verwendung in Ihren Inhalten analysieren" },
+    "serp-preview": { "name": "SERP-Vorschau", "desc": "Sehen Sie, wie Ihre Seite in Google aussieht" },
+    "og-preview": { "name": "OG-Bild-Vorschau", "desc": "Vorschau Ihrer Social-Media-Share-Karten" },
+    "resume-builder": { "name": "Lebenslauf-Ersteller", "desc": "Erstellen Sie einen professionellen Lebenslauf aus Vorlagen" },
+    "cover-letter": { "name": "Anschreiben-Generator", "desc": "Erstellen Sie maßgeschneiderte Anschreiben" },
+    "ats-checker": { "name": "ATS-Score-Prüfer", "desc": "Prüfen Sie, wie Ihr Lebenslauf bei ATS abschneidet" },
+    "interview-questions": { "name": "Interview-Vorbereitung", "desc": "Generieren Sie Interviewfragen für Ihre Rolle" }
+  },
   "footer": {
     "description": "Kostenlose Online-Tools für PDF-Bearbeitung, SEO-Optimierung und Karriereentwicklung. Keine Anmeldung erforderlich.",
     "privacy": "Datenschutzrichtlinie",
     "terms": "Nutzungsbedingungen",
-    "contact": "Kontakt"
+    "contact": "Kontakt",
+    "pdfTools": "PDF-Tools",
+    "seoTools": "SEO-Tools",
+    "careerTools": "Karriere-Tools",
+    "blog": "Blog",
+    "allRights": "Alle Rechte vorbehalten."
   }
 }

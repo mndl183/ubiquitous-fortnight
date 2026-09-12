@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const locale = 'de';
+const pageTitle = 'Datenschutzrichtlinie';
+const pageDescription = 'Datenschutzrichtlinie für yoimagine Tools. Erfahren Sie, wie wir Ihre Privatsphäre schützen und Ihre Daten bei der Nutzung unserer kostenlosen Online-Tools behandeln.';
+---
+
+<Base title={pageTitle} description={pageDescription} locale={locale}>
+  <div class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <header class="mb-10">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Datenschutzrichtlinie</h1>
+        <p class="text-slate-600 leading-relaxed">Zuletzt aktualisiert: September 2026</p>
+      </header>
+
+      <article class="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-6">
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Ihre Dateien Bleiben Auf Ihrem Gerät</h2>
+          <p>
+            Alle unsere Tools verarbeiten Ihre Dateien vollständig in Ihrem Browser mit JavaScript. Ihre Dateien werden niemals auf unsere Server hochgeladen — sie verlassen nie Ihr Gerät. Das bedeutet, wir können Ihre Dokumente nicht sehen, speichern oder teilen — und werden es auch nie.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Welche Informationen Wir Sammeln</h2>
+          <p>
+            Da die Dateiverarbeitung vollständig clientseitig erfolgt, sammeln oder speichern wir keine der Dokumente oder persönlichen Daten, die Sie über unsere Tools verarbeiten. Wir können aggregierte, anonymisierte Nutzungsstatistiken (z. B. welche Tools am häufigsten verwendet werden) sammeln, um unsere Dienste zu verbessern.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Cookies und Analysen</h2>
+          <p>
+            Wir verwenden Google Analytics und Google AdSense, um zu verstehen, wie Besucher unsere Website nutzen, und um Anzeigen einzublenden. Diese Dienste können Cookies verwenden, um Informationen über Ihre Browseraktivitäten zu sammeln. Sie können Cookies jederzeit in Ihren Browsereinstellungen deaktivieren.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Drittanbieter-Dienste</h2>
+          <p>
+            Einige Seiten unserer Website enthalten Affiliate-Links und Werbung von Drittanbietern. Wenn Sie auf einen Affiliate-Link klicken, kann der Anbieter Standardinformationen (z. B. Ihre IP-Adresse) gemäß seinen eigenen Datenschutzrichtlinien sammeln. Wir sind nicht verantwortlich für die Datenschutzpraktiken von Drittanbieter-Websites.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Kontaktieren Sie Uns</h2>
+          <p>
+            Wenn Sie Fragen zu dieser Datenschutzrichtlinie haben, kontaktieren Sie uns über unsere <a href="/de/contact/" class="text-indigo-600 hover:text-indigo-800">Kontaktseite</a>.
+          </p>
+        </section>
+      </article>
+    </div>
+  </div>
+</Base>

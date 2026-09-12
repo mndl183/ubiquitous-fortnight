@@ -1,0 +1,55 @@
+---
+import Base from '../../layouts/Base.astro';
+
+const locale = 'fr';
+const pageTitle = 'Politique de Confidentialité';
+const pageDescription = 'Politique de confidentialité de yoimagine Tools. Découvrez comment nous protégeons votre vie privée et gérons vos données lorsque vous utilisez nos outils gratuits en ligne.';
+---
+
+<Base title={pageTitle} description={pageDescription} locale={locale}>
+  <div class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-3xl mx-auto px-4 sm:px-6 py-12">
+      <header class="mb-10">
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">Politique de Confidentialité</h1>
+        <p class="text-slate-600 leading-relaxed">Dernière mise à jour : septembre 2026</p>
+      </header>
+
+      <article class="prose prose-lg max-w-none text-slate-600 leading-relaxed space-y-6">
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Vos Fichiers Restent sur Votre Appareil</h2>
+          <p>
+            Tous nos outils traitent vos fichiers entièrement dans votre navigateur avec JavaScript. Vos fichiers ne sont jamais envoyés sur nos serveurs — ils ne quittent jamais votre appareil. Cela signifie que nous ne pouvons pas voir, stocker ou partager vos documents, et nous ne le ferons jamais.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Informations que Nous Collectons</h2>
+          <p>
+            Comme le traitement des fichiers se fait entièrement côté client, nous ne collectons ni ne stockons aucun des documents ou données personnelles que vous traitez avec nos outils. Nous pouvons collecter des statistiques d'utilisation agrégées et anonymisées (comme les outils les plus utilisés) pour améliorer nos services.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Cookies et Analyses</h2>
+          <p>
+            Nous utilisons Google Analytics et Google AdSense pour comprendre comment les visiteurs utilisent notre site et pour afficher des publicités. Ces services peuvent utiliser des cookies pour collecter des informations sur votre activité de navigation. Vous pouvez désactiver les cookies dans les paramètres de votre navigateur à tout moment.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Services Tiers</h2>
+          <p>
+            Certaines pages de notre site contiennent des liens d'affiliation et de la publicité tierce. Si vous cliquez sur un lien d'affiliation, le fournisseur peut collecter des informations standard (comme votre adresse IP) conformément à ses propres politiques de confidentialité. Nous ne sommes pas responsables des pratiques de confidentialité des sites tiers.
+          </p>
+        </section>
+
+        <section>
+          <h2 class="text-2xl font-bold text-slate-900 mb-3">Contactez-Nous</h2>
+          <p>
+            Si vous avez des questions sur cette politique de confidentialité, contactez-nous via notre <a href="/fr/contact/" class="text-indigo-600 hover:text-indigo-800">page de contact</a>.
+          </p>
+        </section>
+      </article>
+    </div>
+  </div>
+</Base>

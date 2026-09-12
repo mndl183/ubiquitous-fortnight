@@ -3,6 +3,7 @@ import Base from './Base.astro';
 import AdSenseBlock from '../components/AdSenseBlock.astro';
 import RelatedTools from '../components/RelatedTools.astro';
 import FAQSection from '../components/FAQSection.astro';
+import { getContentHref, type Locale } from '../utils/i18n.ts';
 
 interface ToolStep {
   name: string;
@@ -83,9 +84,9 @@ const webAppSchema = {
     <div class="max-w-4xl mx-auto px-4 sm:px-6 py-8">
       <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
         <ol class="flex items-center gap-2">
-          <li><a href={`/${locale}/`} class="hover:text-indigo-600">Home</a></li>
+          <li><a href={getContentHref(locale as Locale, '/')} class="hover:text-indigo-600">Home</a></li>
           <li class="text-slate-300">/</li>
-          <li><a href={`/${locale}/tools/`} class="hover:text-indigo-600">Tools</a></li>
+          <li><a href={getContentHref(locale as Locale, '/tools/')} class="hover:text-indigo-600">Tools</a></li>
           <li class="text-slate-300">/</li>
           <li class="text-slate-700 font-medium">{title}</li>
         </ol>
