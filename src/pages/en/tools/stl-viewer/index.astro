@@ -1,0 +1,310 @@
+---
+import Base from '../../../../layouts/Base.astro';
+
+const locale = 'en';
+const pageTitle = 'STL Viewer';
+const pageDescription = 'Free online STL file viewer for 3D printing. View, rotate, zoom, and inspect STL models (cube, gear, torus) directly in your browser. No sign-up required.';
+
+const models = [
+  { name: 'Cube', file: '/models/cube.stl', description: 'A simple printable cube, perfect for calibration prints.' },
+  { name: 'Gear', file: '/models/gear.stl', description: 'A spur gear with 16 teeth — a classic 3D printing test part.' },
+  { name: 'Torus', file: '/models/torus.stl', description: 'A smooth donut-shaped torus ring.' },
+];
+---
+
+<Base title={pageTitle} description={pageDescription} locale={locale}>
+  <div class="bg-gradient-to-b from-slate-50 to-white">
+    <div class="max-w-5xl mx-auto px-4 sm:px-6 py-10">
+      <nav class="text-sm text-slate-500 mb-6" aria-label="Breadcrumb">
+        <ol class="flex items-center gap-2">
+          <li><a href="/en/" class="hover:text-indigo-600">Home</a></li>
+          <li class="text-slate-300">/</li>
+          <li><a href="/en/tools/" class="hover:text-indigo-600">Tools</a></li>
+          <li class="text-slate-300">/</li>
+          <li class="text-slate-700 font-medium">STL Viewer</li>
+        </ol>
+      </nav>
+
+      <header class="text-center mb-8">
+        <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-indigo-500 to-violet-600 rounded-2xl mb-4 shadow-lg shadow-indigo-500/20">
+          <svg class="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.5" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+          </svg>
+        </div>
+        <h1 class="text-4xl sm:text-5xl font-extrabold text-slate-900 mb-4 tracking-tight">STL Viewer</h1>
+        <p class="text-lg text-slate-600 max-w-2xl mx-auto leading-relaxed">
+          View 3D printed models in your browser. Drag to rotate, scroll to zoom, and inspect every detail — completely free, nothing to install.
+        </p>
+      </header>
+
+      <div class="bg-white rounded-2xl border border-slate-200 shadow-sm overflow-hidden mb-8">
+        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 px-4 sm:px-6 py-4 border-b border-slate-100">
+          <div id="viewer-status" class="text-sm text-slate-500">Select a model below to start viewing.</div>
+          <div class="flex flex-wrap items-center gap-2">
+            <label class="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 hover:text-indigo-800 cursor-pointer">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 16l4.586-4.586a2 2 0 012.828 0L16 16m-2-2l1.586-1.586a2 2 0 012.828 0L20 14m-6-6h.01M6 20h12a2 2 0 002-2V6a2 2 0 00-2-2H6a2 2 0 00-2 2v12a2 2 0 002 2z" />
+              </svg>
+              Open STL file
+              <input id="fileInput" type="file" accept=".stl" class="hidden" />
+            </label>
+            <a id="downloadBtn" href="/models/cube.stl" download class="inline-flex items-center gap-2 text-sm font-medium text-indigo-600 hover:text-indigo-800">
+              <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 10v6m0 0l-3-3m3 3l3-3m2 8H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+              </svg>
+              Download
+            </a>
+          </div>
+        </div>
+
+        <div id="viewer" class="w-full bg-slate-50" style="height: 480px;"></div>
+
+        <div class="flex flex-wrap items-center justify-between gap-3 px-4 sm:px-6 py-3 bg-slate-50 border-t border-slate-100">
+          <div class="text-xs text-slate-500">
+            Drag to rotate &bull; Scroll to zoom &bull; Right-click drag to pan
+          </div>
+          <div class="flex items-center gap-3">
+            <label class="flex items-center gap-2 text-xs font-medium text-slate-600 cursor-pointer">
+              <input id="autoRotate" type="checkbox" class="rounded border-slate-300" checked />
+              Auto-rotate
+            </label>
+            <button id="resetBtn" class="text-xs font-medium text-indigo-600 hover:text-indigo-800">Reset view</button>
+            <button id="wireframeBtn" class="text-xs font-medium text-indigo-600 hover:text-indigo-800">Wireframe</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+        {models.map((model, index) => (
+          <button
+            data-model={index}
+            class="model-card group text-left bg-white rounded-2xl border border-slate-200 p-5 hover:border-indigo-300 hover:shadow-md transition-all"
+          >
+            <div class="flex items-center justify-between mb-3">
+              <span class="w-10 h-10 bg-indigo-50 text-indigo-600 rounded-xl flex items-center justify-center font-bold">
+                {index + 1}
+              </span>
+              <span class="text-xs font-semibold text-indigo-600 bg-indigo-50 px-2 py-1 rounded-full opacity-0 group-hover:opacity-100 transition-opacity">View &rarr;</span>
+            </div>
+            <h2 class="font-bold text-slate-900 group-hover:text-indigo-600 transition-colors mb-1">{model.name}</h2>
+            <p class="text-sm text-slate-500 leading-relaxed">{model.description}</p>
+          </button>
+        ))}
+      </div>
+
+      <section class="bg-white rounded-2xl border border-slate-200 p-8">
+        <h2 class="text-2xl font-bold text-slate-900 mb-4">How to Use the STL Viewer</h2>
+        <ol class="space-y-4">
+          {[
+            { name: 'Pick a model', text: 'Click any of the three example models above to load it into the viewer. The model appears instantly — nothing to upload or install.' },
+            { name: 'Inspect from every angle', text: 'Drag to rotate the model, scroll to zoom in and out, and right-click drag to pan. Toggle auto-rotate to let the model spin on its own.' },
+            { name: 'Or load your own STL', text: 'Click "Open STL file" to view any STL file from your device. Your file is processed entirely in your browser and is never uploaded anywhere.' },
+          ].map((step, index) => (
+            <li class="flex gap-4">
+              <span class="flex-shrink-0 w-8 h-8 bg-indigo-100 text-indigo-700 rounded-full flex items-center justify-center font-bold text-sm mt-0.5">{index + 1}</span>
+              <div>
+                <h3 class="font-semibold text-slate-900 mb-1">{step.name}</h3>
+                <p class="text-slate-600 text-sm sm:text-base">{step.text}</p>
+              </div>
+            </li>
+          ))}
+        </ol>
+      </section>
+    </div>
+  </div>
+</Base>
+
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.128.0/three.min.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.128.0/examples/js/loaders/STLLoader.js"></script>
+<script is:inline src="https://cdnjs.cloudflare.com/ajax/libs/three.js/0.128.0/examples/js/controls/OrbitControls.js"></script>
+
+<script is:inline>
+  (function () {
+    var models = [
+      { name: 'Cube', file: '/models/cube.stl' },
+      { name: 'Gear', file: '/models/gear.stl' },
+      { name: 'Torus', file: '/models/torus.stl' }
+    ];
+
+    var container = document.getElementById('viewer');
+    var statusEl = document.getElementById('viewer-status');
+    var downloadBtn = document.getElementById('downloadBtn');
+    var fileInput = document.getElementById('fileInput');
+    var autoRotateBox = document.getElementById('autoRotate');
+    var resetBtn = document.getElementById('resetBtn');
+    var wireframeBtn = document.getElementById('wireframeBtn');
+
+    if (!container || typeof THREE === 'undefined') return;
+
+    var scene = new THREE.Scene();
+    var camera = new THREE.PerspectiveCamera(50, container.clientWidth / container.clientHeight, 0.1, 2000);
+    var renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+    renderer.setSize(container.clientWidth, container.clientHeight);
+    renderer.setPixelRatio(window.devicePixelRatio);
+    container.appendChild(renderer.domElement);
+
+    scene.add(new THREE.AmbientLight(0xffffff, 0.65));
+    var dirLight = new THREE.DirectionalLight(0xffffff, 0.85);
+    dirLight.position.set(80, 120, 60);
+    scene.add(dirLight);
+    var fillLight = new THREE.DirectionalLight(0xffffff, 0.3);
+    fillLight.position.set(-60, 30, -80);
+    scene.add(fillLight);
+
+    var grid = new THREE.GridHelper(120, 24, 0x94a3b8, 0xe2e8f0);
+    grid.position.y = -0.5;
+    scene.add(grid);
+
+    var meshGroup = new THREE.Group();
+    scene.add(meshGroup);
+
+    var controls = new THREE.OrbitControls(camera, renderer.domElement);
+    controls.enableDamping = true;
+    controls.dampingFactor = 0.08;
+    controls.autoRotate = true;
+    controls.autoRotateSpeed = 2.0;
+
+    function setStatus(msg) {
+      if (statusEl) statusEl.textContent = msg;
+    }
+
+    function setWireframe(on) {
+      meshGroup.traverse(function (obj) {
+        if (obj.isMesh && obj.material) {
+          obj.material.wireframe = on;
+        }
+      });
+    }
+
+    function fitCameraTo(mesh) {
+      var box = new THREE.Box3().setFromObject(mesh);
+      var size = box.getSize(new THREE.Vector3());
+      var maxDim = Math.max(size.x, size.y, size.z) || 1;
+      camera.near = maxDim / 100;
+      camera.far = maxDim * 100;
+      camera.aspect = container.clientWidth / container.clientHeight;
+      camera.position.set(maxDim * 1.6, maxDim * 1.3, maxDim * 1.9);
+      camera.lookAt(0, 0, 0);
+      camera.updateProjectionMatrix();
+      controls.target.set(0, 0, 0);
+      controls.update();
+    }
+
+    function clearMeshes() {
+      while (meshGroup.children.length) {
+        var child = meshGroup.children[0];
+        if (child.geometry) child.geometry.dispose();
+        if (child.material) child.material.dispose();
+        meshGroup.remove(child);
+      }
+    }
+
+    function loadGeometry(geometry, name) {
+      clearMeshes();
+      geometry.center();
+      var material = new THREE.MeshStandardMaterial({
+        color: 0x6366f1,
+        metalness: 0.12,
+        roughness: 0.55,
+        flatShading: true
+      });
+      var mesh = new THREE.Mesh(geometry, material);
+      meshGroup.add(mesh);
+      fitCameraTo(mesh);
+      setStatus(name + ' ready — drag to rotate, scroll to zoom, right-click drag to pan.');
+    }
+
+    function loadModel(index) {
+      var model = models[index];
+      setStatus('Loading ' + model.name + '...');
+      var loader = new THREE.STLLoader();
+      loader.load(
+        model.file,
+        function (geometry) {
+          loadGeometry(geometry, model.name);
+          setActiveCard(index);
+          downloadBtn.href = model.file;
+          downloadBtn.setAttribute('download', model.file.split('/').pop());
+        },
+        undefined,
+        function () {
+          setStatus('Could not load ' + model.name + '.');
+        }
+      );
+    }
+
+    function setActiveCard(index) {
+      var cards = document.querySelectorAll('.model-card');
+      cards.forEach(function (card, i) {
+        card.classList.toggle('border-indigo-400', i === index);
+        card.classList.toggle('shadow-md', i === index);
+        card.querySelector('h2').classList.toggle('text-indigo-600', i === index);
+      });
+    }
+
+    function loadLocalFile(file) {
+      if (!file) return;
+      if (!/\.stl$/i.test(file.name)) {
+        setStatus('Please choose a .stl file.');
+        return;
+      }
+      setStatus('Reading ' + file.name + '...');
+      file.arrayBuffer().then(function (buffer) {
+        var loader = new THREE.STLLoader();
+        try {
+          var geometry = loader.parse(buffer);
+          loadGeometry(geometry, file.name);
+        } catch (err) {
+          setStatus('Could not parse the STL file. It may be invalid.');
+        }
+      }).catch(function () {
+        setStatus('Could not read the selected file.');
+      });
+    }
+
+    document.querySelectorAll('.model-card').forEach(function (card) {
+      card.addEventListener('click', function () {
+        loadModel(parseInt(card.getAttribute('data-model'), 10));
+      });
+    });
+
+    fileInput.addEventListener('change', function (e) {
+      loadLocalFile(e.target.files && e.target.files[0]);
+    });
+
+    autoRotateBox.addEventListener('change', function () {
+      controls.autoRotate = autoRotateBox.checked;
+    });
+
+    resetBtn.addEventListener('click', function () {
+      var mesh = meshGroup.children[0];
+      if (mesh) fitCameraTo(mesh);
+    });
+
+    var wireframeOn = false;
+    wireframeBtn.addEventListener('click', function () {
+      wireframeOn = !wireframeOn;
+      setWireframe(wireframeOn);
+      wireframeBtn.textContent = wireframeOn ? 'Solid' : 'Wireframe';
+    });
+
+    function onResize() {
+      if (!renderer || !container) return;
+      var width = container.clientWidth;
+      var height = container.clientHeight;
+      camera.aspect = width / height;
+      camera.updateProjectionMatrix();
+      renderer.setSize(width, height);
+    }
+
+    window.addEventListener('resize', onResize);
+
+    (function animate() {
+      requestAnimationFrame(animate);
+      controls.update();
+      renderer.render(scene, camera);
+    })();
+
+    loadModel(0);
+  })();
+</script>
