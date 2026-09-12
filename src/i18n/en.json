@@ -1,0 +1,122 @@
+{
+  "nav": {
+    "pdfTools": "PDF Tools",
+    "seoTools": "SEO Tools",
+    "careerTools": "Career Tools",
+    "stlViewer": "STL Viewer",
+    "blog": "Blog"
+  },
+  "common": {
+    "dragDrop": "Drag & drop your STL here",
+    "orClick": "or click to browse",
+    "maxSize": "Max. 50 MB",
+    "filesStay": "Files stay on your device",
+    "compress": "Compress",
+    "download": "Download",
+    "upload": "Upload",
+    "processing": "Processing...",
+    "complete": "Complete!",
+    "error": "Error",
+    "tryAgain": "Try Again",
+    "settings": "Settings",
+    "language": "Language"
+  },
+  "home": {
+    "title": "Free Online Tools for Modern Professionals",
+    "subtitle": "Compress PDFs, generate SEO content, and build career documents — all in your browser. No sign-up required.",
+    "startCompress": "Start Compressing PDFs",
+    "buildResume": "Build Your Resume",
+    "whyChoose": "Why Choose yoimagine Tools?",
+    "whyChooseDesc": "Built with privacy and speed in mind. Your files stay in your browser.",
+    "private": "100% Private",
+    "privateDesc": "Files are processed entirely in your browser. Nothing is uploaded to our servers.",
+    "instant": "Instant Results",
+    "instantDesc": "No waiting. Tools process files in real-time using modern web technologies.",
+    "mobile": "Mobile Ready",
+    "mobileDesc": "Works perfectly on phones, tablets, and desktops. Use anywhere, anytime.",
+    "badge": "100% Free · No Sign-up · Secure · Mobile-Friendly",
+    "pdfTools": "PDF Tools",
+    "pdfToolsDesc": "Edit, convert, merge, and compress your PDF files instantly.",
+    "seoTools": "SEO Tools",
+    "seoToolsDesc": "Optimize your content for search engines with free online tools.",
+    "careerTools": "Career Tools",
+    "careerToolsDesc": "Build your resume, write cover letters, and ace interviews.",
+    "stlTools": "3D & STL Tools",
+    "stlToolsDesc": "View 3D models, manage STL files, and prepare models for 3D printing.",
+    "viewAll": "View all",
+    "blogTitle": "Blog & Guides",
+    "blogDesc": "Expert guides for PDF editing, SEO optimization, and career development."
+  },
+  "tools": {
+    "compress": {
+      "title": "Compress PDF",
+      "desc": "Reduce PDF file size without losing quality. Compress PDF files up to 90% smaller, right in your browser.",
+      "steps": [
+        {"name": "Upload your PDF", "text": "Drag and drop your PDF file into the upload area, or click to browse and select your file. Files up to 50MB are supported."},
+        {"name": "Adjust compression level", "text": "Choose your preferred compression level. \"Balanced\" is recommended for the best quality/size tradeoff."},
+        {"name": "Download the compressed file", "text": "Your compressed PDF is ready instantly. Click Download to save it to your device — completely free, no watermarks."}
+      ],
+      "faqs": [
+        {"q": "Is compressed PDF quality preserved?", "a": "Yes. Our compression algorithm intelligently reduces image quality and removes redundant data while preserving text, vector graphics, and document structure. You can choose between three compression modes."},
+        {"q": "How much can I reduce a PDF file size?", "a": "Most PDFs can be compressed by 70-90% depending on content. Text-only PDFs compress the most, while image-heavy PDFs may compress less. A 10MB PDF typically reduces to 1-3MB."},
+        {"q": "Is it safe to upload my PDF?", "a": "Yes! Files are processed entirely in your browser using JavaScript. Your PDF never leaves your device, so you can safely compress sensitive documents like contracts, invoices, and resumes."}
+      ]
+    },
+    "merge": {
+      "title": "Merge PDF",
+      "desc": "Combine multiple PDF files into a single document. Merge PDFs instantly in your browser. No sign-up, no watermarks.",
+      "steps": [
+        {"name": "Upload multiple PDFs", "text": "Drag and drop multiple PDF files into the upload area, or click to browse and select files. You can add up to 20 PDFs at once."},
+        {"name": "Arrange order", "text": "Drag files to reorder them. The top file will appear first in your merged document."},
+        {"name": "Download merged PDF", "text": "Click \"Merge PDFs\" to combine them, then download your single merged document instantly."}
+      ],
+      "faqs": [
+        {"q": "Can I merge password-protected PDFs?", "a": "No, you must first remove the password protection using our Remove PDF Password tool, then merge the unlocked files."},
+        {"q": "Is there a limit to how many PDFs I can merge?", "a": "You can merge up to 20 PDF files at once, with a combined total size of 100MB. For larger batches, consider Adobe Acrobat Pro."}
+      ]
+    },
+    "split": {
+      "title": "Split PDF",
+      "desc": "Separate a PDF into individual pages or extract specific page ranges. Split PDF files instantly in your browser. No sign-up required.",
+      "steps": [
+        {"name": "Upload your PDF", "text": "Drag and drop your PDF file into the upload area. Files up to 50MB are supported."},
+        {"name": "Choose split mode", "text": "Select \"Split All Pages\" to separate every page, or \"Extract Range\" to split specific pages."},
+        {"name": "Download split files", "text": "Download individual pages as separate PDFs, or download everything as a ZIP file."}
+      ],
+      "faqs": [
+        {"q": "What is PDF splitting?", "a": "PDF splitting separates a multi-page PDF document into individual pages or smaller documents. This is useful for extracting specific content, reducing file sizes for email, or organizing large documents into manageable sections."}
+      ]
+    }
+  },
+  "toolsList": {
+    "compress-pdf": { "name": "Compress PDF", "desc": "Reduce PDF file size without losing quality" },
+    "merge-pdf": { "name": "Merge PDF", "desc": "Combine multiple PDF files into one" },
+    "split-pdf": { "name": "Split PDF", "desc": "Separate pages from a PDF document" },
+    "pdf-to-jpg": { "name": "PDF to JPG", "desc": "Convert PDF pages to JPG images" },
+    "jpg-to-pdf": { "name": "JPG to PDF", "desc": "Convert JPG images to PDF format" },
+    "rotate-pdf": { "name": "Rotate PDF", "desc": "Rotate PDF pages to any orientation" },
+    "remove-password": { "name": "Remove PDF Password", "desc": "Unlock password-protected PDF files" },
+    "extract-pages": { "name": "Extract Pages", "desc": "Extract specific pages from a PDF" },
+    "meta-title-generator": { "name": "Title & Meta Generator", "desc": "Generate SEO-optimized titles and descriptions" },
+    "schema-generator": { "name": "Schema Markup Generator", "desc": "Create JSON-LD structured data" },
+    "keyword-density": { "name": "Keyword Density Checker", "desc": "Analyze keyword usage in your content" },
+    "serp-preview": { "name": "SERP Preview", "desc": "See how your page looks in Google search" },
+    "og-preview": { "name": "OG Image Preview", "desc": "Preview your social media share cards" },
+    "resume-builder": { "name": "Resume Builder", "desc": "Create a professional resume from templates" },
+    "cover-letter": { "name": "Cover Letter Generator", "desc": "Generate tailored cover letters" },
+    "ats-checker": { "name": "ATS Score Checker", "desc": "Check how your resume performs against ATS" },
+    "interview-questions": { "name": "Interview Prep", "desc": "Generate interview questions for your role" },
+    "stl-viewer": { "name": "STL Viewer", "desc": "View 3D models and manage STL files" }
+  },
+  "footer": {
+    "description": "Free online tools for PDF editing, SEO optimization, and career development. No sign-up required.",
+    "privacy": "Privacy Policy",
+    "terms": "Terms of Service",
+    "contact": "Contact",
+    "pdfTools": "PDF Tools",
+    "seoTools": "SEO Tools",
+    "careerTools": "Career Tools",
+    "blog": "Blog",
+    "allRights": "All rights reserved."
+  }
+}

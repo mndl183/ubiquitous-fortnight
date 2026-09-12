@@ -1,6 +1,6 @@
 ---
 interface Props {
-  slotId: string;
+  slotId?: string;
   format?: 'auto' | 'horizontal' | 'vertical' | 'rectangle';
   className?: string;
 }
@@ -14,22 +14,42 @@ const formatClasses = {
   rectangle: 'min-h-[250px] w-full max-w-[336px] mx-auto',
 };
 
-const AD_CLIENT = 'pub-5332027341695441';
+const AD_CLIENT = import.meta.env.PUBLIC_ADSENSE_CLIENT || 'pub-5332027341695441';
+const DEFAULT_SLOTS: Record<string, string | undefined> = {
+  HOMEPAGE_TOP: import.meta.env.PUBLIC_ADSENSE_HOMEPAGE_TOP || undefined,
+  HOMEPAGE_BOTTOM: import.meta.env.PUBLIC_ADSENSE_HOMEPAGE_BOTTOM || undefined,
+  BLOG_TOP: import.meta.env.PUBLIC_ADSENSE_BLOG_TOP || undefined,
+  BLOG_BOTTOM: import.meta.env.PUBLIC_ADSENSE_BLOG_BOTTOM || undefined,
+  TOP_LEADERBOARD: import.meta.env.PUBLIC_ADSENSE_TOP_LEADERBOARD || undefined,
+  BOTTOM_LEADERBOARD: import.meta.env.PUBLIC_ADSENSE_BOTTOM_LEADERBOARD || undefined,
+  SIDEBAR_RECTANGLE: import.meta.env.PUBLIC_ADSENSE_SIDEBAR_RECTANGLE || undefined,
+  ARTICLE_TOP: import.meta.env.PUBLIC_ADSENSE_ARTICLE_TOP || undefined,
+  ARTICLE_MIDDLE: import.meta.env.PUBLIC_ADSENSE_ARTICLE_MIDDLE || undefined,
+  ARTICLE_BOTTOM: import.meta.env.PUBLIC_ADSENSE_ARTICLE_BOTTOM || undefined,
+};
+
+const resolvedFromEnv = slotId ? DEFAULT_SLOTS[slotId as keyof typeof DEFAULT_SLOTS] : undefined;
+const resolvedSlotId = resolvedFromEnv && resolvedFromEnv.length > 0 ? resolvedFromEnv : slotId;
+
+// Only render if we have a real, non-empty slot ID
+const shouldRender = resolvedSlotId && typeof resolvedSlotId === 'string' && resolvedSlotId.length > 0 && resolvedSlotId !== slotId;
 ---
 
+{shouldRender && (
 <div
   class={`ad-container ${formatClasses[format]} ${className}`}
-  data-adsense-slot={slotId}
+  data-adsense-slot={resolvedSlotId}
 >
   <ins class="adsbygoogle"
     style="display:block"
     data-ad-client={AD_CLIENT}
-    data-ad-slot={slotId}
+    data-ad-slot={resolvedSlotId}
     data-ad-format={format === 'auto' ? 'auto' : undefined}
     data-full-width-responsive="true">
   </ins>
   <script is:inline>(adsbygoogle = window.adsbygoogle || []).push({});</script>
 </div>
+)}
 
 <style>
   .ad-container {

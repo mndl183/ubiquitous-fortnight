@@ -87,11 +87,11 @@ export function getSwitcherHref(locale: Locale | string, pathname: string): stri
 import es from '../i18n/es.json';
 import fr from '../i18n/fr.json';
 import de from '../i18n/de.json';
+import en from '../i18n/en.json';
 
-export const translations = { es, fr, de, en: {} };
+export const translations = { es, fr, de, en };
 
 export function t(locale: Locale, key: string): string {
-  if (locale === 'en') return key;
   const keys = key.split('.');
   let value: any = translations[locale];
   for (const k of keys) {
