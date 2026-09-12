@@ -1,11 +1,11 @@
 ---
 interface Props {
-  slotId?: string;
+  slotId: string;
   format?: 'auto' | 'horizontal' | 'vertical' | 'rectangle';
   className?: string;
 }
 
-const { slotId = '7259634147794832', format = 'auto', className = '' } = Astro.props;
+const { slotId, format = 'auto', className = '' } = Astro.props;
 
 const formatClasses = {
   auto: '',

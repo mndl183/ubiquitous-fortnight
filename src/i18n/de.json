@@ -3,6 +3,7 @@
     "pdfTools": "PDF-Tools",
     "seoTools": "SEO-Tools",
     "careerTools": "Karriere-Tools",
+    "stlViewer": "STL Viewer",
     "blog": "Blog"
   },
   "common": {
@@ -40,6 +41,8 @@
     "seoToolsDesc": "Optimieren Sie Ihre Inhalte für Suchmaschinen mit kostenlosen Online-Tools.",
     "careerTools": "Karriere-Tools",
     "careerToolsDesc": "Erstellen Sie Ihren Lebenslauf, schreiben Sie Anschreiben und meistern Sie Vorstellungsgespräche.",
+    "stlTools": "3D & STL Tools",
+    "stlToolsDesc": "3D-Modelle anzeigen, STL-Dateien verwalten und Modelle für den 3D-Druck vorbereiten.",
     "viewAll": "Alle anzeigen",
     "blogTitle": "Blog & Anleitungen",
     "blogDesc": "Expertenanleitungen für PDF-Bearbeitung, SEO-Optimierung und Karriereentwicklung."
@@ -102,7 +105,8 @@
     "resume-builder": { "name": "Lebenslauf-Ersteller", "desc": "Erstellen Sie einen professionellen Lebenslauf aus Vorlagen" },
     "cover-letter": { "name": "Anschreiben-Generator", "desc": "Erstellen Sie maßgeschneiderte Anschreiben" },
     "ats-checker": { "name": "ATS-Score-Prüfer", "desc": "Prüfen Sie, wie Ihr Lebenslauf bei ATS abschneidet" },
-    "interview-questions": { "name": "Interview-Vorbereitung", "desc": "Generieren Sie Interviewfragen für Ihre Rolle" }
+    "interview-questions": { "name": "Interview-Vorbereitung", "desc": "Generieren Sie Interviewfragen für Ihre Rolle" },
+    "stl-viewer": { "name": "STL Viewer", "desc": "3D-Modelle anzeigen und STL-Dateien verwalten" }
   },
   "footer": {
     "description": "Kostenlose Online-Tools für PDF-Bearbeitung, SEO-Optimierung und Karriereentwicklung. Keine Anmeldung erforderlich.",

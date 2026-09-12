@@ -3,6 +3,7 @@
     "pdfTools": "Outils PDF",
     "seoTools": "Outils SEO",
     "careerTools": "Outils Carrière",
+    "stlViewer": "Visionneuse STL",
     "blog": "Blog"
   },
   "common": {
@@ -40,6 +41,8 @@
     "seoToolsDesc": "Optimisez votre contenu pour les moteurs de recherche avec des outils gratuits en ligne.",
     "careerTools": "Outils Carrière",
     "careerToolsDesc": "Créez votre CV, rédigez des lettres de motivation et réussissez vos entretiens.",
+    "stlTools": "Outils 3D et STL",
+    "stlToolsDesc": "Visualisez des modèles 3D, gérez les fichiers STL et préparez des modèles pour l'impression 3D.",
     "viewAll": "Voir tout",
     "blogTitle": "Blog et Guides",
     "blogDesc": "Guides d'experts pour l'édition PDF, l'optimisation SEO et le développement de carrière."
@@ -102,7 +105,8 @@
     "resume-builder": { "name": "Créateur de CV", "desc": "Créer un CV professionnel à partir de modèles" },
     "cover-letter": { "name": "Générateur de Lettres de Motivation", "desc": "Générer des lettres de motivation personnalisées" },
     "ats-checker": { "name": "Vérificateur de Score ATS", "desc": "Vérifiez comment votre CV se comporte face aux systèmes ATS" },
-    "interview-questions": { "name": "Préparation aux Entretiens", "desc": "Générer des questions d'entretien pour votre poste" }
+    "interview-questions": { "name": "Préparation aux Entretiens", "desc": "Générer des questions d'entretien pour votre poste" },
+    "stl-viewer": { "name": "Visionneuse STL", "desc": "Visualiser des modèles 3D et gérer les fichiers STL" }
   },
   "footer": {
     "description": "Outils en ligne gratuits pour l'édition PDF, l'optimisation SEO et le développement de carrière. Aucune inscription requise.",

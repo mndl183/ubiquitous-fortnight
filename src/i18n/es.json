@@ -3,6 +3,7 @@
     "pdfTools": "Herramientas PDF",
     "seoTools": "Herramientas SEO",
     "careerTools": "Herramientas de Carrera",
+    "stlViewer": "Visor STL",
     "blog": "Blog"
   },
   "common": {
@@ -40,6 +41,8 @@
     "seoToolsDesc": "Optimiza tu contenido para motores de búsqueda con herramientas gratuitas en línea.",
     "careerTools": "Herramientas de Carrera",
     "careerToolsDesc": "Crea tu currículum, escribe cartas de presentación y destaca en entrevistas.",
+    "stlTools": "Herramientas 3D y STL",
+    "stlToolsDesc": "Visualiza modelos 3D, gestiona archivos STL y prepara modelos para impresión 3D.",
     "viewAll": "Ver todo",
     "blogTitle": "Blog y Guías",
     "blogDesc": "Guías de expertos para edición de PDF, optimización SEO y desarrollo de carrera."
@@ -102,7 +105,8 @@
     "resume-builder": { "name": "Constructor de Currículum", "desc": "Crear un currículum profesional desde plantillas" },
     "cover-letter": { "name": "Generador de Cartas de Presentación", "desc": "Generar cartas de presentación personalizadas" },
     "ats-checker": { "name": "Verificador de Puntuación ATS", "desc": "Verifica cómo funciona tu currículum contra los sistemas ATS" },
-    "interview-questions": { "name": "Preparación para Entrevistas", "desc": "Generar preguntas de entrevista para tu puesto" }
+    "interview-questions": { "name": "Preparación para Entrevistas", "desc": "Generar preguntas de entrevista para tu puesto" },
+    "stl-viewer": { "name": "Visor STL", "desc": "Ver modelos 3D y gestionar archivos STL" }
   },
   "footer": {
     "description": "Herramientas en línea gratuitas para edición de PDF, optimización SEO y desarrollo de carrera. Sin registro requerido.",
