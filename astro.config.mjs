@@ -23,6 +23,7 @@ export default defineConfig({
     csrfProtection: {
       enabled: false,
     },
+    checkOrigin: false,
   },
   i18n: {
     defaultLocale: 'en',
