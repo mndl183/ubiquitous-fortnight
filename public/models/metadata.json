@@ -1,0 +1,19 @@
+[
+  {
+    "id": "upload-1789286460114-7fd3f6df",
+    "name": "Test Cube",
+    "description": "A test upload",
+    "tags": [
+      "test",
+      "cube",
+      "demo"
+    ],
+    "filename": "Test_Cube_1789286460114_7fd3f6df.stl",
+    "size": 2013,
+    "uploadedAt": 1789286460114,
+    "metadata": {
+      "material": "PLA",
+      "printTime": "30min"
+    }
+  }
+]
