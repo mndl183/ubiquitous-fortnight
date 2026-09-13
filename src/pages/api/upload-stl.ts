@@ -49,16 +49,16 @@ export const POST: APIRoute = async ({ request }) => {
     const metadata = (formData.get('metadata') as string) || '{}';
 
     if (!file) {
-      return new Response(
-        JSON.stringify({ success: false, error: 'No file provided' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
-      );
+return new Response(
+      JSON.stringify({ success: false, error: 'No file provided' }),
+      { status: 400, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
+    );
     }
 
     if (!file.name.toLowerCase().endsWith('.stl')) {
       return new Response(
         JSON.stringify({ success: false, error: 'File must be an STL file (.stl)' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
       );
     }
 
@@ -66,7 +66,7 @@ export const POST: APIRoute = async ({ request }) => {
     if (file.size > 50 * 1024 * 1024) {
       return new Response(
         JSON.stringify({ success: false, error: 'File size exceeds 50MB limit' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
       );
     }
 
@@ -113,7 +113,7 @@ export const POST: APIRoute = async ({ request }) => {
 
     return new Response(
       JSON.stringify({ success: true, model }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { status: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     );
   } catch (err) {
     console.error('STL upload error:', err);
@@ -129,15 +129,26 @@ export const GET: APIRoute = async () => {
     const models = await loadMetadata();
     return new Response(
       JSON.stringify({ success: true, models }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { status: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     );
   } catch (err) {
     console.error('STL list error:', err);
     return new Response(
       JSON.stringify({ success: false, error: 'Internal server error' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      { status: 500, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     );
   }
+};
+
+export const OPTIONS: APIRoute = async () => {
+  return new Response(null, {
+    status: 204,
+    headers: {
+      'Access-Control-Allow-Origin': '*',
+      'Access-Control-Allow-Methods': 'GET, POST, DELETE, OPTIONS',
+      'Access-Control-Allow-Headers': 'Content-Type',
+    },
+  });
 };
 
 export const DELETE: APIRoute = async ({ request }) => {
@@ -147,17 +158,17 @@ export const DELETE: APIRoute = async ({ request }) => {
     if (!id) {
       return new Response(
         JSON.stringify({ success: false, error: 'Missing model ID' }),
-        { status: 400, headers: { 'Content-Type': 'application/json' } }
+        { status: 400, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
       );
     }
 
     const models = await loadMetadata();
     const idx = models.findIndex(m => m.id === id);
     if (idx === -1) {
-      return new Response(
-        JSON.stringify({ success: false, error: 'Model not found' }),
-        { status: 404, headers: { 'Content-Type': 'application/json' } }
-      );
+    return new Response(
+      JSON.stringify({ success: false, error: 'Model not found' }),
+      { status: 404, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
+    );
     }
 
     const model = models[idx];
@@ -173,13 +184,13 @@ export const DELETE: APIRoute = async ({ request }) => {
 
     return new Response(
       JSON.stringify({ success: true, message: 'Model deleted' }),
-      { status: 200, headers: { 'Content-Type': 'application/json' } }
+      { status: 200, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     );
   } catch (err) {
     console.error('STL delete error:', err);
     return new Response(
       JSON.stringify({ success: false, error: 'Internal server error' }),
-      { status: 500, headers: { 'Content-Type': 'application/json' } }
+      { status: 500, headers: { 'Content-Type': 'application/json', 'Access-Control-Allow-Origin': '*' } }
     );
   }
 };

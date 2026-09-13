@@ -19,6 +19,11 @@ export default defineConfig({
       priority: 0.7,
     })
   ],
+  security: {
+    csrfProtection: {
+      enabled: false,
+    },
+  },
   i18n: {
     defaultLocale: 'en',
     locales: ['en', 'es', 'fr', 'de'],
