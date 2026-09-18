@@ -1,196 +1,115 @@
 #!/usr/bin/env python3
 """
-STL Upload Script for yoimagine Tools (Static Site Generator)
+STL Upload Script for yoimagine Tools Server API
 
-This script helps you add STL files to the local model library by:
-1. Copying STL files to public/models/
-2. Generating/updating the metadata.json file
-3. Commit and push to deploy
+Upload STL files to the server API with description, tags, and metadata.
 
 Usage:
     python upload_stl.py path/to/model.stl --name "My Model" --desc "Description" --tags "tag1,tag2" --meta '{"key": "value"}'
-    python upload_stl.py path/to/model.stl  # minimal upload
     python upload_stl.py --list  # list existing models
+    python upload_stl.py --delete <model-id>  # delete a model
 """
 
 import argparse
 import json
 import os
-import shutil
 import sys
-import uuid
-from datetime import datetime
 from pathlib import Path
-from typing import Optional
+from typing import Optional, Dict, Any
 
-# Project root (where this script lives: scripts/upload_stl.py)
-SCRIPT_DIR = Path(__file__).resolve().parent
-PROJECT_ROOT = SCRIPT_DIR.parent
-MODELS_DIR = PROJECT_ROOT / "public" / "models"
-METADATA_FILE = MODELS_DIR / "metadata.json"
+import requests
 
-
-def load_metadata() -> list:
-    """Load existing metadata from file."""
-    try:
-        with open(METADATA_FILE, "r", encoding="utf-8") as f:
-            return json.load(f)
-    except (FileNotFoundError, json.JSONDecodeError):
-        return []
-
-
-def save_metadata(metadata: list) -> None:
-    """Save metadata to file."""
-    MODELS_DIR.mkdir(parents=True, exist_ok=True)
-    with open(METADATA_FILE, "w", encoding="utf-8") as f:
-        json.dump(metadata, f, indent=2, ensure_ascii=False)
+DEFAULT_API_URL = os.environ.get("STL_API_URL", "https://tools.yoimagine.com/api/upload-stl")
 
 
 def upload_stl(
     file_path: str,
+    api_url: str = DEFAULT_API_URL,
     name: Optional[str] = None,
     description: Optional[str] = None,
     tags: Optional[str] = None,
-    metadata: Optional[dict] = None,
+    metadata: Optional[Dict[str, Any]] = None,
 ) -> dict:
-    """
-    Add an STL file to the local model library.
-
-    Args:
-        file_path: Path to the .stl file
-        name: Model name (defaults to filename)
-        description: Model description
-        tags: Comma-separated tags string
-        metadata: Additional metadata as dict
-
-    Returns:
-        Model info dict
-    """
+    """Upload an STL file with metadata to the server API."""
     path = Path(file_path)
     if not path.exists():
         raise FileNotFoundError(f"File not found: {file_path}")
-
     if path.suffix.lower() != ".stl":
         raise ValueError("File must have .stl extension")
 
-    # Load existing metadata
-    existing = load_metadata()
+    with open(path, "rb") as f:
+        files = {"file": (path.name, f, "application/octet-stream")}
+        data = {}
+        if name:
+            data["name"] = name
+        if description:
+            data["description"] = description
+        if tags:
+            data["tags"] = tags
+        if metadata:
+            data["metadata"] = json.dumps(metadata)
 
-    # Prepare model info
-    timestamp = int(datetime.now().timestamp() * 1000)
-    uid = uuid.uuid4().hex[:8]
-    safe_name = (name or path.stem).strip()
-    filename = f"{safe_name.replace(' ', '_')}_{timestamp}_{uid}.stl"
+        response = requests.post(api_url, files=files, data=data, timeout=60)
 
-    # Copy file to models directory
-    dest_path = MODELS_DIR / filename
-    shutil.copy2(path, dest_path)
+    if not response.ok:
+        try:
+            err = response.json().get("error", response.text)
+        except json.JSONDecodeError:
+            err = response.text
+        raise RuntimeError(f"API error ({response.status_code}): {err}")
 
-    file_size = dest_path.stat().st_size
-
-    # Parse tags
-    parsed_tags = []
-    if tags:
-        parsed_tags = [t.strip() for t in tags.split(",") if t.strip()]
-
-    model = {
-        "id": f"upload-{timestamp}-{uid}",
-        "name": safe_name,
-        "description": description or "",
-        "tags": parsed_tags,
-        "filename": filename,
-        "size": file_size,
-        "uploadedAt": timestamp,
-        "metadata": metadata or {},
-    }
-
-    existing.append(model)
-    save_metadata(existing)
-
-    return model
+    return response.json()
 
 
-def list_models() -> list:
-    """List all models in the local library."""
-    return load_metadata()
+def list_models(api_url: str = DEFAULT_API_URL) -> list:
+    """List all models from the server."""
+    response = requests.get(api_url, timeout=30)
+    if not response.ok:
+        raise RuntimeError(f"List failed: {response.status_code} {response.text}")
+    return response.json().get("models", [])
 
 
-def main():
-    parser = argparse.ArgumentParser(
-        description="Add STL files to yoimagine Tools local model library",
-        formatter_class=argparse.RawDescriptionHelpFormatter,
-        epilog="""
-Examples:
-  python upload_stl.py ~/models/gear.stl --name "Spur Gear" --desc "16-tooth spur gear" --tags "gear,mechanical"
-  python upload_stl.py ~/models/cube.stl --meta '{"printTime": "2h", "material": "PLA"}'
-  python upload_stl.py --list
-        """
-    )
-    parser.add_argument("file", nargs="?", help="Path to STL file")
-    parser.add_argument("--name", help="Model name (default: filename without extension)")
-    parser.add_argument("--desc", "--description", dest="description", help="Model description")
-    parser.add_argument("--tags", help="Comma-separated tags (e.g., 'mechanical,gear,test')")
-    parser.add_argument("--meta", "--metadata", dest="metadata", help="JSON metadata string")
-    parser.add_argument("--list", action="store_true", help="List existing models instead of uploading")
-
-    args = parser.parse_args()
-
-    if args.list:
-        models = list_models()
-        if not models:
-            print("No models found in local library.")
-            return
-        print(f"Found {len(models)} model(s) in local library:\n")
-        for m in models:
-            print(f"  ID: {m.get('id')}")
-            print(f"  Name: {m.get('name')}")
-            print(f"  Description: {m.get('description', '(none)')}")
-            print(f"  Tags: {', '.join(m.get('tags', [])) or '(none)'}")
-            print(f"  Filename: {m.get('filename')}")
-            print(f"  Size: {m.get('size', 0) / 1024:.1f} KB")
-            print(f"  Uploaded: {datetime.fromtimestamp(m.get('uploadedAt', 0) / 1000).strftime('%Y-%m-%d %H:%M')}")
-            if m.get("metadata"):
-                print(f"  Metadata: {json.dumps(m['metadata'])}")
-            print()
-        return
-
-    if not args.file:
-        parser.error("File argument is required (use --list to view models)")
-
-    try:
-        meta = None
-        if args.metadata:
-            try:
-                meta = json.loads(args.metadata)
-            except json.JSONDecodeError as e:
-                print(f"Invalid JSON metadata: {e}", file=sys.stderr)
-                sys.exit(1)
-
-        model = upload_stl(
-            file_path=args.file,
-            name=args.name,
-            description=args.description,
-            tags=args.tags,
-            metadata=meta,
-        )
-
-        print("✓ Model added to local library!")
-        print(f"  ID: {model['id']}")
-        print(f"  Name: {model['name']}")
-        print(f"  Filename: {model['filename']}")
-        print(f"  Size: {model['size'] / 1024:.1f} KB")
-        print(f"  Tags: {', '.join(model['tags']) or '(none)'}")
-        print(f"  Copied to: {MODELS_DIR / model['filename']}")
-        print(f"  Metadata updated: {METADATA_FILE}")
-        print("\nNext steps:")
-        print("  1. git add public/models/")
-        print("  2. git commit -m 'Add STL model: <name>'")
-        print("  3. git push")
-
-    except Exception as e:
-        print(f"Error: {e}", file=sys.stderr)
-        sys.exit(1)
+def delete_model(model_id: str, api_url: str = DEFAULT_API_URL) -> dict:
+    """Delete a model by ID."""
+    response = requests.delete(f"{api_url}?id={model_id}", timeout=30)
+    if not response.ok:
+        raise RuntimeError(f"Delete failed: {response.status_code} {response.text}")
+    return response.json()
 
 
 if __name__ == "__main__":
-    main()
+    parser = argparse.ArgumentParser(description="Upload STL with metadata to yoimagine Tools")
+    parser.add_argument("file", nargs="?", help="Path to .stl file")
+    parser.add_argument("--url", default=DEFAULT_API_URL, help="API endpoint")
+    parser.add_argument("--name", help="Model name")
+    parser.add_argument("--desc", "--description", dest="description", help="Description")
+    parser.add_argument("--tags", help="Comma-separated tags")
+    parser.add_argument("--meta", "--metadata", dest="metadata", help="JSON metadata")
+    parser.add_argument("--list", action="store_true", help="List models")
+    parser.add_argument("--delete", help="Delete model by ID")
+    args = parser.parse_args()
+
+    if args.list:
+        models = list_models(args.url)
+        for m in models:
+            print(f"  {m['id']} | {m['name']} | tags: {', '.join(m['tags']) or 'none'}")
+        sys.exit(0)
+
+    if args.delete:
+        print(f"Deleted: {delete_model(args.delete, args.url).get('message')}")
+        sys.exit(0)
+
+    if not args.file:
+        parser.error("File required (or use --list / --delete)")
+
+    meta = json.loads(args.metadata) if args.metadata else None
+    result = upload_stl(args.file, args.url, args.name, args.description, args.tags, meta)
+
+    if result.get("success"):
+        m = result["model"]
+        print(f"✓ Uploaded: {m['id']}")
+        print(f"  Name: {m['name']}")
+        print(f"  File: /models/{m['filename']}")
+    else:
+        print(f"✗ Failed: {result.get('error')}")
+        sys.exit(1)

@@ -80,6 +80,46 @@ async function loadAll() {
   await ensureSamples();
   cache.clear();
   for (const m of await storageGetAll()) cache.set(m.id, m);
+
+  // Also load server-uploaded models (via server API or static metadata)
+  try {
+    // Try server API first (if site is running server mode)
+    const res = await fetch('/api/upload-stl/');
+    if (res.ok) {
+      const data = await res.json();
+      for (const serverModel of (data.models || [])) {
+        const id = serverModel.id || serverModel.filename;
+        cache.set(id, {
+          id,
+          name: serverModel.name || serverModel.filename?.replace('.stl', ''),
+          description: serverModel.description || '',
+          tags: serverModel.tags || [],
+          source: 'server',
+          url: `/models/${serverModel.filename}`,
+        });
+      }
+    } else {
+      // Fallback to metadata.json for static builds
+      const metaRes = await fetch('/models/metadata.json');
+      if (metaRes.ok) {
+        const metaData = await metaRes.json();
+        for (const serverModel of metaData) {
+          const id = serverModel.id || serverModel.filename;
+          cache.set(id, {
+            id,
+            name: serverModel.name || serverModel.filename?.replace('.stl', ''),
+            description: serverModel.description || '',
+            tags: serverModel.tags || [],
+            source: 'server',
+            url: `/models/${serverModel.filename}`,
+          });
+        }
+      }
+    }
+  } catch {
+    // Server not available — use local IndexedDB only
+  }
+
   renderGallery();
 }
 

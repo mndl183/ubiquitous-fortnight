@@ -1058,5 +1058,144 @@
       "source": "freecad-generated",
       "originalFilename": "9_A_modernist_chess_bi.stl"
     }
+  },
+  {
+    "id": "upload-1789727744130-c2e9616e",
+    "name": "Classic Spinning Top",
+    "description": "Classic 3D printable spinning top toy",
+    "tags": [
+      "toy",
+      "spinning",
+      "classic"
+    ],
+    "filename": "Classic_Spinning_Top_1789727744130_c2e9616e.stl",
+    "size": 6500851,
+    "uploadedAt": 1789727744130,
+    "metadata": {
+      "category": "toy",
+      "difficulty": "easy",
+      "material": "PLA"
+    }
+  },
+  {
+    "id": "upload-1789727744141-fac88367",
+    "name": "Simple Spur Gear",
+    "description": "Simple spur gear for mechanical testing",
+    "tags": [
+      "gear",
+      "mechanical",
+      "spur"
+    ],
+    "filename": "Simple_Spur_Gear_1789727744141_fac88367.stl",
+    "size": 209500,
+    "uploadedAt": 1789727744141,
+    "metadata": {
+      "category": "mechanical",
+      "difficulty": "medium",
+      "part_type": "gear"
+    }
+  },
+  {
+    "id": "upload-1789727744147-c33b7185",
+    "name": "Hexagonal Planter",
+    "description": "Hexagonal planter for plants or decorations",
+    "tags": [
+      "planter",
+      "hexagon",
+      "garden"
+    ],
+    "filename": "Hexagonal_Planter_1789727744147_c33b7185.stl",
+    "size": 14184,
+    "uploadedAt": 1789727744147,
+    "metadata": {
+      "category": "decor",
+      "difficulty": "easy",
+      "use": "planter"
+    }
+  },
+  {
+    "id": "upload-1789727744153-c1bedb50",
+    "name": "Standard 20x20x20 Cube",
+    "description": "Standard calibration cube (20mm)",
+    "tags": [
+      "cube",
+      "calibration",
+      "standard"
+    ],
+    "filename": "Standard_20x20x20_Cube_1789727744153_c1bedb50.stl",
+    "size": 7100,
+    "uploadedAt": 1789727744153,
+    "metadata": {
+      "category": "calibration",
+      "difficulty": "easy",
+      "size_mm": "20"
+    }
+  },
+  {
+    "id": "upload-1789727744165-bccdd77d",
+    "name": "Wall Mount Bracket",
+    "description": "Wall mount bracket for mounting devices",
+    "tags": [
+      "bracket",
+      "mount",
+      "wall",
+      "hardware"
+    ],
+    "filename": "Wall_Mount_Bracket_1789727744165_bccdd77d.stl",
+    "size": 1402648,
+    "uploadedAt": 1789727744165,
+    "metadata": {
+      "category": "hardware",
+      "difficulty": "medium",
+      "use": "mounting"
+    }
+  },
+  {
+    "id": "upload-1789727986125-dd64f9e9",
+    "name": "Test",
+    "description": "Test",
+    "tags": [
+      "test"
+    ],
+    "filename": "Test_1789727986125_dd64f9e9.stl",
+    "size": 474644,
+    "uploadedAt": 1789727986125,
+    "metadata": {}
+  },
+  {
+    "id": "upload-1789728006069-b011377b",
+    "name": "35mm DIN Rail Mount",
+    "description": "DIN rail mounting bracket",
+    "tags": [
+      "mount",
+      "bracket",
+      "hardware"
+    ],
+    "filename": "35mm_DIN_Rail_Mount_1789728006069_b011377b.stl",
+    "size": 474644,
+    "uploadedAt": 1789728006069,
+    "metadata": {
+      "category": "hardware",
+      "material": "PLA",
+      "difficulty": "medium"
+    }
+  },
+  {
+    "id": "upload-1789728162549-52da0623",
+    "name": "Simple Spur Gear",
+    "description": "Spur gear for mechanical testing",
+    "tags": [
+      "gear",
+      "mechanical",
+      "spur"
+    ],
+    "filename": "Simple_Spur_Gear_1789728162549_52da0623.stl",
+    "size": 209500,
+    "uploadedAt": 1789728162549,
+    "metadata": {
+      "category": "mechanical",
+      "part_type": "gear",
+      "difficulty": "medium"
+    }
   }
 ]
